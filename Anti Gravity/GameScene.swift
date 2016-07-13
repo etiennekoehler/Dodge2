@@ -64,6 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallMove:CGFloat  = 100.0                    // move walls in xdir e.g. 200
     var xwallMoveI:CGFloat = 100.0
     let velocityWall = CGFloat(120)                   // wall speed e.g. 120
+    var wallDir1           = 1                        // initial wall speed direction
     var wallDir            = 1                        // initial wall speed direction
     
 
@@ -305,8 +306,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallBr.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         wallBr.zPosition = 3
         
-
-        
         wallPairRight.addChild(wallAr)
         wallPairRight.addChild(wallBr)
         
@@ -331,7 +330,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         scoreNode.color = scoreNodeColor
-        
         
         
         //shape to define wall
@@ -385,8 +383,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallBl.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         wallBl.zPosition = 3
         
-        
-        
         wallPairLeft.addChild(wallAl)
         wallPairLeft.addChild(wallBl)
         
@@ -415,6 +411,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 () in
                 self.createWallsLeft()
             })
+            
+            wallDir = wallDir1
 
             
             // make new walls
@@ -428,6 +426,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let distanceWall = CGFloat(self.frame.width + wallPairRight.frame.width)
             let moveWall     = SKAction.moveByX(CGFloat(ball_dir) * xwallMove, y: -distanceWall, duration: NSTimeInterval(distanceWall/velocityWall))
+            xwallMoveI       = xwallMove
             let removeWall   = SKAction.removeFromParent()
             moveAndRemove    = SKAction.sequence([moveWall , removeWall])
             
@@ -464,7 +463,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             print("Press Ball Impulse: ",playState)
             
-
             
             // change wall speed
             
@@ -472,12 +470,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 xwallMoveI = xwallMoveI * (1.05)
             }
             
-            //wallDir = ( (score % 2) * 2 - 1)
-            
             print("xwallMove ------------------", score, xwallMoveI, wallDir, ball_dir)
 
-
-            
             
             //ball.physicsBody?.velocity =   CGVectorMake(0, 0)
             //ball.physicsBody?.velocity =   CGVectorMake(0, 0)
@@ -518,14 +512,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.categoryBitMask == PhysicsCatagory.score && secondBody.categoryBitMask == PhysicsCatagory.ball{
             score  += 1
             wallDir = wallDir * (-1)
-            print("Score1: ", score)
+            print("Score1: ", score, wallDir)
             scoreLbl.text = "\(score)"
             firstBody.node?.removeFromParent()
         }
         else if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
             score  += 1
             wallDir = wallDir * (-1)
-            print("Score2: ", score)
+            print("Score2: ", score, wallDir)
             scoreLbl.text = "\(score)"
             secondBody.node?.removeFromParent()
         }
@@ -547,7 +541,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             && secondBody.categoryBitMask == PhysicsCatagory.ball{
             
             playState = 2
-            print("Collision: ", playState)
+            print("Collision with wall")
             //ball.physicsBody?.affectedByGravity = true
                 
             self.physicsWorld.gravity = CGVectorMake(CGFloat(0), CGFloat(-3))     // switch gravity: fall down on collision
