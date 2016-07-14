@@ -19,25 +19,22 @@ struct PhysicsCatagory {
     static let wallBr  : UInt32 = 0x1 << 2
     static let wallAl  : UInt32 = 0x1 << 2
     static let wallBl  : UInt32 = 0x1 << 2
-
-
-
 }
 
 //--- Game Top Level
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Game Variables
-    var ball   = SKShapeNode()
-    var edge1  = SKSpriteNode()
-    var edge2  = SKSpriteNode()
-    var circle = SKSpriteNode()
+    var ball    = SKShapeNode()
+    var edge1   = SKSpriteNode()
+    var edge2   = SKSpriteNode()
+    var circle  = SKSpriteNode()
     var wallAr  = SKShapeNode()
     var wallBr  = SKShapeNode()
     var wallAl  = SKShapeNode()
     var wallBl  = SKShapeNode()
     var wallPairRight = SKNode()
-    var wallPairLeft = SKNode()
+    var wallPairLeft  = SKNode()
     var moveAndRemove  = SKAction()
     var moveAndRemove2 = SKAction()
     var restartBTN = SKSpriteNode()
@@ -63,7 +60,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallShift:CGFloat = 50.0                     // position of right wall e.g. 50
     var xwallMove:CGFloat  = 100.0                    // move walls in xdir e.g. 200
     var xwallMoveI:CGFloat = 100.0
-    let velocityWall = CGFloat(120)                   // wall speed e.g. 120
+    let velocityWall = CGFloat(180)                   // wall speed e.g. 120
+    let delayWalls   = SKAction.waitForDuration(2.0)  // time new walls (s)
     var wallDir1           = 1                        // initial wall speed direction
     var wallDir            = 1                        // initial wall speed direction
     
@@ -76,13 +74,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //let impulseX:CGFloat = 10.0
     
     // color schemes
-    var backColor      = UIColor(red:234/255, green: 234/255, blue: 234/255, alpha: 1.0)
+    var backColor      = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.0)
     var scoreNodeColor = UIColor.grayColor()
     var ballColor      = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-    var restartColor   = UIColor(red:200/256, green: 40/256,  blue: 40/256, alpha: 1)
-    var scoreColor     = UIColor(red:200/256, green: 40/256,  blue: 40/256, alpha: 1)
-    var wallAColor     = UIColor(red:200/256, green: 40/256,  blue: 40/256, alpha: 1)
-    var wallBColor     = UIColor(red: 73/255, green: 73/255, blue: 73/255, alpha: 1.0)
+    var restartColor   = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
+    var scoreColor     = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
+    var wallAColor     = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
+    var wallBColor     = UIColor(red:  73/255, green: 73/255,  blue:  73/255, alpha: 1.0)
 
     
     var score    = Int()
@@ -331,7 +329,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         scoreNode.color = scoreNodeColor
         
-        
         //shape to define wall
         
         let center3 = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
@@ -417,7 +414,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // make new walls
             
-            let delayWalls        = SKAction.waitForDuration(3.5)                                // time new walls (s)
             let spawnDelay        = SKAction.sequence([spawnWallsRight, delayWalls, spawnWallsLeft, delayWalls])
             let spawnDelayForever = SKAction.repeatActionForever(spawnDelay)
             self.runAction(spawnDelayForever)
@@ -525,19 +521,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else if firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallAr
-            || firstBody.categoryBitMask  == PhysicsCatagory.wallAr
+            ||  firstBody.categoryBitMask == PhysicsCatagory.wallAr
             && secondBody.categoryBitMask == PhysicsCatagory.ball
-            || firstBody.categoryBitMask  == PhysicsCatagory.ball
+            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallBr
-            || firstBody.categoryBitMask  == PhysicsCatagory.wallBr
+            ||  firstBody.categoryBitMask == PhysicsCatagory.wallBr
             && secondBody.categoryBitMask == PhysicsCatagory.ball
             ||  firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallAl
-            || firstBody.categoryBitMask  == PhysicsCatagory.wallAl
+            ||  firstBody.categoryBitMask == PhysicsCatagory.wallAl
             && secondBody.categoryBitMask == PhysicsCatagory.ball
-            || firstBody.categoryBitMask  == PhysicsCatagory.ball
+            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallBl
-            || firstBody.categoryBitMask  == PhysicsCatagory.wallBl
+            ||  firstBody.categoryBitMask == PhysicsCatagory.wallBl
             && secondBody.categoryBitMask == PhysicsCatagory.ball{
             
             playState = 2
