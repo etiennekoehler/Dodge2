@@ -11,14 +11,14 @@ import SpriteKit
 
 //--- Game Physics
 struct PhysicsCatagory {
-    static let ball   : UInt32 = 0x1 << 1
-    static let edge1  : UInt32 = 0x1 << 2
-    static let edge2  : UInt32 = 0x1 << 2
-    static let score  : UInt32 = 0x1 << 4
+    static let ball    : UInt32 = 0x1 << 1
+    static let edge1   : UInt32 = 0x1 << 2
+    static let edge2   : UInt32 = 0x1 << 2
     static let wallAr  : UInt32 = 0x1 << 2
     static let wallBr  : UInt32 = 0x1 << 2
     static let wallAl  : UInt32 = 0x1 << 2
     static let wallBl  : UInt32 = 0x1 << 2
+    static let score   : UInt32 = 0x1 << 4
 }
 
 //--- Game Top Level
@@ -57,7 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartSleep = UInt32(0)                      // wait after restart button created  e.g. 3 [s]
     var xwallPos1:CGFloat  = 775.0                    // position of left wall  e.g. 800
     var xwallPos2:CGFloat  = 250.0                    // position of right wall e.g. 225
-    var xwallShift:CGFloat = 50.0                     // position of right wall e.g. 50
+    var xwallShift:CGFloat = -50.0                    // shift wall to see more of incoming red wall
     var xwallMove:CGFloat  = 100.0                    // move walls in xdir e.g. 200
     var xwallMoveI:CGFloat = 100.0
     let velocityWall = CGFloat(180)                   // wall speed e.g. 120
@@ -190,7 +190,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.categoryBitMask    = PhysicsCatagory.ball
         ball.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
         ball.physicsBody?.contactTestBitMask = PhysicsCatagory.wallAr | PhysicsCatagory.wallBr | PhysicsCatagory.wallAl | PhysicsCatagory.wallBl | PhysicsCatagory.score
+        ball.physicsBody!.usesPreciseCollisionDetection = true
         ball.physicsBody?.velocity = CGVector(dx: 0 , dy: 0)            // ball: initial velocity [m/s]
+        ball.zPosition = 3
         
         self.addChild(ball)
         
@@ -238,6 +240,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 //--- Create walls right ---->
+    
     func createWallsRight(){
         
         wallPairRight = SKNode()
@@ -253,7 +256,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         scoreNode.color = scoreNodeColor
         
-        //shape to define wall
+        //Ar: Left wall moving right  |=>
         
         let center1 = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         let path1   = CGPathCreateMutable()
@@ -266,10 +269,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallAr = SKShapeNode(path: path1)
         wallAr.strokeColor = wallAColor
         wallAr.fillColor   = wallAColor
-        
-        //wall physics
-
-        wallAr.position = CGPoint(x: self.frame.width/2  - xwallPos1 + CGFloat(ball_dir) * xwallShift, y:frame.height-383)
+        wallAr.position    = CGPoint(x: self.frame.width/2  - xwallPos1 + xwallShift, y:frame.height-383)
         wallAr.physicsBody = SKPhysicsBody(polygonFromPath: path1)
         wallAr.physicsBody?.affectedByGravity = false
         wallAr.physicsBody?.dynamic = false
@@ -277,25 +277,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallAr.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
         wallAr.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         wallAr.zPosition = 3
-        //wallA.physicsBody = SKPhysicsBody(rectangleOfSize: wall1.size, center: center)
-
         
-        //shape to define wall
+        //Br: Right wall moving right  >=|
+        
         let center2 = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         let path2   = CGPathCreateMutable()
         CGPathMoveToPoint(   path2, nil, center2.x -  100, center2.y)
-        CGPathAddLineToPoint(path2, nil, center2.x -  125, center2.y - 25)
-        CGPathAddLineToPoint(path2, nil, center2.x + 1000, center2.y - 25)
-        CGPathAddLineToPoint(path2, nil, center2.x + 1000, center2.y + 25)
         CGPathAddLineToPoint(path2, nil, center2.x -  125, center2.y + 25)
-        CGPathCloseSubpath(path2)
+        CGPathAddLineToPoint(path2, nil, center2.x + 1000, center2.y + 25)
+        CGPathAddLineToPoint(path2, nil, center2.x + 1000, center2.y - 25)
+        CGPathAddLineToPoint(path2, nil, center2.x -  125, center2.y - 25)
+ 
+        //CGPathCloseSubpath(path2)
+
         wallBr = SKShapeNode(path: path2)
         wallBr.strokeColor = wallBColor
         wallBr.fillColor   = wallBColor
-        
-        //wall physics
-        
-        wallBr.position = CGPoint(x: self.frame.width  - xwallPos1 + CGFloat(ball_dir) * xwallShift, y:frame.height-383)
+        wallBr.position    = CGPoint(x: self.frame.width  - xwallPos1 + xwallShift, y:frame.height-383)
         wallBr.physicsBody = SKPhysicsBody(polygonFromPath: path2)
         wallBr.physicsBody?.affectedByGravity = false
         wallBr.physicsBody?.dynamic = false
@@ -306,7 +304,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         wallPairRight.addChild(wallAr)
         wallPairRight.addChild(wallBr)
-        
         wallPairRight.addChild(scoreNode)
         wallPairRight.runAction(moveAndRemove)
         
@@ -314,6 +311,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     //--- Create walls left <---------
+    
     func createWallsLeft(){
         
         wallPairLeft = SKNode()
@@ -329,7 +327,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         scoreNode.color = scoreNodeColor
         
-        //shape to define wall
+        //Al: Right wall moving left  <=|
         
         let center3 = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         let path3   = CGPathCreateMutable()
@@ -342,10 +340,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallAl = SKShapeNode(path: path3)
         wallAl.strokeColor = wallAColor
         wallAl.fillColor   = wallAColor
-        
-        //wall physics
-        
-        wallAl.position = CGPoint(x: self.frame.width  - xwallPos1 + CGFloat(ball_dir) * xwallShift, y:frame.height-383)
+        wallAl.position    = CGPoint(x: self.frame.width  - xwallPos1 - xwallShift, y:frame.height-383)
         wallAl.physicsBody = SKPhysicsBody(polygonFromPath: path3)
         wallAl.physicsBody?.affectedByGravity = false
         wallAl.physicsBody?.dynamic = false
@@ -353,25 +348,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallAl.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
         wallAl.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         wallAl.zPosition = 3
-        //wallA.physicsBody = SKPhysicsBody(rectangleOfSize: wall1.size, center: center)
         
+        //Bl: Left wall moving left  |=<
         
-        //shape to define wall
         let center4 = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         let path4   = CGPathCreateMutable()
+
+        /*
+        CGPathMoveToPoint(   path4, nil, center3.x -  100, center3.y)
+        CGPathAddLineToPoint(path4, nil, center3.x -  125, center3.y - 25)
+        CGPathAddLineToPoint(path4, nil, center3.x + 1000, center3.y - 25)
+        CGPathAddLineToPoint(path4, nil, center3.x + 1000, center3.y + 25)
+        CGPathAddLineToPoint(path4, nil, center3.x -  125, center3.y + 25)
+        */
+        
         CGPathMoveToPoint(   path4, nil, center4.x +  100, center4.y)
-        CGPathAddLineToPoint(path4, nil, center4.x +  125, center4.y - 25)
-        CGPathAddLineToPoint(path4, nil, center4.x - 1000, center4.y - 25)
-        CGPathAddLineToPoint(path4, nil, center4.x - 1000, center4.y + 25)
         CGPathAddLineToPoint(path4, nil, center4.x +  125, center4.y + 25)
+        CGPathAddLineToPoint(path4, nil, center4.x - 1000, center4.y + 25)
+        CGPathAddLineToPoint(path4, nil, center4.x - 1000, center4.y - 25)
+        CGPathAddLineToPoint(path4, nil, center4.x +  125, center4.y - 25)
+
         CGPathCloseSubpath(path4)
         wallBl = SKShapeNode(path: path4)
         wallBl.strokeColor = wallBColor
         wallBl.fillColor   = wallBColor
-        
-        //wall physics
-        
-        wallBl.position = CGPoint(x: self.frame.width/2  - xwallPos1 + CGFloat(ball_dir) * xwallShift, y:frame.height-383)
+        wallBl.position    = CGPoint(x: self.frame.width/2  - xwallPos1 - xwallShift, y:frame.height-383)
+       // wallBl.position    = CGPoint(x: self.frame.width  - xwallPos1 - xwallShift, y:frame.height-383)
         wallBl.physicsBody = SKPhysicsBody(polygonFromPath: path4)
         wallBl.physicsBody?.affectedByGravity = false
         wallBl.physicsBody?.dynamic = false
@@ -382,7 +384,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         wallPairLeft.addChild(wallAl)
         wallPairLeft.addChild(wallBl)
-        
         wallPairLeft.addChild(scoreNode)
         wallPairLeft.runAction(moveAndRemove)
         
@@ -534,7 +535,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ||  firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallBl
             ||  firstBody.categoryBitMask == PhysicsCatagory.wallBl
-            && secondBody.categoryBitMask == PhysicsCatagory.ball{
+            && secondBody.categoryBitMask == PhysicsCatagory.ball   {
             
             playState = 2
             print("Collision with wall")
