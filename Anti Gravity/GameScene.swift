@@ -39,11 +39,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveAndRemove2 = SKAction()
     var restartBTN = SKSpriteNode()
     var scoreLabel = SKLabelNode()
+    var gameLabel = SKLabelNode()
     //var play    = SKSpriteNode()
-    //var playBTN = SKShapeNode()
-    var playState = 0
+    var playBTN = SKShapeNode()
+    var playState = -1
 
     //--- playState ---
+    //-1: home
     // 0: set
     // 1: play
     // 2: dead
@@ -93,8 +95,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
   
         backgroundColor = backColor
-        createScene()
-        //playScene()
+        homeScene()
+        //createScene()
         self.physicsWorld.gravity = gravityDirection
         
     }
@@ -113,28 +115,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
-/*
-    func playScene(){
-    
-        //play label
-        
-        let center5 = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-        let path5   = CGPathCreateMutable()
-        CGPathMoveToPoint(   path5, nil, center5.x , center5.y + 35)
-        CGPathAddLineToPoint(path5, nil, center5.x, center5.y - 35)
-        CGPathAddLineToPoint(path5, nil, center5.x + 50, center5.y)
-        CGPathCloseSubpath(path5)
-        playBTN = SKShapeNode(path: path5)
-        playBTN.strokeColor = ballColor
-        playBTN.fillColor   = ballColor
-        playBTN.physicsBody = SKPhysicsBody(polygonFromPath: path5)
-        //self.addChild(playBTN)
-        
-        //title
-
-    }
-*/
-
     
 //--- Create Scene: edges, ball, score=0
     //func createScene(ball: SKShapeNode) {
@@ -223,6 +203,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.velocity = CGVector(dx: ball.physicsBody!.velocity.dx + impulse.dx, dy: ball.physicsBody!.velocity.dy + impulse.dy) */
     }
 
+//--- home
+    func homeScene(){
+        
+        //play label
+        
+        let center5 = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+        let path5   = CGPathCreateMutable()
+        CGPathMoveToPoint(   path5, nil, center5.x - 40, center5.y + 0)
+        CGPathAddLineToPoint(path5, nil, center5.x - 40, center5.y - 100)
+        CGPathAddLineToPoint(path5, nil, center5.x + 40, center5.y - 50   )
+        CGPathCloseSubpath(path5)
+        playBTN = SKShapeNode(path: path5)
+        playBTN.strokeColor = ballColor
+        playBTN.fillColor   = ballColor
+        playBTN.physicsBody = SKPhysicsBody(polygonFromPath: path5)
+        playBTN.physicsBody?.dynamic = false
+        self.addChild(playBTN)
+        
+        //title
+        
+        gameLabel = SKLabelNode(fontNamed: "GillSans-Bold")
+        gameLabel.text = "Anti Gravity"
+        gameLabel.fontSize  = 50
+        gameLabel.fontColor = ballColor
+        gameLabel.horizontalAlignmentMode = .Center
+        gameLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-200)
+        gameLabel.zPosition = 5
+        self.addChild(gameLabel)
+    }
+    
 //--- create button
     func createBTN(){
         
@@ -232,7 +242,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.restartBTN.zPosition = 4
         self.addChild(self.restartBTN)
             
-        self.scoreLabel = SKLabelNode(fontNamed: "GillSans-UltraBold")
+        self.scoreLabel = SKLabelNode(fontNamed: "GillSans-Bold")
         self.scoreLabel.text = "Restart"
         self.scoreLabel.fontSize = 45
         self.scoreLabel.fontColor = self.restartColor
@@ -390,6 +400,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         print("Mouse Click: ",playState, ball_dir)
 
+        // state -1: home
+        if playState == -1 {
+            for touch in touches{
+                let location = touch.locationInNode(self)
+                
+                if playBTN.containsPoint(location){
+                    playState = 0
+                    playBTN.removeFromParent()
+                    gameLabel.removeFromParent()
+                    createScene()
+                }
+            }
+        }
+        
         // state 0: Set
         if playState == 0 {
             
@@ -404,7 +428,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             })
             
             wallDir = wallDir1
-
             
             // make new walls
             
@@ -425,21 +448,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             playState = 1
 
             print("Create walls, game started",playState)
-            
-            /*// move circles down
-            
-            let distanceCircle  = CGFloat(self.frame.width + circle.frame.width)
-            let velocityCircle  = CGFloat(100)
-            let moveCircles = SKAction.moveByX(0, y: -distanceCircle, duration: NSTimeInterval( distanceCircle/velocityCircle))
-            let removeCircles = SKAction.removeFromParent()
-            moveAndRemove2 = SKAction.sequence([moveCircles , removeCircles])*/
-           
-            
-            //ball.physicsBody?.applyForce(CGVector(dx: 1000,dy: 0.0))
-            
-            //ball.physicsBody?.velocity =   CGVectorMake(0, 0)
-            //ball.physicsBody?.applyImpulse(CGVectorMake(0, 0))
-            
+
         }
         
         // state 1: Play
@@ -462,15 +471,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             print("xwallMove ------------------", score, xwallMoveI, wallDir, ball_dir)
 
-            
-            //ball.physicsBody?.velocity =   CGVectorMake(0, 0)
-            //ball.physicsBody?.velocity =   CGVectorMake(0, 0)
-            //let thrust  = CGVector(dx: 0,dy: 100.0)
-            //ball.physicsBody?.applyForce(CGVector(dx: 0,dy: 20.0))                            // force
-                
-            //CGFloat shipDirection = [self shipDirection]
-            //CGVector thrustVector = CGVectorMake(thrust*cosf(shipDirection),thrust*sinf(shipDirection))
-            //[self.physicsBody applyForce:thrustVector]
         }
         
         // state 2: Dead
