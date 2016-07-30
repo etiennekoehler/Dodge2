@@ -20,7 +20,7 @@ class GameViewController: UIViewController {
             skView.showsFPS = true
             skView.showsNodeCount = true
             
-            skView.showsPhysics = true          //show body outlines
+            skView.showsPhysics = false          //show body outlines
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
             
@@ -29,7 +29,12 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
         }
+
+    
     }
+    
+    
+    
 
     override func shouldAutorotate() -> Bool {
         return true

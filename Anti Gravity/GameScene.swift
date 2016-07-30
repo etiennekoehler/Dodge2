@@ -7,6 +7,8 @@
 //
 
 import SpriteKit
+import UIKit
+import AVFoundation
 
 
 //--- Game Physics
@@ -20,6 +22,7 @@ struct PhysicsCatagory {
     static let wallBl  : UInt32 = 0x1 << 2
     static let score   : UInt32 = 0x1 << 4
 }
+
 
 //--- Game Top Level
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -42,6 +45,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameLabel = SKLabelNode()
     //var play    = SKSpriteNode()
     var playBTN = SKShapeNode()
+    //let crashSound  = NSURL(fileURLWithPath: (NSBundle.mainBundle().pathForResource("thePointSound", ofType: "mp3"))!)
+    var touchPlayer = AVAudioPlayer()
+    var pointPlayer = AVAudioPlayer()
+    var deathPlayer = AVAudioPlayer()
+    var trackPlayer = AVAudioPlayer()
+    var error: NSError?
     var playState = -1
 
     //--- playState ---
@@ -53,7 +62,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //-----------------
     
     var ball_dir = 1.0                                // ball direction (-1,1)
-    var ximpulse = 200.0                              // impulse of ball when mouse click   e.g. 100 [kg m/s]
+    var ximpulse = 250.0                              // impulse of ball when mouse click   e.g. 100 [kg m/s]
     var ximpMore = 0.0                                // impulse increases with score by    e.g. 20  [kg m/s]
     var xgravity = 4.0                                // gravity of ball when mouse click   e.g. 2 [m/s2]
     var restartDelay = 1.0                            // delay for restart button to appear e.g. 3 [s]
@@ -63,7 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallShift:CGFloat = -50.0                    // shift wall to see more of incoming red wall
     var xwallMove:CGFloat  = 100.0                    // move walls in xdir e.g. 200
     var xwallMoveI:CGFloat = 100.0
-    let velocityWall = CGFloat(180)                   // wall speed e.g. 120
+    var velocityWall = CGFloat(180)                   // wall speed e.g. 120
     let delayWalls   = SKAction.waitForDuration(2.0)  // time new walls (s)
     var wallDir1           = 1                        // initial wall speed direction
     var wallDir            = 1                        // initial wall speed direction
@@ -85,21 +94,75 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var wallAColor     = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
     var wallBColor     = UIColor(red:  73/255, green: 73/255,  blue:  73/255, alpha: 1.0)
 
-    
     var score    = Int()
     let scoreLbl = SKLabelNode()
     //let tap      = SKLabelNode()
-    
+ 
     
 //--- Start the game
     override func didMoveToView(view: SKView) {
   
         backgroundColor = backColor
         homeScene()
-        //createScene()
         self.physicsWorld.gravity = gravityDirection
+
+        //--- Sounds
         
+        let touchSound:NSURL = NSBundle.mainBundle().URLForResource("touchSound", withExtension: "mp3")!
+        let pointSound:NSURL = NSBundle.mainBundle().URLForResource("pointSound", withExtension: "mp3")!
+        let deathSound:NSURL = NSBundle.mainBundle().URLForResource("deathSound", withExtension: "mp3")!
+        let soundTrack:NSURL = NSBundle.mainBundle().URLForResource("trackSound", withExtension: "mp3")!
+        do
+        {
+            touchPlayer = try AVAudioPlayer(contentsOfURL: touchSound, fileTypeHint: nil)
+            pointPlayer = try AVAudioPlayer(contentsOfURL: pointSound, fileTypeHint: nil)
+            deathPlayer = try AVAudioPlayer(contentsOfURL: deathSound, fileTypeHint: nil)
+            trackPlayer = try AVAudioPlayer(contentsOfURL: soundTrack, fileTypeHint: nil)
+        }
+        catch let error as NSError { print(error.description) }
+        
+        //audioPlayer.numberOfLoops = 0
+        trackPlayer.numberOfLoops = -1
+        
+        touchPlayer.volume = 0.8
+        pointPlayer.volume = 0.4
+        deathPlayer.volume = 0.1
+        trackPlayer.volume = 0.2
+
+        touchPlayer.prepareToPlay()
+        pointPlayer.prepareToPlay()
+        deathPlayer.prepareToPlay()
+        trackPlayer.prepareToPlay()
+        
+        trackPlayer.play()
+
+        
+//--- Slider
+        let mySlider = UISlider(frame:CGRectMake(10, 500, 300, 20))  // x, y, width, height
+        mySlider.minimumValue = 0
+        mySlider.maximumValue = 100
+        mySlider.continuous = true
+        mySlider.tintColor = UIColor.greenColor()
+        mySlider.addTarget(self, action: #selector(GameScene.sliderValueDidChange(_:)), forControlEvents: .ValueChanged)
+        
+        self.view!.addSubview(mySlider)
+    
     }
+    
+    
+//--- Slider value
+    func sliderValueDidChange(sender:UISlider!)
+    {
+        print("Slider value changed")
+        
+        // Use this code below only if you want UISlider to snap to values step by step
+        //let roundedStepValue = round(sender.value / step) * step
+        //sender.value = roundedStepValue
+        
+        print("Slider step value \(Int(sender.value))")
+        self.velocityWall = CGFloat(sender.value)*3
+    }
+    
     
 //--- Restart the game
     func restartScene(){
@@ -120,9 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //func createScene(ball: SKShapeNode) {
     func createScene() {
         
-        
         self.physicsWorld.contactDelegate = self
-        
 
         //edge on the left
         edge1 = SKSpriteNode(imageNamed: "bar")
@@ -176,7 +237,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
         ball.physicsBody?.contactTestBitMask = PhysicsCatagory.wallAr | PhysicsCatagory.wallBr | PhysicsCatagory.wallAl | PhysicsCatagory.wallBl | PhysicsCatagory.score
         ball.physicsBody!.usesPreciseCollisionDetection = true
-        ball.physicsBody?.velocity = CGVector(dx: 0 , dy: 0)            // ball: initial velocity [m/s]
+        ball.physicsBody?.velocity = CGVector(dx: ximpulse / 2.0 , dy: 0)            // ball: initial velocity [m/s]
         ball.zPosition = 3
         
         self.addChild(ball)
@@ -203,6 +264,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.velocity = CGVector(dx: ball.physicsBody!.velocity.dx + impulse.dx, dy: ball.physicsBody!.velocity.dy + impulse.dy) */
     }
 
+    
 //--- home
     func homeScene(){
         
@@ -232,6 +294,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameLabel.zPosition = 5
         self.addChild(gameLabel)
     }
+ 
     
 //--- create button
     func createBTN(){
@@ -254,6 +317,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
+    
 //--- Create walls right ---->
     
     func createWallsRight(){
@@ -322,6 +386,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(wallPairRight)
     }
+  
     
     //--- Create walls left <---------
     
@@ -397,10 +462,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //--- Mouse Click
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-        
+
         print("Mouse Click: ",playState, ball_dir)
 
-        // state -1: home
+        // state -1: home ----------------------
         if playState == -1 {
             for touch in touches{
                 let location = touch.locationInNode(self)
@@ -414,7 +479,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        // state 0: Set
+        // state 0: Set ----------------------
         if playState == 0 {
             
             let spawnWallsRight = SKAction.runBlock({
@@ -451,7 +516,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         }
         
-        // state 1: Play
+        // state 1: Play ----------------------
         if playState == 1 {
             ball_dir = ball_dir * (-1.0)
             //self.ball.physicsBody?.velocity = CGVector(dx:40, dy: 0)                         // ball: reset velocity [m/s]
@@ -459,6 +524,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             self.physicsWorld.gravity = CGVectorMake(CGFloat(ball_dir*xgravity), CGFloat(0))   // switch gravity
             //ball.physicsBody?.velocity = CGVector(dx: 50 , dy: 0)                            // ball: initial velocity [m/s]
+            
+            touchPlayer.play()
             
             print("Press Ball Impulse: ",playState)
             
@@ -473,12 +540,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         }
         
-        // state 2: Dead
+        // state 2: Dead ----------------------
         if playState == 2 {
             //ball.physicsBody?.affectedByGravity = true
+
+            deathPlayer.play()
+            
         }
 
-        // state 3: Restart screen: Touch button to restart
+        // state 3: Restart screen: Touch button to restart ----------------------
         if playState == 3 {
             for touch in touches{
                 let location = touch.locationInNode(self)
@@ -505,6 +575,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("Score1: ", score, wallDir)
             scoreLbl.text = "\(score)"
             firstBody.node?.removeFromParent()
+            pointPlayer.play()
+            
         }
         else if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
             score  += 1
@@ -512,6 +584,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("Score2: ", score, wallDir)
             scoreLbl.text = "\(score)"
             secondBody.node?.removeFromParent()
+            pointPlayer.play()
         }
         else if firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallAr
@@ -530,6 +603,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ||  firstBody.categoryBitMask == PhysicsCatagory.wallBl
             && secondBody.categoryBitMask == PhysicsCatagory.ball   {
             
+        
             playState = 2
             print("Collision with wall")
             //ball.physicsBody?.affectedByGravity = true
@@ -571,6 +645,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             closure
         )
     }
+    
     
 //--- Update
     override func update(currentTime: CFTimeInterval) {
