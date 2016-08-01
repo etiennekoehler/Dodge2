@@ -38,8 +38,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var wallBl  = SKShapeNode()
     var wallPairRight  = SKNode()
     var wallPairLeft   = SKNode()
-    var moveAndRemove  = SKAction()
-    var moveAndRemove2 = SKAction()
+    var moveAndRemoveRight = SKAction()
+    var moveAndRemoveLeft  = SKAction()
     var restartBTN = SKSpriteNode()
     var scoreLabel = SKLabelNode()
     var gameLabel = SKLabelNode()
@@ -50,6 +50,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pointPlayer = AVAudioPlayer()
     var deathPlayer = AVAudioPlayer()
     var trackPlayer = AVAudioPlayer()
+    var buttonPlayer = AVAudioPlayer()
+
     var error: NSError?
     var playState = -1
 
@@ -108,26 +110,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         //--- Sounds
         
-        let touchSound:NSURL = NSBundle.mainBundle().URLForResource("touchSound", withExtension: "mp3")!
-        let pointSound:NSURL = NSBundle.mainBundle().URLForResource("pointSound", withExtension: "mp3")!
-        let deathSound:NSURL = NSBundle.mainBundle().URLForResource("deathSound", withExtension: "mp3")!
+        let touchSound:NSURL = NSBundle.mainBundle().URLForResource("touchSoundOfficial2.0", withExtension: "mp3")!
+        let pointSound:NSURL = NSBundle.mainBundle().URLForResource("pointSoundOfficial2.0", withExtension: "mp3")!
+        let deathSound:NSURL = NSBundle.mainBundle().URLForResource("deathSoundOfficial", withExtension: "mp3")!
         let soundTrack:NSURL = NSBundle.mainBundle().URLForResource("trackSound", withExtension: "mp3")!
+        //let buttonTrack:NSURL = NSBundle.mainBundle().URLForResource("buttonSound", withExtension: "mp3")!
+
         do
         {
             touchPlayer = try AVAudioPlayer(contentsOfURL: touchSound, fileTypeHint: nil)
             pointPlayer = try AVAudioPlayer(contentsOfURL: pointSound, fileTypeHint: nil)
             deathPlayer = try AVAudioPlayer(contentsOfURL: deathSound, fileTypeHint: nil)
             trackPlayer = try AVAudioPlayer(contentsOfURL: soundTrack, fileTypeHint: nil)
+            buttonPlayer = try AVAudioPlayer(contentsOfURL: soundTrack, fileTypeHint: nil)
         }
         catch let error as NSError { print(error.description) }
         
         //audioPlayer.numberOfLoops = 0
         trackPlayer.numberOfLoops = -1
         
-        touchPlayer.volume = 0.8
-        pointPlayer.volume = 0.4
-        deathPlayer.volume = 0.1
-        trackPlayer.volume = 0.2
+        touchPlayer.volume = 0.07
+        pointPlayer.volume = 0.3
+        deathPlayer.volume = 0.4
+        trackPlayer.volume = 0.17
 
         touchPlayer.prepareToPlay()
         pointPlayer.prepareToPlay()
@@ -145,7 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         mySlider.tintColor = UIColor.greenColor()
         mySlider.addTarget(self, action: #selector(GameScene.sliderValueDidChange(_:)), forControlEvents: .ValueChanged)
         
-        self.view!.addSubview(mySlider)
+        //self.view!.addSubview(mySlider)
     
     }
     
@@ -382,7 +387,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallPairRight.addChild(wallAr)
         wallPairRight.addChild(wallBr)
         wallPairRight.addChild(scoreNode)
-        wallPairRight.runAction(moveAndRemove)
+        wallPairRight.runAction(moveAndRemoveRight)
         
         self.addChild(wallPairRight)
     }
@@ -453,7 +458,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallPairLeft.addChild(wallAl)
         wallPairLeft.addChild(wallBl)
         wallPairLeft.addChild(scoreNode)
-        wallPairLeft.runAction(moveAndRemove)
+        wallPairLeft.runAction(moveAndRemoveLeft)
         
         self.addChild(wallPairLeft)
     }
@@ -494,21 +499,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             wallDir = wallDir1
             
+            // move walls down (called in functions createWallsRight and Left)
+            
+            let distanceWall = CGFloat(self.frame.width + wallPairRight.frame.width)
+            let moveWallRight     = SKAction.moveByX(CGFloat(ball_dir) * xwallMove, y: -distanceWall, duration: NSTimeInterval(distanceWall/velocityWall))
+            let removeWallRight   = SKAction.removeFromParent()
+            moveAndRemoveRight    = SKAction.sequence([moveWallRight, removeWallRight])
+            
+            let moveWallLeft     = SKAction.moveByX(CGFloat(ball_dir) * xwallMove * (-1), y: -distanceWall, duration: NSTimeInterval(distanceWall/velocityWall))
+            let removeWallLeft   = SKAction.removeFromParent()
+            moveAndRemoveLeft    = SKAction.sequence([moveWallLeft, removeWallLeft])
+            
             // make new walls
             
             let spawnDelay        = SKAction.sequence([spawnWallsRight, delayWalls, spawnWallsLeft, delayWalls])
             let spawnDelayForever = SKAction.repeatActionForever(spawnDelay)
             self.runAction(spawnDelayForever)
             
-            // move walls down
-            
-            let distanceWall = CGFloat(self.frame.width + wallPairRight.frame.width)
-            let moveWall     = SKAction.moveByX(CGFloat(ball_dir) * xwallMove, y: -distanceWall, duration: NSTimeInterval(distanceWall/velocityWall))
             xwallMoveI       = xwallMove
-            let removeWall   = SKAction.removeFromParent()
-            moveAndRemove    = SKAction.sequence([moveWall , removeWall])
-            
-            //ball.physicsBody?.velocity = CGVector(dx: 50 , dy: 0)                                // ball: initial velocity [m/s]
             
             playState = 1
 
@@ -543,9 +551,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // state 2: Dead ----------------------
         if playState == 2 {
             //ball.physicsBody?.affectedByGravity = true
-
-            deathPlayer.play()
-            
         }
 
         // state 3: Restart screen: Touch button to restart ----------------------
@@ -606,6 +611,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
             playState = 2
             print("Collision with wall")
+            
+            deathPlayer.play()
+            
             //ball.physicsBody?.affectedByGravity = true
                 
             self.physicsWorld.gravity = CGVectorMake(CGFloat(0), CGFloat(-3))     // switch gravity: fall down on collision
@@ -624,13 +632,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             createBTN()
         }
 
-        // change wall direction
-        
-        let distanceWall = CGFloat(self.frame.width + wallPairRight.frame.width)
-        let moveWall     = SKAction.moveByX(CGFloat(wallDir) * xwallMoveI, y: -distanceWall,
-                                            duration: NSTimeInterval(distanceWall/velocityWall))
-        let removeWall   = SKAction.removeFromParent()
-        moveAndRemove    = SKAction.sequence([moveWall , removeWall])
 }
     
 
