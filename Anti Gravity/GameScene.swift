@@ -14,6 +14,7 @@ import AVFoundation
 //--- Game Physics
 struct PhysicsCatagory {
     static let ball    : UInt32 = 0x1 << 1
+    static let ball2   : UInt32 = 0x1 << 1
     static let edge1   : UInt32 = 0x1 << 2
     static let edge2   : UInt32 = 0x1 << 2
     static let wallAr  : UInt32 = 0x1 << 2
@@ -29,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Game Variables
     var ball    = SKShapeNode()
+    var ball2   = SKShapeNode()
     var edge1   = SKSpriteNode()
     var edge2   = SKSpriteNode()
     var circle  = SKSpriteNode()
@@ -42,6 +44,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveAndRemoveLeft  = SKAction()
     var restartBTN = SKSpriteNode()
     var scoreLabel = SKLabelNode()
+    var endScoreLbl = SKLabelNode()
+    var endScoreLbl2 = SKLabelNode()
+    var endScoreLbl3 = SKLabelNode()
+    var endScoreLbl4 = SKLabelNode()
     var gameLabel = SKLabelNode()
     //var play    = SKSpriteNode()
     var playBTN = SKShapeNode()
@@ -88,25 +94,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //let impulseX:CGFloat = 10.0
     
     // color schemes
-    var backColor      = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.0)
+    var greyWhite      = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.0)
     var scoreNodeColor = UIColor.clearColor()
-    var ballColor      = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-    var restartColor   = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
-    var scoreColor     = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
-    var wallAColor     = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
-    var wallBColor     = UIColor(red:  73/255, green: 73/255,  blue:  73/255, alpha: 1.0)
+    var white      = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+    var purple     = UIColor(red: 200/255, green: 200/255, blue: 255/255, alpha: 1.0)
+    var red     = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
+    var darkGrey     = UIColor(red:  73/255, green: 73/255,  blue:  73/255, alpha: 1.0)
+    var lightGrey     = UIColor(red: 0.7569, green: 0.7569, blue: 0.7569, alpha: 1.0) /* #c1c1c1 */
+
 
     var score    = Int()
+    var highscore = Int()
+    
     let scoreLbl = SKLabelNode()
     //let tap      = SKLabelNode()
  
     
+    
 //--- Start the game
     override func didMoveToView(view: SKView) {
   
-        backgroundColor = backColor
+        backgroundColor = greyWhite
         homeScene()
         self.physicsWorld.gravity = gravityDirection
+        
+        var HighscoreDefault = NSUserDefaults.standardUserDefaults()
+        if(HighscoreDefault.valueForKey("highscore") != nil) {
+            highscore = HighscoreDefault.valueForKey("highscore") as! NSInteger!
+        
+        
+        }
 
         //--- Sounds
         
@@ -222,8 +239,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         CGPathAddLineToPoint(path, nil, center.x, center.y - 25)
         CGPathCloseSubpath(path)
         ball = SKShapeNode(path: path)
-        ball.strokeColor = ballColor
-        ball.fillColor   = ballColor
+        ball.strokeColor = red
+        ball.lineWidth = 6
+        ball.fillColor =  greyWhite
 
         //ball physics
         
@@ -250,11 +268,54 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLbl.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + self.frame.height / 2.5)
         scoreLbl.text = "\(score)"
         scoreLbl.fontName = "GillSans-UltraBold"
-        scoreLbl.zPosition = 5
+        scoreLbl.zPosition = 4
+        scoreLbl.fontColor = darkGrey
         scoreLbl.fontSize = 60
+
         
         self.addChild(scoreLbl)
 
+
+        
+        //shape to define ball2
+        
+        let center2 = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)*0.8)
+        //let path   = CGPathCreateMutable()
+        CGPathMoveToPoint(   path, nil, center2.x + 25, center2.y)
+        CGPathAddLineToPoint(path, nil, center2.x, center2.y + 25)
+        CGPathAddLineToPoint(path, nil, center2.x - 25, center2.y)
+        CGPathAddLineToPoint(path, nil, center2.x, center2.y - 25)
+        CGPathCloseSubpath(path)
+        ball2 = SKShapeNode(path: path)
+        ball2.strokeColor = purple
+        ball2.fillColor   = purple
+        
+        //ball physics
+        
+        //ball = SKSpriteNode(imageNamed: "diamond")
+        //ball.size = CGSize(width: 55, height: 55)
+        //ball.position = CGPoint(x: self.frame.width * 0.5 , y: self.frame.height * 0.5)
+        ball2.physicsBody = SKPhysicsBody(polygonFromPath: path)
+        
+        ball2.physicsBody?.dynamic            = true
+        ball2.physicsBody?.affectedByGravity  = true
+        ball2.physicsBody?.mass               = 1
+        ball2.physicsBody?.friction           = 0.0
+        ball2.physicsBody?.linearDamping      = 0.3
+        ball2.physicsBody?.restitution        = 0.3                           // ball: bounciness (0,1)
+        //ball2.physicsBody?.categoryBitMask    = PhysicsCatagory.ball
+        //ball2.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
+        //ball2.physicsBody?.contactTestBitMask = PhysicsCatagory.wallAr | PhysicsCatagory.wallBr | PhysicsCatagory.wallAl | PhysicsCatagory.wallBl | PhysicsCatagory.score
+        //ball2.physicsBody!.usesPreciseCollisionDetection = true
+        ball2.physicsBody?.velocity = CGVector(dx: ximpulse / 2.0 , dy: 0)            // ball: initial velocity [m/s]
+        ball2.zPosition = 3
+        
+        //self.addChild(ball2)
+
+        
+        
+        
+        
         // ball: initial velocity
         //gravityBehavior = UIGravityBehavior(items: ball)
         //ball.gravityBehavior?.gravityDirection = CGVector(0.0, 1.0)
@@ -273,6 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //--- home
     func homeScene(){
         
+        backgroundColor = lightGrey
         //play label
         
         let center5 = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
@@ -282,18 +344,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         CGPathAddLineToPoint(path5, nil, center5.x + 40, center5.y - 50   )
         CGPathCloseSubpath(path5)
         playBTN = SKShapeNode(path: path5)
-        playBTN.strokeColor = ballColor
-        playBTN.fillColor   = ballColor
+        playBTN.strokeColor = red
+        playBTN.lineWidth = 5
+        playBTN.fillColor   = greyWhite
         playBTN.physicsBody = SKPhysicsBody(polygonFromPath: path5)
         playBTN.physicsBody?.dynamic = false
         self.addChild(playBTN)
         
         //title
         
-        gameLabel = SKLabelNode(fontNamed: "GillSans-Bold")
+        gameLabel = SKLabelNode(fontNamed: "NORMAL")
         gameLabel.text = "Anti Gravity"
         gameLabel.fontSize  = 50
-        gameLabel.fontColor = ballColor
+        gameLabel.fontColor = red
         gameLabel.horizontalAlignmentMode = .Center
         gameLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-200)
         gameLabel.zPosition = 5
@@ -313,13 +376,70 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.scoreLabel = SKLabelNode(fontNamed: "GillSans-Bold")
         self.scoreLabel.text = "Restart"
         self.scoreLabel.fontSize = 45
-        self.scoreLabel.fontColor = self.restartColor
+        self.scoreLabel.fontColor = self.red
         self.scoreLabel.horizontalAlignmentMode = .Center
         self.scoreLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-500)
         self.scoreLabel.zPosition = 5
         self.addChild(self.scoreLabel)
         self.playState = 3
         }
+    }
+    
+//--- end score
+    func endScore(){
+    
+            if (score > highscore) {
+                highscore = score
+            }
+            var HighscoreDefault = NSUserDefaults.standardUserDefaults()
+            HighscoreDefault.setValue(highscore, forKey: "highscore")
+            HighscoreDefault.synchronize()
+        
+
+            self.endScoreLbl = SKLabelNode(fontNamed: "GillSans-Bold")
+            self.endScoreLbl.text       = "Score"
+            self.endScoreLbl.fontSize   = 45
+            self.endScoreLbl.fontColor = self.red
+            self.endScoreLbl.horizontalAlignmentMode = .Center
+            self.endScoreLbl.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-200)
+            self.endScoreLbl.zPosition = 5
+            self.addChild(self.endScoreLbl)
+            
+            self.endScoreLbl2 = SKLabelNode(fontNamed: "GillSans-Bold")
+            self.endScoreLbl2.text       = String(self.score)
+            self.endScoreLbl2.fontSize   = 45
+            self.endScoreLbl2.fontColor = self.red
+            self.endScoreLbl2.horizontalAlignmentMode = .Center
+            self.endScoreLbl2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-250)
+            self.endScoreLbl2.zPosition = 5
+            self.addChild(self.endScoreLbl2)
+        
+            self.endScoreLbl3 = SKLabelNode(fontNamed: "GillSans-Bold")
+            self.endScoreLbl3.text       = "Highscore"
+            self.endScoreLbl3.fontSize   = 45
+            self.endScoreLbl3.fontColor = self.red
+            self.endScoreLbl3.horizontalAlignmentMode = .Center
+            self.endScoreLbl3.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-350)
+            self.endScoreLbl3.zPosition = 5
+            self.addChild(self.endScoreLbl3)
+        
+            self.endScoreLbl4 = SKLabelNode(fontNamed: "GillSans-Bold")
+            self.endScoreLbl4.text       = String(self.highscore)
+            self.endScoreLbl4.fontSize   = 45
+            self.endScoreLbl4.fontColor = self.red
+            self.endScoreLbl4.horizontalAlignmentMode = .Center
+            self.endScoreLbl4.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-400)
+            self.endScoreLbl4.zPosition = 5
+            self.addChild(self.endScoreLbl4)
+
+        
+
+
+            self.playState = 3
+
+        
+    
+    
     }
 
     
@@ -351,8 +471,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         CGPathAddLineToPoint(path1, nil, center1.x +  125, center1.y - 25)
         CGPathCloseSubpath(path1)
         wallAr = SKShapeNode(path: path1)
-        wallAr.strokeColor = wallAColor
-        wallAr.fillColor   = wallAColor
+        wallAr.strokeColor = red
+        wallAr.fillColor   = red
         wallAr.position    = CGPoint(x: self.frame.width/2  - xwallPos1 + xwallShift, y:frame.height-383)
         wallAr.physicsBody = SKPhysicsBody(polygonFromPath: path1)
         wallAr.physicsBody?.affectedByGravity = false
@@ -373,8 +493,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         CGPathAddLineToPoint(path2, nil, center2.x -  125, center2.y - 25)
       //CGPathCloseSubpath(path2)
         wallBr = SKShapeNode(path: path2)
-        wallBr.strokeColor = wallBColor
-        wallBr.fillColor   = wallBColor
+        wallBr.strokeColor = darkGrey
+        wallBr.fillColor   = darkGrey
         wallBr.position    = CGPoint(x: self.frame.width  - xwallPos1 + xwallShift, y:frame.height-383)
         wallBr.physicsBody = SKPhysicsBody(polygonFromPath: path2)
         wallBr.physicsBody?.affectedByGravity = false
@@ -421,8 +541,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         CGPathAddLineToPoint(path3, nil, center3.x -  125, center3.y - 25)
         CGPathCloseSubpath(path3)
         wallAl = SKShapeNode(path: path3)
-        wallAl.strokeColor = wallAColor
-        wallAl.fillColor   = wallAColor
+        wallAl.strokeColor = red
+        wallAl.fillColor   = red
         wallAl.position    = CGPoint(x: self.frame.width  - xwallPos1 - xwallShift, y:frame.height-383)
         wallAl.physicsBody = SKPhysicsBody(polygonFromPath: path3)
         wallAl.physicsBody?.affectedByGravity = false
@@ -444,8 +564,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         CGPathAddLineToPoint(path4, nil, center4.x +  125, center4.y - 25)
         CGPathCloseSubpath(path4)
         wallBl = SKShapeNode(path: path4)
-        wallBl.strokeColor = wallBColor
-        wallBl.fillColor   = wallBColor
+        wallBl.strokeColor = darkGrey
+        wallBl.fillColor   = darkGrey
         wallBl.position    = CGPoint(x: self.frame.width/2  - xwallPos1 - xwallShift, y:frame.height-383)
         wallBl.physicsBody = SKPhysicsBody(polygonFromPath: path4)
         wallBl.physicsBody?.affectedByGravity = false
@@ -486,7 +606,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // state 0: Set ----------------------
         if playState == 0 {
-            
+            backgroundColor = greyWhite
             let spawnWallsRight = SKAction.runBlock({
                 () in
                 self.createWallsRight()
@@ -629,7 +749,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 node.speed = 0
                 self.removeAllActions()
             })
-            createBTN()
+            delay(1){
+                //self.removeAllChildren()
+                self.wallPairRight.removeFromParent()
+                self.wallPairLeft.removeFromParent()
+                self.createBTN()
+                self.endScore()
+            }
         }
 
 }
