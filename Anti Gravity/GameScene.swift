@@ -25,6 +25,10 @@ struct PhysicsCatagory {
     static let fallBall   : UInt32 = 0x1 << 2
     static let ballBar   : UInt32 = 0x1 << 4
     static let topNode   : UInt32 = 0x1 << 2
+    static let island   : UInt32 = 0x1 << 2
+    static let smallWallRight   : UInt32 = 0x1 << 2
+    static let smallWallLeft   : UInt32 = 0x1 << 2
+
 
 
 
@@ -44,6 +48,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var wallBr  = SKShapeNode()
     var wallAl  = SKShapeNode()
     var wallBl  = SKShapeNode()
+    var island  = SKShapeNode()
+    var smallWallRight  = SKShapeNode()
+    var smallWallLeft  = SKShapeNode()
     var fallBall = SKShapeNode()
     var ballBar = SKShapeNode()
     var scoreWall  = SKShapeNode()
@@ -52,10 +59,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var wallPairLeft   = SKNode()
     var wallChompRight   = SKNode()
     var wallChompLeft   = SKNode()
+    var wallIsland   = SKNode()
+    var outsideWalls   = SKNode()
     var moveAndRemoveRight = SKAction()
     var moveAndRemoveLeft  = SKAction()
     var moveAndRemoveChompRight = SKAction()
     var moveAndRemoveChompLeft  = SKAction()
+    var moveAndRemoveIsland  = SKAction()
+    var moveAndRemoveOutsideWall  = SKAction()
     var restartBTN = SKSpriteNode()
     var resetBTN = SKSpriteNode()
     var scoreLabel = SKLabelNode()
@@ -716,7 +727,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         scoreNode.color = scoreNodeColor
-        
+ 
         
         
         //Ar: Left wall moving right  |=>
@@ -790,6 +801,120 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(wallChompLeft)
     }
 
+    
+    //--- Create Island moving left and right   <====>
+    
+    func createWallIsland(){
+        
+        wallIsland = SKNode()
+        wallIsland.name = "wallIsland"
+        
+        let scoreNode = SKSpriteNode()
+        scoreNode.size = CGSize(width: 850, height:3)
+        scoreNode.position = CGPoint(x:self.frame.width/2, y:self.frame.width-256)
+        scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
+        scoreNode.physicsBody?.affectedByGravity = false
+        scoreNode.physicsBody?.isDynamic = false
+        scoreNode.physicsBody?.categoryBitMask = PhysicsCatagory.score
+        scoreNode.physicsBody?.collisionBitMask = 0
+        scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
+        scoreNode.color = scoreNodeColor
+        
+        
+        
+        // island <====>
+        
+        let center8 = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        let path8   = CGMutablePath()
+        
+        path8.move(to: CGPoint(x: center8.x + 100, y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x + 75,  y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - 75, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - 100, y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x - 75,  y: center8.y - 25))
+        path8.addLine(to: CGPoint(x: center8.x + 75,  y: center8.y - 25))
+
+        
+        
+        path8.closeSubpath()
+        island = SKShapeNode(path: path8)
+        island.strokeColor = red
+        island.fillColor   = red
+        island.position    = CGPoint(x: self.frame.width/2 - 600, y:frame.height-383)
+        island.physicsBody = SKPhysicsBody(polygonFrom: path8)
+        island.physicsBody?.affectedByGravity = false
+        island.physicsBody?.isDynamic = false
+        island.physicsBody?.categoryBitMask    = PhysicsCatagory.island
+        island.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
+        island.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
+        island.zPosition = 3
+        
+        
+        wallIsland.addChild(island)
+        wallIsland.addChild(scoreNode)
+        wallIsland.run(moveAndRemoveIsland)
+        
+        self.addChild(wallIsland)
+    }
+
+    //--- Create Walls outside of Island  ==<   (<====>)   >==
+    func createWallsOutside(){
+        
+        outsideWalls = SKNode()
+        outsideWalls.name = "outsideWalls"
+        
+        let center9 = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        let path9   = CGMutablePath()
+        
+        path9.move(to: CGPoint(x: center9.x - 100, y: center9.y))
+        path9.addLine(to: CGPoint(x: center9.x - 125,  y: center9.y + 25))
+        path9.addLine(to: CGPoint(x: center9.x + 100, y: center9.y + 25))
+        path9.addLine(to: CGPoint(x: center9.x + 100, y: center9.y - 25))
+        path9.addLine(to: CGPoint(x: center9.x - 125,  y: center9.y - 25))
+        
+        path9.closeSubpath()
+        smallWallRight = SKShapeNode(path: path9)
+        smallWallRight.strokeColor = darkGrey
+        smallWallRight.fillColor   = darkGrey
+        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 220, y:frame.height-383)
+        smallWallRight.physicsBody = SKPhysicsBody(polygonFrom: path9)
+        smallWallRight.physicsBody?.affectedByGravity = false
+        smallWallRight.physicsBody?.isDynamic = false
+        smallWallRight.physicsBody?.categoryBitMask    = PhysicsCatagory.smallWallRight
+        smallWallRight.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
+        smallWallRight.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
+        smallWallRight.zPosition = 3
+        
+        let center10 = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        let path10  = CGMutablePath()
+        
+        path10.move(to: CGPoint(x: center10.x + 100, y: center10.y))
+        path10.addLine(to: CGPoint(x: center10.x + 125,  y: center10.y - 25))
+        path10.addLine(to: CGPoint(x: center10.x - 100, y: center10.y - 25))
+        path10.addLine(to: CGPoint(x: center10.x - 100, y: center10.y + 25))
+        path10.addLine(to: CGPoint(x: center10.x + 125,  y: center10.y + 25))
+        
+        path10.closeSubpath()
+        smallWallLeft = SKShapeNode(path: path10)
+        smallWallLeft.strokeColor = darkGrey
+        smallWallLeft.fillColor   = darkGrey
+        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 800, y:frame.height-383)
+        smallWallLeft.physicsBody = SKPhysicsBody(polygonFrom: path9)
+        smallWallLeft.physicsBody?.affectedByGravity = false
+        smallWallLeft.physicsBody?.isDynamic = false
+        smallWallLeft.physicsBody?.categoryBitMask    = PhysicsCatagory.smallWallLeft
+        smallWallLeft.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
+        smallWallLeft.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
+        smallWallLeft.zPosition = 3
+
+        
+        outsideWalls.addChild(smallWallRight)
+
+        outsideWalls.addChild(smallWallLeft)
+        outsideWalls.run(moveAndRemoveOutsideWall)
+        
+        self.addChild(outsideWalls)
+    }
 
     //obstacle
     func obstacle() {
@@ -867,6 +992,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.createWallChompRight()
             })
             
+            let spawnIsland = SKAction.run({
+                () in
+                self.createWallIsland()
+                self.createWallsOutside()
+            })
+
+            
             let spawnFallBall = SKAction.run({
                 () in
                 self.obstacle()
@@ -900,8 +1032,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let removeWallChompLeft  = SKAction.removeFromParent()
             moveAndRemoveChompLeft   = SKAction.sequence([moveWallChompLeft, removeWallChompLeft])
             
-            // sequence of making new walls (and fallBall)
-            let spawnDelay           = SKAction.sequence([spawnWallsRight, delayWalls, spawnFallBall, spawnWallsLeft, delayWalls, spawnWallsChomp, delayWalls])
+            // island
+            let moveIsland    = SKAction.moveBy(x: CGFloat(ball_dir) * xwallMove * (0.8), y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let removeIsland  = SKAction.removeFromParent()
+            moveAndRemoveIsland   = SKAction.sequence([moveIsland, removeIsland])
+            
+            // Outside Wall (outside of island)
+            let moveOutsideWall    = SKAction.moveBy(x: 0, y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let removeOutsideWall  = SKAction.removeFromParent()
+            moveAndRemoveOutsideWall   = SKAction.sequence([moveOutsideWall, removeOutsideWall])
+
+            
+            // SEQUENCE
+            let spawnDelay           = SKAction.sequence([/*spawnWallsRight, delayWalls, spawnFallBall, spawnWallsLeft, delayWalls, */spawnWallsChomp, delayWalls, spawnIsland, delayWalls])
             let spawnDelayForever    = SKAction.repeatForever(spawnDelay)
             self.run(spawnDelayForever)
             
@@ -1061,6 +1204,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 node.speed = 0
                 self.removeAllActions()
             })
+                                                                        
+            enumerateChildNodes(withName: "wallIsland", using: {
+            (node, error) in
+            node.speed = 0
+            self.removeAllActions()
+            })
+                                                                        
+            enumerateChildNodes(withName: "outsideWalls", using: {
+            (node, error) in
+            node.speed = 0
+            self.removeAllActions()
+            })
+
 
 
             
