@@ -204,7 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         trackPlayer.play()
 
-        
+    }
     
 //--- Restart the game
     func restartScene(){
@@ -235,9 +235,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         edge1.physicsBody = SKPhysicsBody(rectangleOf: edge1.size)
         edge1.physicsBody?.affectedByGravity = true
         edge1.physicsBody?.isDynamic = false
-        edge1.physicsBody?.categoryBitMask    = PhysicsCatagory.edge1
+        /*edge1.physicsBody?.categoryBitMask    = PhysicsCatagory.edge1
         edge1.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
-        edge1.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
+        edge1.physicsBody?.contactTestBitMask = PhysicsCatagory.ball*/
         //edge1.zPosition = 3
         self.addChild(edge1)    //make edge1
         
@@ -249,9 +249,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         edge2.physicsBody = SKPhysicsBody(rectangleOf: edge2.size)
         edge2.physicsBody?.affectedByGravity = true
         edge2.physicsBody?.isDynamic = false
-        edge2.physicsBody?.categoryBitMask    = PhysicsCatagory.edge2
+        /*edge2.physicsBody?.categoryBitMask    = PhysicsCatagory.edge2
         edge2.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
-        edge2.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
+        edge2.physicsBody?.contactTestBitMask = PhysicsCatagory.ball*/
 
         //edge2.zPosition = 3
         self.addChild(edge2)    //make edge2
@@ -386,17 +386,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.restartBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 577)
         self.restartBTN.zPosition = 4
         self.addChild(self.restartBTN)
-            
-            
-            self.resetBTN = SKSpriteNode(imageNamed: "Reset-Button")
-            self.resetBTN.setScale(0.5)
-            self.resetBTN.size = CGSize(width: 110, height: 100)
-            self.resetBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 577)
-            self.resetBTN.physicsBody = SKPhysicsBody(rectangleOf: self.resetBTN.size)
-            self.resetBTN.physicsBody?.affectedByGravity = true
-            self.resetBTN.physicsBody?.isDynamic = false
-            self.resetBTN.zPosition = 7
-            self.addChild(self.resetBTN)
+
+        self.resetBTN = SKSpriteNode(imageNamed: "Reset-Button")
+        self.resetBTN.setScale(0.5)
+        self.resetBTN.size = CGSize(width: 110, height: 100)
+        self.resetBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 577)
+        self.resetBTN.physicsBody = SKPhysicsBody(rectangleOf: self.resetBTN.size)
+        self.resetBTN.physicsBody?.affectedByGravity = true
+        self.resetBTN.physicsBody?.isDynamic = false
+        self.resetBTN.zPosition = 7
+        self.addChild(self.resetBTN)
         }
     }
     
@@ -423,75 +422,75 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //--- end score
     func endScore(){
     
-            if (score > highscore) {
+        if (score > highscore) {
                 highscore = score
-            }
-        
-            removeAllChildren()
-        
-            var HighscoreDefault = UserDefaults.standard
-            HighscoreDefault.setValue(highscore, forKey: "highscore")
-            HighscoreDefault.synchronize()
-        
+        }
+    
+        removeAllChildren()
+    
+        var HighscoreDefault = UserDefaults.standard
+        HighscoreDefault.setValue(highscore, forKey: "highscore")
+        HighscoreDefault.synchronize()
+    
 
-            self.endScoreLbl = SKLabelNode(fontNamed: "GillSans-Bold")
-            self.endScoreLbl.text       = "Score"
-            self.endScoreLbl.fontSize   = 45
-            self.endScoreLbl.fontColor = self.greyWhite
-            self.endScoreLbl.horizontalAlignmentMode = .center
-            self.endScoreLbl.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-270)
-            self.endScoreLbl.zPosition = 5
-            self.addChild(self.endScoreLbl)
-            
-            self.endScoreLbl2 = SKLabelNode(fontNamed: "GillSans-Bold")
-            self.endScoreLbl2.text       = String(self.score)
-            self.endScoreLbl2.fontSize   = 45
-            self.endScoreLbl2.fontColor = self.red
-            self.endScoreLbl2.horizontalAlignmentMode = .center
-            self.endScoreLbl2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-320)
-            self.endScoreLbl2.zPosition = 5
-            self.addChild(self.endScoreLbl2)
+        self.endScoreLbl = SKLabelNode(fontNamed: "GillSans-Bold")
+        self.endScoreLbl.text       = "Score"
+        self.endScoreLbl.fontSize   = 45
+        self.endScoreLbl.fontColor = self.greyWhite
+        self.endScoreLbl.horizontalAlignmentMode = .center
+        self.endScoreLbl.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-270)
+        self.endScoreLbl.zPosition = 5
+        self.addChild(self.endScoreLbl)
         
-            self.endScoreLbl3 = SKLabelNode(fontNamed: "GillSans-Bold")
-            self.endScoreLbl3.text       = "Highscore"
-            self.endScoreLbl3.fontSize   = 45
-            self.endScoreLbl3.fontColor = self.greyWhite
-            self.endScoreLbl3.horizontalAlignmentMode = .center
-            self.endScoreLbl3.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-420)
-            self.endScoreLbl3.zPosition = 5
-            self.addChild(self.endScoreLbl3)
-        
-            self.endScoreLbl4 = SKLabelNode(fontNamed: "GillSans-Bold")
-            self.endScoreLbl4.text       = String(self.highscore)
-            self.endScoreLbl4.fontSize   = 45
-            self.endScoreLbl4.fontColor = self.darkGrey
-            self.endScoreLbl4.horizontalAlignmentMode = .center
-            self.endScoreLbl4.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-470)
-            self.endScoreLbl4.zPosition = 5
-            self.addChild(self.endScoreLbl4)
-        
-            //wall behind score
-            let center6 = CGPoint(x: self.frame.midX, y: self.frame.midY)
-            let path6   = CGMutablePath()
-        
-            path6.move(to: CGPoint(x: center6.x + 150, y: center6.y))
-            path6.addLine(to: CGPoint(x: center6.x + 125, y: center6.y + 25))
-            path6.addLine(to: CGPoint(x: center6.x - 1000, y: center6.y + 25))
-            path6.addLine(to: CGPoint(x: center6.x - 1000, y: center6.y - 25))
-            path6.addLine(to: CGPoint(x: center6.x + 125, y: center6.y - 25))
+        self.endScoreLbl2 = SKLabelNode(fontNamed: "GillSans-Bold")
+        self.endScoreLbl2.text       = String(self.score)
+        self.endScoreLbl2.fontSize   = 45
+        self.endScoreLbl2.fontColor = self.red
+        self.endScoreLbl2.horizontalAlignmentMode = .center
+        self.endScoreLbl2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-320)
+        self.endScoreLbl2.zPosition = 5
+        self.addChild(self.endScoreLbl2)
+    
+        self.endScoreLbl3 = SKLabelNode(fontNamed: "GillSans-Bold")
+        self.endScoreLbl3.text       = "Highscore"
+        self.endScoreLbl3.fontSize   = 45
+        self.endScoreLbl3.fontColor = self.greyWhite
+        self.endScoreLbl3.horizontalAlignmentMode = .center
+        self.endScoreLbl3.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-420)
+        self.endScoreLbl3.zPosition = 5
+        self.addChild(self.endScoreLbl3)
+    
+        self.endScoreLbl4 = SKLabelNode(fontNamed: "GillSans-Bold")
+        self.endScoreLbl4.text       = String(self.highscore)
+        self.endScoreLbl4.fontSize   = 45
+        self.endScoreLbl4.fontColor = self.darkGrey
+        self.endScoreLbl4.horizontalAlignmentMode = .center
+        self.endScoreLbl4.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-470)
+        self.endScoreLbl4.zPosition = 5
+        self.addChild(self.endScoreLbl4)
+    
+        //wall behind score
+        let center6 = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        let path6   = CGMutablePath()
+    
+        path6.move(to: CGPoint(x: center6.x + 150, y: center6.y))
+        path6.addLine(to: CGPoint(x: center6.x + 125, y: center6.y + 25))
+        path6.addLine(to: CGPoint(x: center6.x - 1000, y: center6.y + 25))
+        path6.addLine(to: CGPoint(x: center6.x - 1000, y: center6.y - 25))
+        path6.addLine(to: CGPoint(x: center6.x + 125, y: center6.y - 25))
 
-            path6.closeSubpath()
-            scoreWall = SKShapeNode(path: path6)
-            scoreWall.strokeColor = red
-            scoreWall.fillColor   = red
-            scoreWall.position    = CGPoint(x: self.frame.width - 1000, y:self.frame.height-638)
-            scoreWall.physicsBody = SKPhysicsBody(polygonFrom: path6)
-            scoreWall.zPosition = 3
-            scoreWall.physicsBody?.isDynamic            = false
-            scoreWall.physicsBody?.affectedByGravity  = false
+        path6.closeSubpath()
+        scoreWall = SKShapeNode(path: path6)
+        scoreWall.strokeColor = red
+        scoreWall.fillColor   = red
+        scoreWall.position    = CGPoint(x: self.frame.width - 1000, y:self.frame.height-638)
+        scoreWall.physicsBody = SKPhysicsBody(polygonFrom: path6)
+        scoreWall.zPosition = 3
+        scoreWall.physicsBody?.isDynamic            = false
+        scoreWall.physicsBody?.affectedByGravity  = false
 
 
-            self.addChild(self.scoreWall)
+        self.addChild(self.scoreWall)
 
         
         //wall behind highscore
@@ -514,7 +513,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         highscoreWall.physicsBody?.isDynamic            = false
         highscoreWall.physicsBody?.affectedByGravity  = false
 
-        
         self.addChild(self.highscoreWall)
         self.playState = 3
     
@@ -539,8 +537,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         scoreNode.color = scoreNodeColor
-
-        
         
         //Ar: Left wall moving right  |=>
         
@@ -598,8 +594,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(wallPairRight)
     }
-  
-    
+
     //--- Create walls left <---------
     
     func createWallsLeft(){
@@ -690,8 +685,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         scoreNode.color = scoreNodeColor
- 
-        
         
         //Ar: Left wall moving right  |=>
         
@@ -764,7 +757,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(wallChompLeft)
     }
 
-    
     //--- Create Island moving left and right   <====>
     
     func createWallIsland(){
@@ -782,23 +774,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         scoreNode.color = scoreNodeColor
-        
-        
-        
+
         // island <====>
         
         let center8 = CGPoint(x: self.frame.midX, y: self.frame.midY)
         let path8   = CGMutablePath()
         
-        path8.move(to: CGPoint(x: center8.x + 100, y: center8.y))
+        path8.move   (to: CGPoint(x: center8.x + 100, y: center8.y))
         path8.addLine(to: CGPoint(x: center8.x + 75,  y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - 75, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - 75,  y: center8.y + 25))
         path8.addLine(to: CGPoint(x: center8.x - 100, y: center8.y))
         path8.addLine(to: CGPoint(x: center8.x - 75,  y: center8.y - 25))
         path8.addLine(to: CGPoint(x: center8.x + 75,  y: center8.y - 25))
 
-        
-        
         path8.closeSubpath()
         island = SKShapeNode(path: path8)
         island.strokeColor = red
@@ -807,9 +795,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         island.physicsBody = SKPhysicsBody(polygonFrom: path8)
         island.physicsBody?.affectedByGravity = false
         island.physicsBody?.isDynamic = false
-        island.physicsBody?.categoryBitMask    = PhysicsCatagory.island
-        island.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
-        island.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
+        //island.physicsBody?.categoryBitMask    = PhysicsCatagory.island
+        //island.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
+        //island.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
         island.zPosition = 3
         
         
@@ -821,6 +809,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     //--- Create Walls outside of Island  ==<   (<====>)   >==
+
     func createWallsOutside(){
         
         outsideWalls = SKNode()
@@ -829,11 +818,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let center9 = CGPoint(x: self.frame.midX, y: self.frame.midY)
         let path9   = CGMutablePath()
         
-        path9.move(to: CGPoint(x: center9.x - 100, y: center9.y))
-        path9.addLine(to: CGPoint(x: center9.x - 125,  y: center9.y + 25))
-        path9.addLine(to: CGPoint(x: center9.x + 100, y: center9.y + 25))
-        path9.addLine(to: CGPoint(x: center9.x + 100, y: center9.y - 25))
+        path9.move   (to: CGPoint(x: center9.x - 100,  y: center9.y))
         path9.addLine(to: CGPoint(x: center9.x - 125,  y: center9.y - 25))
+        path9.addLine(to: CGPoint(x: center9.x + 100,  y: center9.y - 25))
+        path9.addLine(to: CGPoint(x: center9.x + 100,  y: center9.y + 25))
+        path9.addLine(to: CGPoint(x: center9.x - 125,  y: center9.y + 25))
         
         path9.closeSubpath()
         smallWallRight = SKShapeNode(path: path9)
@@ -843,20 +832,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallRight.physicsBody = SKPhysicsBody(polygonFrom: path9)
         smallWallRight.physicsBody?.affectedByGravity = false
         smallWallRight.physicsBody?.isDynamic = false
-        smallWallRight.physicsBody?.categoryBitMask    = PhysicsCatagory.smallWallRight | PhysicsCatagory.island
+        smallWallRight.physicsBody?.categoryBitMask    = PhysicsCatagory.smallWallRight 
         smallWallRight.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.island
         smallWallRight.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.island
         smallWallRight.physicsBody!.usesPreciseCollisionDetection = true
         smallWallRight.zPosition = 3
         
         let center10 = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        let path10  = CGMutablePath()
+        let path10   = CGMutablePath()
         
-        path10.move(to: CGPoint(x: center10.x + 100, y: center10.y))
-        path10.addLine(to: CGPoint(x: center10.x + 125,  y: center10.y - 25))
-        path10.addLine(to: CGPoint(x: center10.x - 100, y: center10.y - 25))
-        path10.addLine(to: CGPoint(x: center10.x - 100, y: center10.y + 25))
+        path10.move   (to: CGPoint(x: center10.x + 100,  y: center10.y))
         path10.addLine(to: CGPoint(x: center10.x + 125,  y: center10.y + 25))
+        path10.addLine(to: CGPoint(x: center10.x - 100,  y: center10.y + 25))
+        path10.addLine(to: CGPoint(x: center10.x - 100,  y: center10.y - 25))
+        path10.addLine(to: CGPoint(x: center10.x + 125,  y: center10.y - 25))
         
         path10.closeSubpath()
         smallWallLeft = SKShapeNode(path: path10)
@@ -931,9 +920,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     gameLabel.removeFromParent()
                     noAd.removeFromParent()
                     noAdBTN.removeFromParent()
-                    
-                
-                
                 }
             }
         }
@@ -1103,7 +1089,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLbl.text = "\(score)"
             //firstBody.node?.removeFromParent()
             pointPlayer.play()
-            
         }
         //score
         else if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
@@ -1117,14 +1102,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //island change direction
         else if firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
              || firstBody.categoryBitMask == PhysicsCatagory.smallWallRight && secondBody.categoryBitMask == PhysicsCatagory.island {
+            print("Island: ", islandVar)
             islandVar = islandVar * (-1)
         }
         //island change direction
         else if firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
             || firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft && secondBody.categoryBitMask == PhysicsCatagory.island {
             islandVar = islandVar * (-1)
-            
-            
         }
         /*
         //edge changes direction of ball
@@ -1144,25 +1128,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             && secondBody.categoryBitMask == PhysicsCatagory.wallAr
             ||  firstBody.categoryBitMask == PhysicsCatagory.wallAr
             && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
             ||  firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallBr
             ||  firstBody.categoryBitMask == PhysicsCatagory.wallBr
             && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
             ||  firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallAl
             ||  firstBody.categoryBitMask == PhysicsCatagory.wallAl
             && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
             ||  firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallBl
             ||  firstBody.categoryBitMask == PhysicsCatagory.wallBl
             && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
             ||  firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.fallBall
             ||  firstBody.categoryBitMask == PhysicsCatagory.fallBall
             && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
             ||  firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.topNode
             ||  firstBody.categoryBitMask == PhysicsCatagory.topNode
+            && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
+            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+            && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
+            ||  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
             && secondBody.categoryBitMask == PhysicsCatagory.ball
                                                                     {
             
@@ -1212,12 +1206,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.removeAllActions()
             })
 
-
-
-            
-  
-                                                                        
-            
             delay(1){
                 //self.removeAllChildren()
                 self.wallPairRight.removeFromParent()
@@ -1225,8 +1213,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.createBTN()
                 self.endScore()
                 self.createGameLabel()
-                                                                        }
-            
+            }
             }}
 
 }
