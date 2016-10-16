@@ -140,12 +140,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //let impulseX:CGFloat = 10.0
     
     // color schemes
-    var greyWhite      = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1.0)
+    var greyWhite      = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
     var scoreNodeColor = UIColor.clear
     var white      = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
     var purple     = UIColor(red: 200/255, green: 200/255, blue: 255/255, alpha: 1.0)
     var red     = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
-    var darkGrey     = UIColor(red:  73/255, green: 73/255,  blue:  73/255, alpha: 1.0)
+    var darkGrey     = UIColor(red:  65/255, green: 65/255,  blue:  65/255, alpha: 1.0) //73
     var lightGrey     = UIColor(red: 0.7569, green: 0.7569, blue: 0.7569, alpha: 1.0) /* #c1c1c1 */
 
 
@@ -235,10 +235,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         edge1.physicsBody = SKPhysicsBody(rectangleOf: edge1.size)
         edge1.physicsBody?.affectedByGravity = true
         edge1.physicsBody?.isDynamic = false
-        /*edge1.physicsBody?.categoryBitMask    = PhysicsCatagory.edge1
-        edge1.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
-        edge1.physicsBody?.contactTestBitMask = PhysicsCatagory.ball*/
-        //edge1.zPosition = 3
+        //edge1.physicsBody?.categoryBitMask    = PhysicsCatagory.edge1
+        //edge1.physicsBody?.collisionBitMask   = 0
+        //edge1.physicsBody?.contactTestBitMask = 0
+        edge1.zPosition = 3
         self.addChild(edge1)    //make edge1
         
         //edge on the right
@@ -249,11 +249,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         edge2.physicsBody = SKPhysicsBody(rectangleOf: edge2.size)
         edge2.physicsBody?.affectedByGravity = true
         edge2.physicsBody?.isDynamic = false
-        /*edge2.physicsBody?.categoryBitMask    = PhysicsCatagory.edge2
-        edge2.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
-        edge2.physicsBody?.contactTestBitMask = PhysicsCatagory.ball*/
-
-        //edge2.zPosition = 3
+        edge2.physicsBody?.categoryBitMask    = PhysicsCatagory.edge2
+        //edge2.physicsBody?.collisionBitMask   = 0
+        //edge2.physicsBody?.contactTestBitMask = 0
+        edge2.zPosition = 3
         self.addChild(edge2)    //make edge2
         
         //shape to define ball
@@ -281,8 +280,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.linearDamping      = 0.0
         ball.physicsBody?.restitution        = 0.3                           // ball: bounciness (0,1)
         ball.physicsBody?.categoryBitMask    = PhysicsCatagory.ball
-        ball.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.wallAr | PhysicsCatagory.wallBr | PhysicsCatagory.wallAl | PhysicsCatagory.wallBl
-        ball.physicsBody?.contactTestBitMask = PhysicsCatagory.wallAr | PhysicsCatagory.wallBr | PhysicsCatagory.wallAl | PhysicsCatagory.wallBl | PhysicsCatagory.score
+        ball.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.wallAr | PhysicsCatagory.wallBr | PhysicsCatagory.wallAl | PhysicsCatagory.wallBl | PhysicsCatagory.edge1 | PhysicsCatagory.edge2
+        ball.physicsBody?.contactTestBitMask = PhysicsCatagory.wallAr | PhysicsCatagory.wallBr | PhysicsCatagory.wallAl | PhysicsCatagory.wallBl | PhysicsCatagory.score | PhysicsCatagory.edge1 | PhysicsCatagory.edge2
         ball.physicsBody!.usesPreciseCollisionDetection = true
         ball.physicsBody?.velocity = CGVector(dx: ximpulse / 2.0 , dy: 0)            // ball: initial velocity [m/s]
         ball.zPosition = 3
@@ -338,7 +337,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playBTN)
         
         //title
-        gameLabel = SKSpriteNode(imageNamed: "swiftPic")
+        gameLabel = SKSpriteNode(imageNamed: "dodgePic")
         gameLabel.setScale(0.2)
         gameLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-120)
         gameLabel.zPosition = 5
@@ -370,7 +369,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createGameLabel() {
     //title
-    gameLabel2 = SKSpriteNode(imageNamed: "swiftPic")
+    gameLabel2 = SKSpriteNode(imageNamed: "dodgePic")
     gameLabel2.setScale(0.2)
     gameLabel2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-120)
     gameLabel2.zPosition = 5
@@ -795,9 +794,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         island.physicsBody = SKPhysicsBody(polygonFrom: path8)
         island.physicsBody?.affectedByGravity = false
         island.physicsBody?.isDynamic = false
-        //island.physicsBody?.categoryBitMask    = PhysicsCatagory.island
-        //island.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
-        //island.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
+        island.physicsBody?.categoryBitMask    = PhysicsCatagory.island
+        island.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
+        island.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
         island.zPosition = 3
         
         
@@ -1097,9 +1096,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("Score2: ", score, wallDir)
             scoreLbl.text = "\(score)"
             //secondBody.node?.removeFromParent()
-            pointPlayer.play()
+            //pointPlayer.play()
         }
-        //island change direction
+        /*//island change direction
         else if firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
              || firstBody.categoryBitMask == PhysicsCatagory.smallWallRight && secondBody.categoryBitMask == PhysicsCatagory.island {
             print("Island: ", islandVar)
@@ -1109,21 +1108,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else if firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
             || firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft && secondBody.categoryBitMask == PhysicsCatagory.island {
             islandVar = islandVar * (-1)
-        }
-        /*
-        //edge changes direction of ball
-        else if firstBody.categoryBitMask == PhysicsCatagory.edge1 && secondBody.categoryBitMask == PhysicsCatagory.ball
-            || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge1 {
-            //ball_dir = ball_dir * (-1.0)
-        }
-
-        else if firstBody.categoryBitMask == PhysicsCatagory.edge2 && secondBody.categoryBitMask == PhysicsCatagory.ball
-            || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge2 {
-            ball_dir = ball_dir * (-1.0)
- 
-            
         }*/
-
+        
+        
         else if firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallAr
             ||  firstBody.categoryBitMask == PhysicsCatagory.wallAr
@@ -1145,8 +1132,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             && secondBody.categoryBitMask == PhysicsCatagory.ball
             
             ||  firstBody.categoryBitMask == PhysicsCatagory.ball
-            && secondBody.categoryBitMask == PhysicsCatagory.fallBall
-            ||  firstBody.categoryBitMask == PhysicsCatagory.fallBall
+            && secondBody.categoryBitMask == PhysicsCatagory.island
+            ||  firstBody.categoryBitMask == PhysicsCatagory.island
             && secondBody.categoryBitMask == PhysicsCatagory.ball
             
             ||  firstBody.categoryBitMask == PhysicsCatagory.ball
@@ -1214,7 +1201,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.endScore()
                 self.createGameLabel()
             }
-            }}
+        }
+            
+            //edge changes direction of ball
+        else if firstBody.categoryBitMask == PhysicsCatagory.edge1 && secondBody.categoryBitMask == PhysicsCatagory.ball
+            || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge1 {
+            ball_dir = ball_dir * (-1.0)
+            print("edgetouch ", ball_dir)
+            
+        }
+            
+        else if firstBody.categoryBitMask == PhysicsCatagory.edge2 && secondBody.categoryBitMask == PhysicsCatagory.ball
+            || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge2 {
+            ball_dir = ball_dir * (-1.0)
+            print("edgetouch ", ball_dir)
+ 
+            }
+
+        }
 
 }
     
