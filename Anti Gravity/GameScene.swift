@@ -59,13 +59,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var wallPairLeft   = SKNode()
     var wallChompRight   = SKNode()
     var wallChompLeft   = SKNode()
-    var wallIsland   = SKNode()
+    var wallIslandLeft   = SKNode()
+    var wallIslandRight   = SKNode()
     var outsideWalls   = SKNode()
     var moveAndRemoveRight = SKAction()
     var moveAndRemoveLeft  = SKAction()
     var moveAndRemoveChompRight = SKAction()
     var moveAndRemoveChompLeft  = SKAction()
-    var moveAndRemoveIsland  = SKAction()
+    var moveAndRemoveIslandLeft  = SKAction()
+    var moveAndRemoveIslandRight  = SKAction()
     var moveAndRemoveOutsideWall  = SKAction()
     var restartBTN = SKSpriteNode()
     var resetBTN = SKSpriteNode()
@@ -127,7 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var widthBallbar       = 420                        // length of fall ball bar
     var islandVar  = 0.8
     var islandPosLeft  = 600
-    var islandPosRight  = 300
+    var islandPosRight  = 450
 
 
     
@@ -338,8 +340,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //title
         gameLabel = SKSpriteNode(imageNamed: "dodgePic")
-        gameLabel.setScale(0.2)
-        gameLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-120)
+        gameLabel.setScale(0.22)
+        gameLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-130)
         gameLabel.zPosition = 5
         self.addChild(gameLabel)
         
@@ -370,7 +372,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createGameLabel() {
     //title
     gameLabel2 = SKSpriteNode(imageNamed: "dodgePic")
-    gameLabel2.setScale(0.2)
+    gameLabel2.setScale(0.22)
     gameLabel2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-120)
     gameLabel2.zPosition = 5
     self.addChild(gameLabel2)
@@ -756,15 +758,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(wallChompLeft)
     }
 
-    //--- Create Island moving left and right   <====>
+    //--- Create Island moving left and right   <====> starting left
     
-    func createWallIsland(){
+    func createWallIslandLeft(){
         
-        wallIsland = SKNode()
-        wallIsland.name = "wallIsland"
+        wallIslandLeft = SKNode()
+        wallIslandLeft.name = "wallIslandLeft"
         
         let scoreNode = SKSpriteNode()
-        scoreNode.size = CGSize(width: 850, height:3)
+        scoreNode.size = CGSize(width: 8500, height:3)
         scoreNode.position = CGPoint(x:self.frame.width/2, y:self.frame.width-256)
         scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
         scoreNode.physicsBody?.affectedByGravity = false
@@ -772,7 +774,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.physicsBody?.categoryBitMask = PhysicsCatagory.score
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
-        scoreNode.color = scoreNodeColor
+        scoreNode.color = red
 
         // island <====>
         
@@ -800,12 +802,64 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         island.zPosition = 3
         
         
-        wallIsland.addChild(island)
-        wallIsland.addChild(scoreNode)
-        wallIsland.run(moveAndRemoveIsland)
+        wallIslandLeft.addChild(island)
+        wallIslandLeft.addChild(scoreNode)
+        wallIslandLeft.run(moveAndRemoveIslandLeft)
         
-        self.addChild(wallIsland)
+        self.addChild(wallIslandLeft)
     }
+    
+    //--- Create Island moving left and right   <====> starting right
+    
+    func createWallIslandRight(){
+        
+        wallIslandRight = SKNode()
+        wallIslandRight.name = "wallIslandRight"
+        
+        let scoreNode = SKSpriteNode()
+        scoreNode.size = CGSize(width: 8500, height:3)
+        scoreNode.position = CGPoint(x:self.frame.width/2, y:self.frame.width-256)
+        scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
+        scoreNode.physicsBody?.affectedByGravity = false
+        scoreNode.physicsBody?.isDynamic = false
+        scoreNode.physicsBody?.categoryBitMask = PhysicsCatagory.score
+        scoreNode.physicsBody?.collisionBitMask = 0
+        scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
+        scoreNode.color = red
+        
+        // island <====>
+        
+        let center8 = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        let path8   = CGMutablePath()
+        
+        path8.move   (to: CGPoint(x: center8.x + 100, y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x + 75,  y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - 75,  y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - 100, y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x - 75,  y: center8.y - 25))
+        path8.addLine(to: CGPoint(x: center8.x + 75,  y: center8.y - 25))
+        
+        path8.closeSubpath()
+        island = SKShapeNode(path: path8)
+        island.strokeColor = red
+        island.fillColor   = red
+        island.position    = CGPoint(x: self.frame.width/2 - CGFloat(islandPosRight), y:frame.height-383)
+        island.physicsBody = SKPhysicsBody(polygonFrom: path8)
+        island.physicsBody?.affectedByGravity = false
+        island.physicsBody?.isDynamic = false
+        island.physicsBody?.categoryBitMask    = PhysicsCatagory.island
+        island.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
+        island.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
+        island.zPosition = 3
+        
+        
+        wallIslandRight.addChild(island)
+        wallIslandRight.addChild(scoreNode)
+        wallIslandRight.run(moveAndRemoveIslandRight)
+        
+        self.addChild(wallIslandRight)
+    }
+
 
     //--- Create Walls outside of Island  ==<   (<====>)   >==
 
@@ -942,13 +996,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.createWallChompRight()
             })
             
-            let spawnIsland = SKAction.run({
+            let spawnIslandLeft = SKAction.run({
                 () in
-                self.createWallIsland()
+                self.createWallIslandLeft()
+                self.createWallsOutside()
+            })
+            
+            let spawnIslandRight = SKAction.run({
+                () in
+                self.createWallIslandRight()
                 self.createWallsOutside()
             })
 
-            
             let spawnFallBall = SKAction.run({
                 () in
                 self.obstacle()
@@ -982,10 +1041,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let removeWallChompLeft  = SKAction.removeFromParent()
             moveAndRemoveChompLeft   = SKAction.sequence([moveWallChompLeft, removeWallChompLeft])
             
-            // island
-            let moveIsland    = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove, y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
-            let removeIsland  = SKAction.removeFromParent()
-            moveAndRemoveIsland   = SKAction.sequence([moveIsland, removeIsland])
+            // island starting left
+            let moveIslandLeft    = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove, y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let removeIslandLeft  = SKAction.removeFromParent()
+            moveAndRemoveIslandLeft   = SKAction.sequence([moveIslandLeft, removeIslandLeft])
+            
+            // island starting right
+            let moveIslandRight    = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove, y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let removeIslandRight  = SKAction.removeFromParent()
+            moveAndRemoveIslandRight   = SKAction.sequence([moveIslandRight, removeIslandRight])
+
             
             // Outside Wall (outside of island)
             let moveOutsideWall    = SKAction.moveBy(x: 0, y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
@@ -994,7 +1059,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             
             // SEQUENCE
-            let spawnDelay           = SKAction.sequence([/*spawnWallsRight, delayWalls, spawnFallBall, spawnWallsLeft, delayWalls, spawnWallsChomp, delayWalls,*/ spawnIsland, delayWalls])
+            let spawnDelay           = SKAction.sequence([/*spawnWallsRight, delayWalls, spawnFallBall, spawnWallsLeft, delayWalls, spawnWallsChomp, delayWalls,*/ spawnIslandLeft, delayWalls, spawnIslandRight, delayWalls ])
             let spawnDelayForever    = SKAction.repeatForever(spawnDelay)
             self.run(spawnDelayForever)
             
@@ -1025,14 +1090,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // change wall speed
             
-            if score == 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 {
-                islandVar = islandVar * (-1)
-                print("islandVar: ",islandVar)
-
-                
-            }
             
-
             
             //touch pause button
             for touch in touches{
@@ -1084,19 +1142,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.categoryBitMask == PhysicsCatagory.score && secondBody.categoryBitMask == PhysicsCatagory.ball{
             score  += 1
             wallDir = wallDir * (-1)
-            print("Score1: ", score, wallDir)
+            islandVar = islandVar * (-1)
+            print("islandVar: ", islandVar)
             scoreLbl.text = "\(score)"
-            //firstBody.node?.removeFromParent()
+            firstBody.node?.removeFromParent()
             pointPlayer.play()
         }
         //score
         else if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
             score  += 1
             wallDir = wallDir * (-1)
-            print("Score2: ", score, wallDir)
+            islandVar = islandVar * (-1)
+            print("islandVar: ", islandVar)
             scoreLbl.text = "\(score)"
-            //secondBody.node?.removeFromParent()
-            //pointPlayer.play()
+            secondBody.node?.removeFromParent()
+            pointPlayer.play()
         }
         /*//island change direction
         else if firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
@@ -1181,7 +1241,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.removeAllActions()
             })
                                                                         
-            enumerateChildNodes(withName: "wallIsland", using: {
+            enumerateChildNodes(withName: "wallIslandLeft", using: {
+            (node, error) in
+            node.speed = 0
+            self.removeAllActions()
+            })
+                                                                        
+            enumerateChildNodes(withName: "wallIslandRight", using: {
             (node, error) in
             node.speed = 0
             self.removeAllActions()
