@@ -130,6 +130,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var islandVar  = 0.8
     var islandPosLeft  = 600
     var islandPosRight  = 450
+    var ballColor = 1
 
 
     
@@ -169,7 +170,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let HighscoreDefault = UserDefaults.standard
         if(HighscoreDefault.value(forKey: "highscore") != nil) {
             highscore = HighscoreDefault.value(forKey: "highscore") as! NSInteger!
-        
+            
+                    
         
         }
 
@@ -215,6 +217,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         removeAllActions()
         score = 0
         ball_dir = 5
+        islandVar  = 0.8
         
         physicsWorld.gravity = CGVector(dx: 0,dy: 0)              // switch gravity off
         
@@ -269,12 +272,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         path.closeSubpath()
         ball = SKShapeNode(path: path)
-        ball.strokeColor = red
+    
         ball.lineWidth = 6
         ball.fillColor =  greyWhite
-
+       
+        if ballColor == 1 {
+            ball.strokeColor = darkGrey
+        }
+        
+        if ballColor == -1 {
+            ball.strokeColor = darkGrey
+        }
+        
         ball.physicsBody = SKPhysicsBody(polygonFrom: path)
-
         ball.physicsBody?.isDynamic            = true
         ball.physicsBody?.affectedByGravity  = true
         ball.physicsBody?.mass               = 1
@@ -1088,7 +1098,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("Press Ball Impulse: ",playState)
             
             
-            // change wall speed
+            
             
             
             
@@ -1143,7 +1153,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score  += 1
             wallDir = wallDir * (-1)
             islandVar = islandVar * (-1)
-            print("islandVar: ", islandVar)
+            ballColor = ballColor * (-1)
+            print("ballColor", ballColor)
             scoreLbl.text = "\(score)"
             firstBody.node?.removeFromParent()
             pointPlayer.play()
@@ -1153,7 +1164,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             score  += 1
             wallDir = wallDir * (-1)
             islandVar = islandVar * (-1)
-            print("islandVar: ", islandVar)
+            ballColor = ballColor * (-1)
+            print("ballColor", ballColor)
             scoreLbl.text = "\(score)"
             secondBody.node?.removeFromParent()
             pointPlayer.play()
@@ -1300,6 +1312,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
 //--- Update
     override func update(_ currentTime: TimeInterval) {
+        
+        if ballColor == 1 {
+            ball.strokeColor = red
+        }
+        
+        if ballColor == -1 {
+            ball.strokeColor = darkGrey
+        }
+
         
            }
 
