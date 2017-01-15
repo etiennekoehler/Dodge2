@@ -83,6 +83,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //var play    = SKSpriteNode()
     var playBTN = SKSpriteNode()
     var playBTN2 = SKSpriteNode()
+    var rateBTN = SKSpriteNode()
+    var rateBTN2 = SKSpriteNode()
     var pauseBTN = SKSpriteNode()
     var pauseBTNPic = SKSpriteNode()
     var noAd = SKSpriteNode()
@@ -345,30 +347,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         backgroundColor = greyWhite
         
-        /*
-        //play label
-        let center5 = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        let path5   = CGMutablePath()
-        
-        path5.move(to: CGPoint(x: center5.x - 40, y: center5.y + 70))
-        path5.addLine(to: CGPoint(x: center5.x - 40, y: center5.y - 30))
-        path5.addLine(to: CGPoint(x: center5.x + 40, y: center5.y + 20))
-        
-        path5.closeSubpath()
-        playBTN = SKShapeNode(path: path5)
-        playBTN.strokeColor = red
-        playBTN.lineWidth = 8
-        playBTN.fillColor   = greyWhite
-        playBTN.physicsBody = SKPhysicsBody(polygonFrom: path5)
-        playBTN.physicsBody?.isDynamic = false
-        self.addChild(playBTN)
-        */
-        
-        playBTN = SKSpriteNode(imageNamed: "play2")
-        playBTN.setScale(0.32)
-        playBTN.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 - 100)
+        //play button
+        playBTN = SKSpriteNode(imageNamed: "playBTN2")
+        playBTN.setScale(1.20)
+        playBTN.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 )
         playBTN.zPosition = 5
         self.addChild(playBTN)
+        
+        //rate button
+        rateBTN = SKSpriteNode(imageNamed: "rateBTN1")
+        rateBTN.setScale(1.0)
+        rateBTN.position = CGPoint(x: self.frame.width / 2 - 100, y:self.frame.height/2 - 150 )
+        rateBTN.zPosition = 5
+        self.addChild(rateBTN)
 
         //title
         gameLabel = SKSpriteNode(imageNamed: "dodgePic")
@@ -393,13 +384,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         
         
-    }
-    func createPlayBTN2() {
-        playBTN2 = SKSpriteNode(imageNamed: "play1")
-        playBTN2.setScale(0.32)
-        playBTN2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 - 100)
-        playBTN2.zPosition = 5
-        self.addChild(playBTN2)
     }
     
     // create the no ads scene
@@ -439,7 +423,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    //--- create home button
+//--- create home button
     func createHomeBTN(){
         
             self.homeBTN = SKSpriteNode(color: SKColor.blue, size: CGSize(width: 800, height: 800))
@@ -481,6 +465,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     }
+//--- play button 2
+    func createPlayBTN2() {
+        playBTN2 = SKSpriteNode(imageNamed: "playBTN4")
+        playBTN2.setScale(1.20)
+        playBTN2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2)
+        playBTN2.zPosition = 5
+        self.addChild(playBTN2)
+    }
+    
+//--- rate button 2
+    func createRateBTN2() {
+        rateBTN2 = SKSpriteNode(imageNamed: "rateBTN2")
+        rateBTN2.setScale(1.0)
+        rateBTN2.position = CGPoint(x: self.frame.width / 2 - 100, y:self.frame.height/2 - 150)
+        rateBTN2.zPosition = 5
+        self.addChild(rateBTN2)
+    }
+
+
+
 //--- end score
     func endScore(){
     
@@ -1026,13 +1030,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 if playBTN.contains(location){
                     createPlayBTN2()
-                    /*playState = 0
                     playBTN.removeFromParent()
-                    gameLabel.removeFromParent()
-                    noAd.removeFromParent()
-                    noAdBTN.removeFromParent()
-                    createScene()*/
                 }
+                
+                if rateBTN.contains(location){
+                    createRateBTN2()
+                    rateBTN.removeFromParent()
+                }
+
+                
                 
                 if noAdBTN.contains(location){
                     playState = 6
@@ -1190,14 +1196,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let location = touch.location(in: self)
             
                 if restartBTN.contains(location){
-                    sleep(restartSleep)
+                    /*sleep(restartSleep)
                     delay(0){self.restartScene()}
                     self.addChild(gameLabel)
-                    playState = 0
+                    playState = 0*/
                 }
  
                 if homeBTN.contains(location){
-                    playState = -1
+                    /*playState = -1*/
                 
                 
                 }
@@ -1217,6 +1223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = 0
                     playBTN.removeFromParent()
                     playBTN2.removeFromParent()
+                    rateBTN2.removeFromParent()
                     gameLabel.removeFromParent()
                     noAd.removeFromParent()
                     noAdBTN.removeFromParent()
@@ -1224,8 +1231,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     
                 }
+                
+                if rateBTN.contains(location){
+                    
+                }
+
             }
         }
+        
+        if playState == 3 {
+            
+            for touch in touches{
+                let location = touch.location(in: self)
+                
+                if restartBTN.contains(location){
+                    sleep(restartSleep)
+                    delay(0){self.restartScene()}
+                    self.addChild(gameLabel)
+                    playState = 0
+                    
+                }
+                
+                if homeBTN.contains(location){
+                    playState = -1
+                    
+                    
+                }
+            }
+        }
+
     }
 
 
@@ -1249,7 +1283,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             pointPlayer.play()
         }
         //score
-        else if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
+        if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
             score  += 1
             wallDir = wallDir * (-1)
             islandVar = islandVar * (-1)
@@ -1261,19 +1295,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         //island change direction
-        else if firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
+        if firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
             || firstBody.categoryBitMask == PhysicsCatagory.smallWallRight && secondBody.categoryBitMask == PhysicsCatagory.island {
             print("Island: ", islandVar)
             islandVar = islandVar * (-1)
         }
         //island change direction
-        else if firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
+        if firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
             || firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft && secondBody.categoryBitMask == PhysicsCatagory.island {
             islandVar = islandVar * (-1)
         }
         
         
-        else if firstBody.categoryBitMask == PhysicsCatagory.ball
+        if firstBody.categoryBitMask == PhysicsCatagory.ball
             && secondBody.categoryBitMask == PhysicsCatagory.wallAr
             ||  firstBody.categoryBitMask == PhysicsCatagory.wallAr
             && secondBody.categoryBitMask == PhysicsCatagory.ball
@@ -1373,14 +1407,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
             
             //edge changes direction of ball
-        else if firstBody.categoryBitMask == PhysicsCatagory.edge1 && secondBody.categoryBitMask == PhysicsCatagory.ball
+        if firstBody.categoryBitMask == PhysicsCatagory.edge1 && secondBody.categoryBitMask == PhysicsCatagory.ball
             || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge1 {
             ball_dir = ball_dir * (-1.0)
             print("edgetouch ", ball_dir)
             
         }
             
-        else if firstBody.categoryBitMask == PhysicsCatagory.edge2 && secondBody.categoryBitMask == PhysicsCatagory.ball
+        if firstBody.categoryBitMask == PhysicsCatagory.edge2 && secondBody.categoryBitMask == PhysicsCatagory.ball
             || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge2 {
             ball_dir = ball_dir * (-1.0)
             print("edgetouch ", ball_dir)
