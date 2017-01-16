@@ -82,6 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameLabel2 = SKSpriteNode()
     //var play    = SKSpriteNode()
     var playBTN = SKSpriteNode()
+    var playBTN2 = SKSpriteNode()
     var pauseBTN = SKSpriteNode()
     var pauseBTNPic = SKSpriteNode()
     var noAd = SKSpriteNode()
@@ -122,11 +123,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallPos1:CGFloat  = 755.0 //755.0              // position of left wall  e.g. 800
     var xwallPos2:CGFloat  = 300.0 //270.0              // position of right wall e.g. 225
     var xwallShift:CGFloat = -150.0// -50.0             // shift wall to see more of incoming red wall
-    var xwallMove  = [CGFloat(100.0) , CGFloat(60), CGFloat(140)]                      // move walls in xdir e.g. 200
+    var xwallMove  = [CGFloat(100.0) , CGFloat(60), CGFloat(140)]   // move walls in xdir e.g. 200
     var xwallMoveI:CGFloat = 100.0
-    var velocityWall = CGFloat(150)      // wall speed e.g. 120
+    var velocityWall = CGFloat(150)      // wall y-speed
     var iRan = 1
-    let delayWalls   = SKAction.wait(forDuration: 2.0)  // time new walls (s)
+    let delayWalls   = SKAction.wait(forDuration: 3.0)  // time new walls (s)
     var wallDir1           = 1                          // initial wall speed direction
     var wallDir            = 1                          // initial wall speed direction
     var widthBallbarIni    = 420                        // length of fall ball bar (ini)
@@ -392,6 +393,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         
         
+    }
+    func createPlayBTN2() {
+        playBTN2 = SKSpriteNode(imageNamed: "play1")
+        playBTN2.setScale(0.32)
+        playBTN2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 - 100)
+        playBTN2.zPosition = 5
+        self.addChild(playBTN2)
     }
     
     // create the no ads scene
@@ -998,8 +1006,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     }
 
-
-//--- Mouse Click
+    
+    
+    
+    
+//--- Mouse Click Began
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
@@ -1008,16 +1019,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         // state -1: home ----------------------
         if playState == -1 {
+            
+            
             for touch in touches{
                 let location = touch.location(in: self)
                 
                 if playBTN.contains(location){
-                    playState = 0
+                    createPlayBTN2()
+                    /*playState = 0
                     playBTN.removeFromParent()
                     gameLabel.removeFromParent()
                     noAd.removeFromParent()
                     noAdBTN.removeFromParent()
-                    createScene()
+                    createScene()*/
                 }
                 
                 if noAdBTN.contains(location){
@@ -1190,6 +1204,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
+//--- Mouse Click Ended
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if playState == -1 {
+            
+            for touch in touches{
+                let location = touch.location(in: self)
+                
+                if playBTN.contains(location){
+                    playState = 0
+                    playBTN.removeFromParent()
+                    playBTN2.removeFromParent()
+                    gameLabel.removeFromParent()
+                    noAd.removeFromParent()
+                    noAdBTN.removeFromParent()
+                    createScene()
+                    
+                    
+                }
+            }
+        }
+    }
+
 
     
 //--- Collision: contact between ball and walls
