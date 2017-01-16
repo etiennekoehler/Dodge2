@@ -85,6 +85,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playBTN2 = SKSpriteNode()
     var rateBTN = SKSpriteNode()
     var rateBTN2 = SKSpriteNode()
+    var homeBTN1 = SKSpriteNode()
+    var homeBTN2 = SKSpriteNode()
     var pauseBTN = SKSpriteNode()
     var pauseBTNPic = SKSpriteNode()
     var noAd = SKSpriteNode()
@@ -243,7 +245,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-//--- Create Scene: edges, ball, score=0
+//-------------------------- Create Scene: edges, ball, score=0
     //func createScene(ball: SKShapeNode) {
     func createScene() {
         
@@ -342,10 +344,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     
-//--- home
+//---------------------- home screen
     func homeScene(){
         
         backgroundColor = greyWhite
+        self.physicsWorld.gravity = gravityDirection
         
         //play button
         playBTN = SKSpriteNode(imageNamed: "playBTN2")
@@ -423,26 +426,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-//--- create home button
-    func createHomeBTN(){
-        
-            self.homeBTN = SKSpriteNode(color: SKColor.blue, size: CGSize(width: 800, height: 800))
-            self.homeBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 577)
-            self.homeBTN.zPosition = 4
-            self.addChild(self.homeBTN)
-        
-        /*
-            self.homeBTNPic = SKSpriteNode(imageNamed: "Reset-Button")
-            self.homeBTNPic.setScale(0.5)
-            self.homeBTNPic.size = CGSize(width: 110, height: 100)
-            self.homeBTNPic.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 577)
-            self.homeBTNPic.physicsBody = SKPhysicsBody(rectangleOf: self.resetBTN.size)
-            self.homeBTNPic.physicsBody?.affectedByGravity = true
-            self.homeBTNPic.physicsBody?.isDynamic = false
-            self.resetBTN.zPosition = 7
-            self.addChild(self.homeBTNPic)
-        */
-    }
 
     
 //--- pause Button
@@ -476,12 +459,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
 //--- rate button 2
     func createRateBTN2() {
-        rateBTN2 = SKSpriteNode(imageNamed: "rateBTN2")
+        rateBTN2 = SKSpriteNode(imageNamed: "rateBTN3")
         rateBTN2.setScale(1.0)
         rateBTN2.position = CGPoint(x: self.frame.width / 2 - 100, y:self.frame.height/2 - 150)
         rateBTN2.zPosition = 5
         self.addChild(rateBTN2)
     }
+
+//--- home button 1
+    func createHomeBTN1() {
+        delay(restartDelay) {
+            self.homeBTN1 = SKSpriteNode(imageNamed: "homeBTN_1")
+            self.homeBTN1.setScale(1.0)
+            self.homeBTN1.position = CGPoint(x: self.frame.width * 0.5 - 150, y: self.frame.height  - 577)
+            self.homeBTN1.zPosition = 5
+            self.addChild(self.homeBTN1)
+        }
+    }
+    
+    
+//--- home button 2
+    func createHomeBTN2() {
+        homeBTN2 = SKSpriteNode(imageNamed: "homeBTN_2")
+        homeBTN2.setScale(1.0)
+        homeBTN2.position = CGPoint(x: self.frame.width * 0.5 - 150, y: self.frame.height  - 577)
+        homeBTN2.zPosition = 5
+        self.addChild(homeBTN2)
+    }
+
 
 
 
@@ -1202,8 +1207,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = 0*/
                 }
  
-                if homeBTN.contains(location){
-                    /*playState = -1*/
+                if homeBTN1.contains(location){
+                    createHomeBTN2()
+                    homeBTN1.removeFromParent()
                 
                 
                 }
@@ -1224,6 +1230,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playBTN.removeFromParent()
                     playBTN2.removeFromParent()
                     rateBTN2.removeFromParent()
+                    rateBTN.removeFromParent()
                     gameLabel.removeFromParent()
                     noAd.removeFromParent()
                     noAdBTN.removeFromParent()
@@ -1252,9 +1259,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                 }
                 
-                if homeBTN.contains(location){
+                if homeBTN1.contains(location){
+                    removeAllChildren()
+                    removeAllActions()
                     playState = -1
-                    
+                    homeScene()
                     
                 }
             }
@@ -1400,7 +1409,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.wallPairRight.removeFromParent()
                 self.wallPairLeft.removeFromParent()
                 self.createRestartBTN()
-                self.createHomeBTN()
+                self.createHomeBTN1()
                 self.endScore()
                 self.createGameLabel()
             }
