@@ -20,6 +20,34 @@
                ReferencedContainer = "container:Anti Gravity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8FF0AEEE1D15645C0075BBE9"
+               BuildableName = "Anti GravityTests.xctest"
+               BlueprintName = "Anti GravityTests"
+               ReferencedContainer = "container:Anti Gravity.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8FF0AEF91D15645C0075BBE9"
+               BuildableName = "Anti GravityUITests.xctest"
+               BlueprintName = "Anti GravityUITests"
+               ReferencedContainer = "container:Anti Gravity.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -106,6 +134,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Dodge"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

@@ -82,6 +82,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playBTN2 = SKSpriteNode()
     var rateBTN = SKSpriteNode()
     var rateBTN2 = SKSpriteNode()
+    var musicBTN = SKSpriteNode()
+    var musicBTN2 = SKSpriteNode()
     var homeBTN1 = SKSpriteNode()
     var homeBTN2 = SKSpriteNode()
     var pauseBTN = SKSpriteNode()
@@ -124,7 +126,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallPos1:CGFloat  = 755.0 //755.0              // position of left wall  e.g. 800
     var xwallPos2:CGFloat  = 300.0 //270.0              // position of right wall e.g. 225
     var xwallShift:CGFloat = -150.0// -50.0             // shift wall to see more of incoming red wall
-    var xwallMove  = [CGFloat(100.0) , CGFloat(100), CGFloat(100)]   // move walls in xdir e.g. 200
+    var xwallMove  = [CGFloat(120.0) , CGFloat(120), CGFloat(120)]   // move walls in xdir e.g. 200
     var xwallMoveI:CGFloat = 100.0
     var velocityWall = CGFloat(100)      // wall y-speed
     var iRan = 1
@@ -364,6 +366,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rateBTN.position = CGPoint(x: self.frame.width / 2 - 100, y:self.frame.height/2 - 150 )
         rateBTN.zPosition = 5
         self.addChild(rateBTN)
+        
+        //music button
+        musicBTN = SKSpriteNode(imageNamed: "musicBTN_1")
+        musicBTN.setScale(1.0)
+        musicBTN.position = CGPoint(x: self.frame.width / 2 - 20, y:self.frame.height/2 - 150 )
+        musicBTN.zPosition = 5
+        self.addChild(musicBTN)
 
         //title
         gameLabel = SKSpriteNode(imageNamed: "dodgePic")
@@ -465,6 +474,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rateBTN2.position = CGPoint(x: self.frame.width / 2 - 100, y:self.frame.height/2 - 150)
         rateBTN2.zPosition = 5
         self.addChild(rateBTN2)
+    }
+
+//--- music button 2
+    func createMusicBTN2() {
+        musicBTN2 = SKSpriteNode(imageNamed: "musicBTN_2")
+        musicBTN2.setScale(1.0)
+        musicBTN2.position = CGPoint(x: self.frame.width / 2 - 20, y:self.frame.height/2 - 150)
+        musicBTN2.zPosition = 5
+        self.addChild(musicBTN2)
     }
 
 //--- home button 1
@@ -912,8 +930,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         path8.closeSubpath()
         island = SKShapeNode(path: path8)
-        island.strokeColor = UIColor.green  //red
-        island.fillColor   = UIColor.green  //red
+        island.strokeColor = red
+        island.fillColor   = red
         island.position    = CGPoint(x: self.frame.width/2 - CGFloat(islandPosRight), y:frame.height-383)
         island.physicsBody = SKPhysicsBody(polygonFrom: path8)
         island.physicsBody?.affectedByGravity = false
@@ -1043,8 +1061,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     createRateBTN2()
                     rateBTN.removeFromParent()
                 }
-
                 
+                if musicBTN.contains(location){
+                    createMusicBTN2()
+                    trackPlayer.volume = 0
+                    musicBTN.removeFromParent()
+                }
                 
                 if noAdBTN.contains(location){
                     playState = 6
@@ -1232,6 +1254,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playBTN2.removeFromParent()
                     rateBTN2.removeFromParent()
                     rateBTN.removeFromParent()
+                    musicBTN.removeFromParent()
+                    musicBTN2.removeFromParent()
                     gameLabel.removeFromParent()
                     noAd.removeFromParent()
                     noAdBTN.removeFromParent()
@@ -1243,6 +1267,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if rateBTN.contains(location){
                     
                 }
+                
+                if musicBTN2.contains(location){
+                    trackPlayer.volume = 0                }
+                if musicBTN.contains(location){
+                    trackPlayer.volume = 0
+                }
+
 
             }
         }
