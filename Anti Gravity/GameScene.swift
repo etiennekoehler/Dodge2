@@ -176,7 +176,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //let tap      = SKLabelNode()
  
     
-//--- Start the game
+//------------------------------------------- Start the game
     override func didMove(to view: SKView) {
   
         backgroundColor = greyWhite
@@ -893,7 +893,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         island.position    = CGPoint(x: self.frame.width/2 - CGFloat(islandPosLeft), y:frame.height-383)
         island.physicsBody = SKPhysicsBody(polygonFrom: path8)
         island.physicsBody?.affectedByGravity = false
-        island.physicsBody?.isDynamic = true
+        island.physicsBody?.isDynamic = false
         island.physicsBody?.categoryBitMask    = PhysicsCatagory.island
         island.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
         island.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
@@ -944,7 +944,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         island.position    = CGPoint(x: self.frame.width/2 - CGFloat(islandPosRight), y:frame.height-383)
         island.physicsBody = SKPhysicsBody(polygonFrom: path8)
         island.physicsBody?.affectedByGravity = false
-        island.physicsBody?.isDynamic = true
+        island.physicsBody?.isDynamic = false
         island.physicsBody?.categoryBitMask    = PhysicsCatagory.island
         island.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
         island.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.smallWallRight | PhysicsCatagory.smallWallLeft
