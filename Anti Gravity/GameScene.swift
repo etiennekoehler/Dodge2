@@ -7,13 +7,10 @@
 //
 
 
-// Martin's version 1
-// etienne
 import SpriteKit
 import UIKit
 import AVFoundation
 import SceneKit
-//hello
 
 //--- Game Physics
 struct PhysicsCatagory {
@@ -30,10 +27,6 @@ struct PhysicsCatagory {
     static let smallWallRight   : UInt32 = 0x1 << 7  // 128
     static let smallWallLeft    : UInt32 = 0x1 << 8  // 256
     static let star1            : UInt32 = 0x1 << 9
-
-
-
-
 }
 
 
@@ -119,7 +112,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // 6: ads
     //-----------------
     
-    
     var ball_dir = 4.5                                  // ball direction (-1,1)
     var ximpulse = 0.0                                  // impulse of ball when mouse click   e.g. 100 [kg m/s]
     var ximpMore = 0.0                                  // impulse increases with score by    e.g. 20  [kg m/s]
@@ -150,8 +142,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var islandPosRight  = 450
     var ballColor = 1
     var starVar = CGFloat(-100)
-
-
     
     //var gravityBehavior: UtapIGravityBehavior?
     var gravityDirection = CGVector(dx: 0,dy: 0)          // gravity: normal (0,-9.8)
@@ -169,7 +159,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var darkGrey     = UIColor(red:  65/255, green: 65/255,  blue:  65/255, alpha: 1.0) //73
     var lightGrey     = UIColor(red: 0.7569, green: 0.7569, blue: 0.7569, alpha: 1.0) /* #c1c1c1 */
 
-
     var score    = Int()
     var highscore = Int()
     var starCount = Int()
@@ -178,8 +167,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let starLbl = SKLabelNode()
     //let tap      = SKLabelNode()
  
-    
+
 //------------------------------------------- Start the game
+
     override func didMove(to view: SKView) {
   
         backgroundColor = greyWhite
@@ -188,15 +178,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = gravityDirection
         
         let HighscoreDefault = UserDefaults.standard
-        if(HighscoreDefault.value(forKey: "highscore") != nil) {
+        if (HighscoreDefault.value(forKey: "highscore") != nil) {
             highscore = HighscoreDefault.value(forKey: "highscore") as! NSInteger!
         /*
         let starCountDefault = UserDefaults.standard
         if(starCountDefault.value(forKey: "starCount") != nil) {
             starCount = starCountDefault.value(forKey: "starCount") as! NSInteger!
-            */
-            
-        
+        */
+
         }
 
         //--- Sounds
@@ -244,7 +233,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
+    
 //--- Restart the game
+    
     func restartScene(){
         playState = 0
         removeAllChildren()
@@ -256,11 +247,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.gravity = CGVector(dx: 0,dy: 0)              // switch gravity off
         
         createScene()
-
     }
     
     
 //-------------------------- Create Scene: edges, ball, score=0
+    
     //func createScene(ball: SKShapeNode) {
     func createScene() {
         
@@ -371,6 +362,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
 //---------------------- home screen
+    
     func homeScene(){
         
         backgroundColor = greyWhite
@@ -416,18 +408,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         noAdBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 577)
         noAdBTN.zPosition = 4
         //self.addChild(self.noAdBTN)
-
-        
-
-        
-        
     }
+
     
     // create the no ads scene
     func createNoAds() {
-    
-    
+        
     }
+
     
     func createGameLabel() {
     //title
@@ -440,6 +428,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 
 //--- create restart button
+    
     func createRestartBTN(){
         
         delay(restartDelay) {
@@ -461,7 +450,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
 
-    
 //--- pause Button
     
     func createPauseBtn(){
@@ -479,10 +467,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.pauseBTNPic.physicsBody?.isDynamic = false
         self.pauseBTNPic.zPosition = 7
         //self.addChild(self.pauseBTNPic)
-
-    
     }
+    
+    
 //--- play button 2
+    
     func createPlayBTN2() {
         playBTN2 = SKSpriteNode(imageNamed: "playBTN4")
         playBTN2.setScale(1.20)
@@ -491,7 +480,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playBTN2)
     }
     
+    
 //--- rate button 2
+    
     func createRateBTN2() {
         rateBTN2 = SKSpriteNode(imageNamed: "rateBTN3")
         rateBTN2.setScale(1.0)
@@ -500,7 +491,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(rateBTN2)
     }
 
+    
 //--- music button 2
+    
     func createMusicBTN2() {
         musicBTN2 = SKSpriteNode(imageNamed: "musicBTN_2")
         musicBTN2.setScale(1.0)
@@ -509,7 +502,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(musicBTN2)
     }
 
+    
 //--- home button 1
+    
     func createHomeBTN1() {
         delay(restartDelay) {
             self.homeBTN1 = SKSpriteNode(imageNamed: "homeBTN_1")
@@ -522,6 +517,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
 //--- home button 2
+    
     func createHomeBTN2() {
         homeBTN2 = SKSpriteNode(imageNamed: "homeBTN_2")
         homeBTN2.setScale(0.8)
@@ -531,9 +527,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 
-
-
 //--- end score
+    
     func endScore(){
     
         if (score > highscore) {
@@ -634,8 +629,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.addChild(self.highscoreWall)
         self.playState = 3
-    
     }
+   
     
 //--- Create walls right ---->
     
@@ -693,7 +688,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         path2.addLine(to: CGPoint(x: center2.x + 1000, y: center2.y - 25))
         path2.addLine(to: CGPoint(x: center2.x - 125,  y: center2.y - 25))
         
-      //CGPathCloseSubpath(path2)
+        //CGPathCloseSubpath(path2)
         wallBr = SKShapeNode(path: path2)
         wallBr.strokeColor = darkGrey
         wallBr.fillColor   = darkGrey
@@ -714,6 +709,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(wallPairRight)
     }
 
+    
     //--- Create walls left <---------
     
     func createWallsLeft(){
@@ -787,6 +783,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(wallPairLeft)
     }
     
+    
     //--- Create chomp wall that is moving right =====>   ( <===== )
 
     func createWallChompRight(){
@@ -838,6 +835,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(wallChompRight)
     }
     
+    
     //--- Create chomp wall that is moving left ( =====> )    <=====
     
     func createWallChompLeft(){
@@ -876,6 +874,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(wallChompLeft)
     }
 
+    
     //--- Create Island moving left and right   <====> starting left
     
     func createWallIslandLeft(){
@@ -926,6 +925,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(wallIslandLeft)
     }
+    
     
     //--- Create Island moving left and right   <====> starting right
     
@@ -1045,7 +1045,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(outsideWalls)
     }
 
+    
     //---stars
+    
     func createStars() {
         //star = SKNode()
         //star.name = "star"
@@ -1064,9 +1066,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         star1.run(moveAndRemoveStar)
         self.addChild(star1)
         print("STAR")
-    
     }
-    
     
     
 //------------------------ Mouse Click Began
@@ -1077,8 +1077,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("Mouse Click: ",playState, ball_dir)
 
         // state -1: home ----------------------
+        
         if playState == -1 {
-            
             
             for touch in touches{
                 let location = touch.location(in: self)
@@ -1110,6 +1110,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // state 0: Set ----------------------
+        
         if playState == 0 {
             backgroundColor = greyWhite
             let spawnWallsRight = SKAction.run({
@@ -1149,8 +1150,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //    () in
             //    self.obstacle()
             //})
-
-            
             
             wallDir = wallDir1
             
@@ -1210,20 +1209,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             //self.physicsWorld.gravity = CGVector(dx: CGFloat(islandAcc - xvelocity), dy: CGFloat(-ygravity))
             
-            
-            
             playState = 1
 
             print("Create walls, game started",playState)
-
         }
         
         // state 1: Play ----------------------
+        
         if playState == 1 {
             
             ball_dir = ball_dir * (-1.0)
 
-            ball.physicsBody?.velocity = CGVector(dx: ball_dir*xvelocity, dy: yvelocity)            // ball: initial velocity [m/s]
+            ball.physicsBody?.velocity = CGVector(dx: ball_dir*xvelocity, dy: yvelocity)       // ball: initial velocity [m/s]
             
             //ball.physicsBody?.applyImpulse(CGVectorMake(CGFloat(ball_dir*(ximpulse+Double(score)*ximpMore)),
             //                                            CGFloat(          yimpulse+Double(score)*yimpMore))) // add impulse
@@ -1238,11 +1235,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             print("Press Ball Impulse: ",playState)
             
-            
-            
-            
-            
-            
             //touch pause button
             for touch in touches{
                 let location = touch.location(in: self)
@@ -1252,15 +1244,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     removeAllChildren()
                     removeAllActions()
                     homeScene()
-                
                 }
             }
-            
-
-
         }
         
         // state 2: Dead ----------------------
+        
         if playState == 2 {
             //ball.physicsBody?.affectedByGravity = true
         }
@@ -1280,14 +1269,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if homeBTN1.contains(location){
                     createHomeBTN2()
                     homeBTN1.removeFromParent()
-                
-                
                 }
             }
         }
     }
+   
     
 //--- Mouse Click Ended
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if playState == -1 {
@@ -1307,21 +1296,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     noAd.removeFromParent()
                     noAdBTN.removeFromParent()
                     createScene()
-                    
-                    
                 }
                 
                 if rateBTN.contains(location){
-                    
                 }
                 
                 if musicBTN2.contains(location){
-                    trackPlayer.volume = 0                }
+                    trackPlayer.volume = 0
+                }
+    
                 if musicBTN.contains(location){
                     trackPlayer.volume = 0
                 }
-
-
             }
         }
         
@@ -1335,7 +1321,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     delay(0){self.restartScene()}
                     self.addChild(gameLabel)
                     playState = 0
-                    
                 }
                 
                 if homeBTN1.contains(location){
@@ -1344,236 +1329,223 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = -1
                     homeScene()
                     score = 0
-                    
                 }
             }
         }
-
     }
 
 
-    
 //--- Collision: contact between ball and walls
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let firstBody  = contact.bodyA
         let secondBody = contact.bodyB
         
         print("Contact between two bodies: ", firstBody.categoryBitMask, "  ", secondBody.categoryBitMask)
         
-        if (playState == 1) {
-        
-        //star
-        if firstBody.categoryBitMask == PhysicsCatagory.star1 && secondBody.categoryBitMask == PhysicsCatagory.ball{
-            starCount  += 1
-            firstBody.node?.removeFromParent()
-            pointPlayer.play()
-        }
-            
-        if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.star1{
-            starCount  += 1
-            starLbl.text = "\(starCount)"
-            secondBody.node?.removeFromParent()
-            pointPlayer.play()
-        }
-
-            
-
-        //score
-        if firstBody.categoryBitMask == PhysicsCatagory.score && secondBody.categoryBitMask == PhysicsCatagory.ball{
-            score  += 1
-            wallDir = wallDir * (-1)
-            islandVar = islandVar * (-1)
-            ballColor = ballColor * (-1)
-            print("ballColor", ballColor)
-            scoreLbl.text = "\(score)"
-            firstBody.node?.removeFromParent()
-            if starVar == -100 {
-                starVar = 100
-            }
-            else {
-                starVar = -100
-            }
-            pointPlayer.play()
-        }
-
-        if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
-        score  += 1
-        wallDir = wallDir * (-1)
-        islandVar = islandVar * (-1)
-        ballColor = ballColor * (-1)
-        print("ballColor", ballColor)
-        scoreLbl.text = "\(score)"
-        secondBody.node?.removeFromParent()
-        if starVar == -100 {
-            starVar = 100
-        }
-        else {
-            starVar = -100
-        }
-        pointPlayer.play()
-    }
-        
-        //island change direction
-        if   firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
-         || secondBody.categoryBitMask == PhysicsCatagory.island &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
+        if (playState == 1)
         {
-            print("---------Island hits wall: ", islandVar)
-            islandVar = islandVar * (-1)
-            let distanceWall = self.frame.width + wallPairRight.frame.width
-            /*let moveIslandLeft  = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))*/
-
-            let moveIslandRight = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
-        //wallIslandRight.run(moveIslandRight)
+            //star
+            if firstBody.categoryBitMask == PhysicsCatagory.star1 && secondBody.categoryBitMask == PhysicsCatagory.ball{
+                starCount  += 1
+                firstBody.node?.removeFromParent()
+                pointPlayer.play()
+            }
             
-        }
-        //island change direction
-        if    firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
-          || secondBody.categoryBitMask == PhysicsCatagory.island &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
-        {
-            print("Island hits wall: ")
-            islandVar = islandVar * (-1)
-            let distanceWall = self.frame.width + wallPairLeft.frame.width
-            let moveIslandLeft  = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
-            /*x: 400.0, y: 0.0, duration: TimeInterval(distanceWall/velocityWall))*/
-//          wallIslandLeft.run(moveIslandLeft)
-            /*let moveIslandRight = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))*/
+            if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.star1{
+                starCount  += 1
+                starLbl.text = "\(starCount)"
+                secondBody.node?.removeFromParent()
+                pointPlayer.play()
+            }
+
+            //score
+            if firstBody.categoryBitMask == PhysicsCatagory.score && secondBody.categoryBitMask == PhysicsCatagory.ball{
+                score  += 1
+                wallDir = wallDir * (-1)
+                islandVar = islandVar * (-1)
+                ballColor = ballColor * (-1)
+                print("ballColor", ballColor)
+                scoreLbl.text = "\(score)"
+                firstBody.node?.removeFromParent()
+                if starVar == -100 {
+                    starVar = 100
+                }
+                else {
+                    starVar = -100
+                }
+                pointPlayer.play()
+            }
+
+            if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
+                score  += 1
+                wallDir = wallDir * (-1)
+                islandVar = islandVar * (-1)
+                ballColor = ballColor * (-1)
+                print("ballColor", ballColor)
+                scoreLbl.text = "\(score)"
+                secondBody.node?.removeFromParent()
+                if starVar == -100 {
+                    starVar = 100
+                }
+                else {
+                    starVar = -100
+                }
+                pointPlayer.play()
             }
         
-        
-        if      firstBody.categoryBitMask == PhysicsCatagory.ball
-            && secondBody.categoryBitMask == PhysicsCatagory.wallAr
-            ||  firstBody.categoryBitMask == PhysicsCatagory.wallAr
-            && secondBody.categoryBitMask == PhysicsCatagory.ball
-            
-            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
-            && secondBody.categoryBitMask == PhysicsCatagory.wallBr
-            ||  firstBody.categoryBitMask == PhysicsCatagory.wallBr
-            && secondBody.categoryBitMask == PhysicsCatagory.ball
-            
-            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
-            && secondBody.categoryBitMask == PhysicsCatagory.wallAl
-            ||  firstBody.categoryBitMask == PhysicsCatagory.wallAl
-            && secondBody.categoryBitMask == PhysicsCatagory.ball
-            
-            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
-            && secondBody.categoryBitMask == PhysicsCatagory.wallBl
-            ||  firstBody.categoryBitMask == PhysicsCatagory.wallBl
-            && secondBody.categoryBitMask == PhysicsCatagory.ball
-            
-            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
-            && secondBody.categoryBitMask == PhysicsCatagory.island
-            ||  firstBody.categoryBitMask == PhysicsCatagory.island
-            && secondBody.categoryBitMask == PhysicsCatagory.ball
-            
-            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
-            && secondBody.categoryBitMask == PhysicsCatagory.topNode
-            ||  firstBody.categoryBitMask == PhysicsCatagory.topNode
-            && secondBody.categoryBitMask == PhysicsCatagory.ball
-            
-            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
-            && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
-            ||  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
-            && secondBody.categoryBitMask == PhysicsCatagory.ball
+            //island change direction
+            if   firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
+                || secondBody.categoryBitMask == PhysicsCatagory.island &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
+            {
+                print("---------Island hits wall: ", islandVar)
+                islandVar = islandVar * (-1)
+                let distanceWall = self.frame.width + wallPairRight.frame.width
+                /*let moveIslandLeft  = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))*/
 
-            ||  firstBody.categoryBitMask == PhysicsCatagory.ball
-            && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
-            ||  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
-            && secondBody.categoryBitMask == PhysicsCatagory.ball
-                                                                    {
+                let moveIslandRight = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+                //wallIslandRight.run(moveIslandRight)
+            }
+            
+            //island change direction
+            if    firstBody.categoryBitMask == PhysicsCatagory.island && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
+              || secondBody.categoryBitMask == PhysicsCatagory.island &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
+            {
+                print("Island hits wall: ")
+                islandVar = islandVar * (-1)
+                let distanceWall = self.frame.width + wallPairLeft.frame.width
+                let moveIslandLeft  = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+                /*x: 400.0, y: 0.0, duration: TimeInterval(distanceWall/velocityWall))*/
+                //wallIslandLeft.run(moveIslandLeft)
+                /*let moveIslandRight = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))*/
+            }
         
-            playState = 2
-            print("Collision with wall")
+            if      firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.wallAr
+                ||  firstBody.categoryBitMask == PhysicsCatagory.wallAr
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
             
-            deathPlayer.play()
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.wallBr
+                ||  firstBody.categoryBitMask == PhysicsCatagory.wallBr
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
             
-            //star1.physicsBody?.affectedByGravity = false
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.wallAl
+                ||  firstBody.categoryBitMask == PhysicsCatagory.wallAl
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.wallBl
+                ||  firstBody.categoryBitMask == PhysicsCatagory.wallBl
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.island
+                ||  firstBody.categoryBitMask == PhysicsCatagory.island
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.topNode
+                ||  firstBody.categoryBitMask == PhysicsCatagory.topNode
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
+            
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
+                ||  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
+
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
+                ||  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
+            {
+                playState = 2
+                print("Collision with wall")
+            
+                deathPlayer.play()
+            
+                //star1.physicsBody?.affectedByGravity = false
                 
-            self.physicsWorld.gravity = CGVector(dx: CGFloat(0), dy: CGFloat(-3))     // switch gravity: fall down on collision
+                self.physicsWorld.gravity = CGVector(dx: CGFloat(0), dy: CGFloat(-3))     // switch gravity: fall down on collision
                 
-            enumerateChildNodes(withName: "wallPairRight", using: {
-                (node, error) in
-                node.speed = 0
-                self.removeAllActions()
-            })
+                enumerateChildNodes(withName: "wallPairRight", using: {
+                    (node, error) in
+                    node.speed = 0
+                    self.removeAllActions()
+                })
             
-            enumerateChildNodes(withName: "wallPairLeft", using: {
-                (node, error) in
-                node.speed = 0
-                self.removeAllActions()
-            })
+                enumerateChildNodes(withName: "wallPairLeft", using: {
+                    (node, error) in
+                    node.speed = 0
+                    self.removeAllActions()
+                })
                                                                         
-            enumerateChildNodes(withName: "wallChompRight", using: {
-                (node, error) in
-                node.speed = 0
-                self.removeAllActions()
-            })
+                enumerateChildNodes(withName: "wallChompRight", using: {
+                    (node, error) in
+                    node.speed = 0
+                    self.removeAllActions()
+                })
                                                                 
-            enumerateChildNodes(withName: "wallChompLeft", using: {
-                (node, error) in
-                node.speed = 0
-                self.removeAllActions()
-            })
+                enumerateChildNodes(withName: "wallChompLeft", using: {
+                    (node, error) in
+                    node.speed = 0
+                    self.removeAllActions()
+                })
                                                                         
-            enumerateChildNodes(withName: "wallIslandLeft", using: {
-            (node, error) in
-            node.speed = 0
-            self.removeAllActions()
-            })
+                enumerateChildNodes(withName: "wallIslandLeft", using: {
+                    (node, error) in
+                    node.speed = 0
+                    self.removeAllActions()
+                })
                                                                         
-            enumerateChildNodes(withName: "wallIslandRight", using: {
-            (node, error) in
-            node.speed = 0
-            self.removeAllActions()
-            })
+                enumerateChildNodes(withName: "wallIslandRight", using: {
+                    (node, error) in
+                    node.speed = 0
+                    self.removeAllActions()
+                })
                                                                         
-            enumerateChildNodes(withName: "outsideWalls", using: {
-            (node, error) in
-            node.speed = 0
-            self.removeAllActions()
-            })
+                enumerateChildNodes(withName: "outsideWalls", using: {
+                    (node, error) in
+                    node.speed = 0
+                    self.removeAllActions()
+                })
             
-            enumerateChildNodes(withName: "star1", using: {
-            (node, error) in
-            node.speed = 0
-            self.removeAllActions()
-            })
+                enumerateChildNodes(withName: "star1", using: {
+                    (node, error) in
+                    node.speed = 0
+                    self.removeAllActions()
+                })
 
-                                                                        
-        
-
-            delay(1){
-                //self.removeAllChildren()
-                self.wallPairRight.removeFromParent()
-                self.wallPairLeft.removeFromParent()
-                self.createRestartBTN()
-                self.createHomeBTN1()
-                self.endScore()
-                self.createGameLabel()
-                
+                delay(1){
+                    //self.removeAllChildren()
+                    self.wallPairRight.removeFromParent()
+                    self.wallPairLeft.removeFromParent()
+                    self.createRestartBTN()
+                    self.createHomeBTN1()
+                    self.endScore()
+                    self.createGameLabel()
+                }
             }
-        }
             
             //edge changes direction of ball
-        if firstBody.categoryBitMask == PhysicsCatagory.edge1 && secondBody.categoryBitMask == PhysicsCatagory.ball
-            || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge1 {
-            ball_dir = ball_dir * (-1.0)
-            print("edgetouch ", ball_dir)
-            
-        }
-            
-        if firstBody.categoryBitMask == PhysicsCatagory.edge2 && secondBody.categoryBitMask == PhysicsCatagory.ball
-            || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge2 {
-            ball_dir = ball_dir * (-1.0)
-            print("edgetouch ", ball_dir)
- 
+            if firstBody.categoryBitMask == PhysicsCatagory.edge1 && secondBody.categoryBitMask == PhysicsCatagory.ball
+                || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge1 {
+                ball_dir = ball_dir * (-1.0)
+                print("edgetouch ", ball_dir)
             }
-
+            
+            if firstBody.categoryBitMask == PhysicsCatagory.edge2 && secondBody.categoryBitMask == PhysicsCatagory.ball
+                || firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge2 {
+                ball_dir = ball_dir * (-1.0)
+                print("edgetouch ", ball_dir)
+            }
         }
-
     }
     
 
 //--- Delay [s]
+    
     func delay(_ delay: Double, closure: @escaping ()->()) {
         DispatchQueue.main.asyncAfter(
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
@@ -1583,8 +1555,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
 //--- Update
+    
     override func update(_ currentTime: TimeInterval) {
-        
         if ballColor == 1 {
             ball.strokeColor = red
             scoreLbl.fontColor = red
@@ -1593,12 +1565,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if ballColor == -1 {
             ball.strokeColor = darkGrey
             scoreLbl.fontColor = darkGrey
-
         }
         iRan = Int(arc4random_uniform(3))
-
-
-        
-           }
+    }
 
 }
