@@ -197,7 +197,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         //--- Sounds
-        
+
         let touchSound:URL = Bundle.main.url(forResource: "touchSoundOfficial2.0", withExtension: "mp3")!
         let pointSound:URL = Bundle.main.url(forResource: "pointSoundOfficial2.0", withExtension: "mp3")!
         let deathSound:URL = Bundle.main.url(forResource: "deathSoundOfficial", withExtension: "mp3")!
@@ -212,8 +212,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             trackPlayer = try AVAudioPlayer(contentsOf: soundTrack, fileTypeHint: nil)
             buttonPlayer = try AVAudioPlayer(contentsOf: soundTrack, fileTypeHint: nil)
         }
+ 
         catch let error as NSError { print(error.description) }
-        
+ 
         //audioPlayer.numberOfLoops = 0
         trackPlayer.numberOfLoops = -1
         
@@ -228,7 +229,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         trackPlayer.prepareToPlay()
         
         trackPlayer.play()
-        
+
         for family: String in UIFont.familyNames
         {
             print("\(family)")

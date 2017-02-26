@@ -7,15 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F2F4FC11D4CFB3600AED2A6 /* touchSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F2F4FC01D4CFB3600AED2A6 /* touchSound.mp3 */; };
-		8F2F4FC31D4CFEAA00AED2A6 /* deathSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F2F4FC21D4CFEAA00AED2A6 /* deathSound.mp3 */; };
-		8F2F4FC51D4D01CB00AED2A6 /* trackSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F2F4FC41D4D01CB00AED2A6 /* trackSound.mp3 */; };
-		8F2F4FCB1D4FC78700AED2A6 /* pointSoundOfficial.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F2F4FCA1D4FC78700AED2A6 /* pointSoundOfficial.mp3 */; };
-		8F2F4FCD1D4FC99200AED2A6 /* pointSoundOfficial2.0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F2F4FCC1D4FC99200AED2A6 /* pointSoundOfficial2.0.mp3 */; };
-		8F2F4FCF1D4FCBCE00AED2A6 /* touchSoundOfficia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F2F4FCE1D4FCBCE00AED2A6 /* touchSoundOfficia.mp3 */; };
-		8F2F4FD11D4FCC9C00AED2A6 /* touchSoundOfficial.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F2F4FD01D4FCC9C00AED2A6 /* touchSoundOfficial.mp3 */; };
-		8F2F4FD31D4FCFF100AED2A6 /* touchSoundOfficial2.0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F2F4FD21D4FCFF100AED2A6 /* touchSoundOfficial2.0.mp3 */; };
-		8F2F4FD51D4FDE8C00AED2A6 /* deathSoundOfficial.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8F2F4FD41D4FDE8C00AED2A6 /* deathSoundOfficial.mp3 */; };
+		5B2969531E63711500E6D49A /* touchSoundOfficial2.0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969521E63711500E6D49A /* touchSoundOfficial2.0.mp3 */; };
+		5B2969551E63714700E6D49A /* pointSoundOfficial2.0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969541E63714700E6D49A /* pointSoundOfficial2.0.mp3 */; };
+		5B2969571E63715A00E6D49A /* deathSoundOfficial.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969561E63715A00E6D49A /* deathSoundOfficial.mp3 */; };
+		5B2969591E63716400E6D49A /* trackSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969581E63716400E6D49A /* trackSound.mp3 */; };
 		8F73D9651DB658D600D3180F /* Outage.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F73D9641DB658D600D3180F /* Outage.ttf */; };
 		8F73D9661DB6594700D3180F /* Outage.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F73D9641DB658D600D3180F /* Outage.ttf */; };
 		8FF0AEDB1D15645C0075BBE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0AEDA1D15645C0075BBE9 /* AppDelegate.swift */; };
@@ -47,15 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8F2F4FC01D4CFB3600AED2A6 /* touchSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = touchSound.mp3; path = ../../sounds/touchSound.mp3; sourceTree = "<group>"; };
-		8F2F4FC21D4CFEAA00AED2A6 /* deathSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = deathSound.mp3; path = ../../sounds/deathSound.mp3; sourceTree = "<group>"; };
-		8F2F4FC41D4D01CB00AED2A6 /* trackSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = trackSound.mp3; path = ../../sounds/trackSound.mp3; sourceTree = "<group>"; };
-		8F2F4FCA1D4FC78700AED2A6 /* pointSoundOfficial.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pointSoundOfficial.mp3; path = ../../sounds/pointSoundOfficial.mp3; sourceTree = "<group>"; };
-		8F2F4FCC1D4FC99200AED2A6 /* pointSoundOfficial2.0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pointSoundOfficial2.0.mp3; path = ../../sounds/pointSoundOfficial2.0.mp3; sourceTree = "<group>"; };
-		8F2F4FCE1D4FCBCE00AED2A6 /* touchSoundOfficia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = touchSoundOfficia.mp3; path = ../../sounds/touchSoundOfficia.mp3; sourceTree = "<group>"; };
-		8F2F4FD01D4FCC9C00AED2A6 /* touchSoundOfficial.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = touchSoundOfficial.mp3; path = ../../sounds/touchSoundOfficial.mp3; sourceTree = "<group>"; };
-		8F2F4FD21D4FCFF100AED2A6 /* touchSoundOfficial2.0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = touchSoundOfficial2.0.mp3; path = ../../sounds/touchSoundOfficial2.0.mp3; sourceTree = "<group>"; };
-		8F2F4FD41D4FDE8C00AED2A6 /* deathSoundOfficial.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = deathSoundOfficial.mp3; path = ../../sounds/deathSoundOfficial.mp3; sourceTree = "<group>"; };
+		5B2969521E63711500E6D49A /* touchSoundOfficial2.0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = touchSoundOfficial2.0.mp3; path = "Anti Gravity/touchSoundOfficial2.0.mp3"; sourceTree = "<group>"; };
+		5B2969541E63714700E6D49A /* pointSoundOfficial2.0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pointSoundOfficial2.0.mp3; path = "Anti Gravity/pointSoundOfficial2.0.mp3"; sourceTree = "<group>"; };
+		5B2969561E63715A00E6D49A /* deathSoundOfficial.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = deathSoundOfficial.mp3; path = "Anti Gravity/deathSoundOfficial.mp3"; sourceTree = "<group>"; };
+		5B2969581E63716400E6D49A /* trackSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = trackSound.mp3; path = "Anti Gravity/trackSound.mp3"; sourceTree = "<group>"; };
 		8F73D9641DB658D600D3180F /* Outage.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Outage.ttf; sourceTree = "<group>"; };
 		8FF0AED71D15645C0075BBE9 /* Anti Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anti Gravity.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FF0AEDA1D15645C0075BBE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +92,10 @@
 		8FF0AECE1D15645C0075BBE9 = {
 			isa = PBXGroup;
 			children = (
+				5B2969581E63716400E6D49A /* trackSound.mp3 */,
+				5B2969561E63715A00E6D49A /* deathSoundOfficial.mp3 */,
+				5B2969541E63714700E6D49A /* pointSoundOfficial2.0.mp3 */,
+				5B2969521E63711500E6D49A /* touchSoundOfficial2.0.mp3 */,
 				8FF0AED91D15645C0075BBE9 /* Anti Gravity */,
 				8FF0AEF21D15645C0075BBE9 /* Anti GravityTests */,
 				8FF0AEFD1D15645C0075BBE9 /* Anti GravityUITests */,
@@ -129,15 +123,6 @@
 				8FF0AEE01D15645C0075BBE9 /* GameViewController.swift */,
 				8FF0AEE21D15645C0075BBE9 /* Main.storyboard */,
 				8FF0AEE51D15645C0075BBE9 /* Assets.xcassets */,
-				8F2F4FC01D4CFB3600AED2A6 /* touchSound.mp3 */,
-				8F2F4FCE1D4FCBCE00AED2A6 /* touchSoundOfficia.mp3 */,
-				8F2F4FD01D4FCC9C00AED2A6 /* touchSoundOfficial.mp3 */,
-				8F2F4FD21D4FCFF100AED2A6 /* touchSoundOfficial2.0.mp3 */,
-				8F2F4FC21D4CFEAA00AED2A6 /* deathSound.mp3 */,
-				8F2F4FD41D4FDE8C00AED2A6 /* deathSoundOfficial.mp3 */,
-				8F2F4FC41D4D01CB00AED2A6 /* trackSound.mp3 */,
-				8F2F4FCA1D4FC78700AED2A6 /* pointSoundOfficial.mp3 */,
-				8F2F4FCC1D4FC99200AED2A6 /* pointSoundOfficial2.0.mp3 */,
 				8FF0AEE71D15645C0075BBE9 /* LaunchScreen.storyboard */,
 				8FF0AEEA1D15645C0075BBE9 /* Info.plist */,
 			);
@@ -272,17 +257,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F2F4FD11D4FCC9C00AED2A6 /* touchSoundOfficial.mp3 in Resources */,
-				8F2F4FC11D4CFB3600AED2A6 /* touchSound.mp3 in Resources */,
+				5B2969571E63715A00E6D49A /* deathSoundOfficial.mp3 in Resources */,
+				5B2969551E63714700E6D49A /* pointSoundOfficial2.0.mp3 in Resources */,
 				8FF0AEDD1D15645C0075BBE9 /* GameScene.sks in Resources */,
-				8F2F4FCF1D4FCBCE00AED2A6 /* touchSoundOfficia.mp3 in Resources */,
-				8F2F4FC51D4D01CB00AED2A6 /* trackSound.mp3 in Resources */,
 				8FF0AEE91D15645C0075BBE9 /* LaunchScreen.storyboard in Resources */,
-				8F2F4FCB1D4FC78700AED2A6 /* pointSoundOfficial.mp3 in Resources */,
-				8F2F4FD51D4FDE8C00AED2A6 /* deathSoundOfficial.mp3 in Resources */,
-				8F2F4FC31D4CFEAA00AED2A6 /* deathSound.mp3 in Resources */,
-				8F2F4FD31D4FCFF100AED2A6 /* touchSoundOfficial2.0.mp3 in Resources */,
-				8F2F4FCD1D4FC99200AED2A6 /* pointSoundOfficial2.0.mp3 in Resources */,
+				5B2969591E63716400E6D49A /* trackSound.mp3 in Resources */,
+				5B2969531E63711500E6D49A /* touchSoundOfficial2.0.mp3 in Resources */,
 				8FF0AEE61D15645C0075BBE9 /* Assets.xcassets in Resources */,
 				8FF0AEE41D15645C0075BBE9 /* Main.storyboard in Resources */,
 				8F73D9651DB658D600D3180F /* Outage.ttf in Resources */,
