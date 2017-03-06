@@ -128,6 +128,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var yvelocity       = -120.0                               // impulse increases with score by    e.g. 20  [kg m/s]
     var xgravity        = 1.0                                  // gravity of ball when mouse click   e.g. 2 [m/s2]
     var ygravity        = 3.0                                  // gravity of ball when mouse click   e.g. 2 [m/s2]
+//  var xgravity        = 0.1                                  // simple option
+//  var ygravity        = 1.0                                  // simple option
     var islandAcc       = 3.0                                  // acceleration of island
     var restartDelay    = 0.0                                  // delay for restart button to appear e.g. 3 [s]
     var restartSleep    = UInt32(0)                            // wait after restart button created  e.g. 3 [s]
@@ -144,20 +146,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var islandPosRight  = 450
     var ballColor       = 1
     var starVar         = CGFloat(-100)
-    var xwallPos1:CGFloat  = 755.0 //755.0              // position of left wall  e.g. 800
-    var xwallPos2:CGFloat  = 300.0 //270.0              // position of right wall e.g. 225
-    var xwallShift:CGFloat = -150.0// -50.0             // shift wall to see more of incoming red wall
+    var xwallPos1:CGFloat  = 755.0 //755.0                     // position of left wall  e.g. 800
+    var xwallPos2:CGFloat  = 300.0 //270.0                     // position of right wall e.g. 225
+    var xwallShift:CGFloat = -150.0// -50.0                    // shift wall to see more of incoming red wall
     var xwallMoveI:CGFloat = 100.0
     var xwallMove          = [CGFloat(150.0), CGFloat(150.0), CGFloat(150.0)]  // move walls x-speed
+    var gravityDirection = CGVector(dx: 0,dy: 0)               // gravity: normal (0,-9.8)
     
-    //var gravityBehavior: UtapIGravityBehavior?
-    var gravityDirection = CGVector(dx: 0,dy: 0)          // gravity: normal (0,-9.8)
-    
-    //var gravityX:CGFloat = 6
-    //let impulseY:CGFloat = 4.0
-    //let impulseX:CGFloat = 10.0
-    
-    // color schemes
+   // color schemes
     
     var greyWhite      = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
     var scoreNodeColor = UIColor.clear
@@ -165,7 +161,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var purple         = UIColor(red: 200/255, green: 200/255, blue: 255/255, alpha: 1.0)
     var red            = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
     var darkGrey       = UIColor(red:  65/255, green: 65/255,  blue:  65/255, alpha: 1.0) //73
-    var lightGrey      = UIColor(red: 0.7569, green: 0.7569, blue: 0.7569, alpha: 1.0) /* #c1c1c1 */
+    var lightGrey      = UIColor(red: 0.7569,  green: 0.7569,  blue: 0.7569,  alpha: 1.0)    /* #c1c1c1 */
 
     var score     = Int()
     var highscore = Int()
@@ -269,7 +265,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //edge1.physicsBody?.collisionBitMask   = 0
         //edge1.physicsBody?.contactTestBitMask = 0
         edge1.zPosition = 3
-        self.addChild(edge1)    //make edge1
+        self.addChild(edge1)
         
         //edge on the right
         edge2 = SKSpriteNode(imageNamed: "bar")
@@ -283,7 +279,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //edge2.physicsBody?.collisionBitMask   = 0
         //edge2.physicsBody?.contactTestBitMask = 0
         edge2.zPosition = 3
-        self.addChild(edge2)    //make edge2
+        self.addChild(edge2)
         
         //shape to define ball
         
@@ -331,14 +327,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         scoreLbl.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + self.frame.height / 2.5)
         scoreLbl.text = "\(score)"
-        scoreLbl.fontName = "Outage-Regular"//"GillSans-UltraBold"
+        scoreLbl.fontName = "Outage-Regular"  //"GillSans-UltraBold"
         scoreLbl.zPosition = 4
         scoreLbl.fontSize = 70
         self.addChild(scoreLbl)
         
         starLbl.position = CGPoint(x: self.frame.width / 2 + 50, y: self.frame.height / 2 + self.frame.height / 2.5)
         starLbl.text = "\(starCount)"
-        starLbl.fontName = "Outage-Regular"//"GillSans-UltraBold"
+        starLbl.fontName = "Outage-Regular"  //"GillSans-UltraBold"
         starLbl.zPosition = 4
         starLbl.fontSize = 70
         starLbl.fontColor = darkGrey
@@ -1633,6 +1629,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 ||  firstBody.categoryBitMask == PhysicsCatagory.ball
                 && secondBody.categoryBitMask == PhysicsCatagory.islandRight
                 ||  firstBody.categoryBitMask == PhysicsCatagory.islandRight
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
+                
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.islandLeft2
+                ||  firstBody.categoryBitMask == PhysicsCatagory.islandLeft2
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
+                
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.islandRight2
+                ||  firstBody.categoryBitMask == PhysicsCatagory.islandRight2
                 && secondBody.categoryBitMask == PhysicsCatagory.ball
                 
                 ||  firstBody.categoryBitMask == PhysicsCatagory.ball
