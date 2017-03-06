@@ -1458,7 +1458,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 
-//--- Collision: contact between ball and walls
+//--- Collision: contact between ball, islands and walls
     
     func didBegin(_ contact: SKPhysicsContact) {
         let firstBody  = contact.bodyA
@@ -1488,7 +1488,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if firstBody.categoryBitMask == PhysicsCatagory.score && secondBody.categoryBitMask == PhysicsCatagory.ball {
                 score  += 1
                 wallDir = wallDir * (-1)
-                //islandVar = islandVar * (-1)
                 ballColor = ballColor * (-1)
                 print("ballColor", ballColor)
                 scoreLbl.text = "\(score)"
@@ -1505,7 +1504,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
                 score  += 1
                 wallDir = wallDir * (-1)
-                //islandVar = islandVar * (-1)
                 ballColor = ballColor * (-1)
                 print("ballColor", ballColor)
                 scoreLbl.text = "\(score)"
@@ -1519,121 +1517,93 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 pointPlayer.play()
             }
         
-            //island change direction (island starting left hits right wall)
+            //Left1: island change direction (island starting left hits right wall)
             
             if      firstBody.categoryBitMask == PhysicsCatagory.islandLeft && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
                 || secondBody.categoryBitMask == PhysicsCatagory.islandLeft &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
             {
                 let distanceWall   = self.frame.width + wallPairRight.frame.width
                 print("--->>>---Left Island hits right wall: ", distanceWall, velocityWall,abs(ball_dir))
-                let moveIslandLeft = SKAction.moveBy(x: -CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
+                let moveIslandLeft = SKAction.moveBy(x: -CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandLeft.run(moveIslandLeft)
             }
             
-            //island change direction (island starting left hits left wall)
+            //Left1: island change direction (island starting left hits left wall)
 
             if      firstBody.categoryBitMask == PhysicsCatagory.islandLeft && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
                 || secondBody.categoryBitMask == PhysicsCatagory.islandLeft &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
             {
                 let distanceWall   = self.frame.width + wallPairRight.frame.width
                 print("--->>>---Left Island hits left wall: ", distanceWall, velocityWall,abs(ball_dir))
-                let moveIslandLeft = SKAction.moveBy(x: CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
+                let moveIslandLeft = SKAction.moveBy(x: CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandLeft.run(moveIslandLeft)
             }
 
-            //island change direction (island starting right hits left wall)
+            //Right1: island change direction (island starting right hits left wall)
             
             if    firstBody.categoryBitMask == PhysicsCatagory.islandRight && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
               || secondBody.categoryBitMask == PhysicsCatagory.islandRight &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
             {
                 print("---<<<---Right Island hits left wall: ", islandVar, ball_dir, xwallMove[iRan])
-                //islandVar = islandVar * (-1)
                 let distanceWall    = self.frame.width + wallPairLeft.frame.width
-                let moveIslandRight = SKAction.moveBy(x: CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
+                let moveIslandRight = SKAction.moveBy(x: CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandRight.run(moveIslandRight)
             }
         
-            //island change direction (island starting right hits right wall)
+            //Right1: island change direction (island starting right hits right wall)
             
             if    firstBody.categoryBitMask == PhysicsCatagory.islandRight && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
               || secondBody.categoryBitMask == PhysicsCatagory.islandRight &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
             {
                 print("---<<<---Right Island hits right wall: ", islandVar, ball_dir, xwallMove[iRan])
                 let distanceWall    = self.frame.width + wallPairLeft.frame.width
-                let moveIslandRight = SKAction.moveBy(x: -CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
+                let moveIslandRight = SKAction.moveBy(x: -CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandRight.run(moveIslandRight)
             }
-
-
             
-            
-            
-            //island change direction (island starting left hits right wall)
+            //Left2: island change direction (island starting left hits right wall)
             
             if      firstBody.categoryBitMask == PhysicsCatagory.islandLeft2 && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
                 || secondBody.categoryBitMask == PhysicsCatagory.islandLeft2 &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
             {
                 let distanceWall   = self.frame.width + wallPairRight.frame.width
                 print("--->>>---Left Island hits right wall: ", distanceWall, velocityWall,abs(ball_dir))
-                let moveIslandLeft = SKAction.moveBy(x: -CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
+                let moveIslandLeft = SKAction.moveBy(x: -CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandLeft2.run(moveIslandLeft)
             }
             
-            //island change direction (island starting left hits left wall)
+            //Left2: island change direction (island starting left hits left wall)
             
             if      firstBody.categoryBitMask == PhysicsCatagory.islandLeft2 && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
                 || secondBody.categoryBitMask == PhysicsCatagory.islandLeft2 &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
             {
                 let distanceWall   = self.frame.width + wallPairRight.frame.width
                 print("--->>>---Left Island hits left wall: ", distanceWall, velocityWall,abs(ball_dir))
-                let moveIslandLeft = SKAction.moveBy(x: CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
+                let moveIslandLeft = SKAction.moveBy(x: CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandLeft2.run(moveIslandLeft)
             }
             
-            //island change direction (island starting right hits left wall)
+            //Right2: island change direction (island starting right hits left wall)
             
             if      firstBody.categoryBitMask == PhysicsCatagory.islandRight2 && secondBody.categoryBitMask == PhysicsCatagory.smallWallLeft
                 || secondBody.categoryBitMask == PhysicsCatagory.islandRight2 &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
             {
                 print("---<<<---Right Island hits left wall: ", islandVar, ball_dir, xwallMove[iRan])
-                //islandVar = islandVar * (-1)
                 let distanceWall    = self.frame.width + wallPairLeft.frame.width
-                let moveIslandRight = SKAction.moveBy(x: CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
+                let moveIslandRight = SKAction.moveBy(x: CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandRight2.run(moveIslandRight)
             }
             
-            //island change direction (island starting right hits right wall)
+            //Right2: island change direction (island starting right hits right wall)
             
             if      firstBody.categoryBitMask == PhysicsCatagory.islandRight2 && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
                 || secondBody.categoryBitMask == PhysicsCatagory.islandRight2 &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
             {
                 print("---<<<---Right Island hits right wall: ", islandVar, ball_dir, xwallMove[iRan])
                 let distanceWall    = self.frame.width + wallPairLeft.frame.width
-                let moveIslandRight = SKAction.moveBy(x: -CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
+                let moveIslandRight = SKAction.moveBy(x: -CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandRight2.run(moveIslandRight)
             }
-            
-
-            
-            
-            
-            
-            //let moveIslandRight = SKAction.moveBy(x: -CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
-            //wallIslandRight.run(moveIslandRight)
-            
-            //let moveIslandLeft  = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
-            //wallIslandRight.run(moveIslandLeft)
-            //let moveIslandRight = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
-            //wallIslandRight.run(moveIslandRight)
-
-            //let moveIslandLeft  = SKAction.moveBy(x: CGFloat(abs(ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
-            //wallIslandLeft.run(moveIslandLeft)
-            
-            //let moveIslandLeft = SKAction.moveBy(x: -800.0, y: 0.0, duration: 10.0)
-            //let moveIslandRight = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
-            //let moveIslandRight = SKAction.moveBy(x: 800.0, y: 0.0, duration: 10.0)
-            /*x: 400.0, y: 0.0, duration: TimeInterval(distanceWall/velocityWall))*/
-
             
             if      firstBody.categoryBitMask == PhysicsCatagory.ball
                 && secondBody.categoryBitMask == PhysicsCatagory.wallAr
