@@ -29,17 +29,14 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
         }
-
-    
     }
     
     
-    
-
     override var shouldAutorotate : Bool {
         return true
     }
 
+    
     override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -48,11 +45,13 @@ class GameViewController: UIViewController {
         }
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
 
+    
     override var prefersStatusBarHidden : Bool {
         return true
     }
