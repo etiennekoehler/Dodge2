@@ -52,6 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var ballBar         = SKShapeNode()
     var scoreWall       = SKShapeNode()
     var highscoreWall   = SKShapeNode()
+    var diamond         = SKShapeNode()
     var wallPairRight   = SKNode()
     var wallPairLeft    = SKNode()
     var wallChompRight  = SKNode()
@@ -402,6 +403,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         noAdBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 577)
         noAdBTN.zPosition = 4
         //self.addChild(self.noAdBTN)
+        
+        let center11 = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        let path11   = CGMutablePath()
+        
+        path11.move   (to: CGPoint(x: center11.x + 25, y: center11.y))
+        path11.addLine(to: CGPoint(x: center11.x,      y: center11.y + 25))
+        path11.addLine(to: CGPoint(x: center11.x - 25, y: center11.y))
+        path11.addLine(to: CGPoint(x: center11.x,      y: center11.y - 25))
+        path11.closeSubpath()
+        diamond = SKShapeNode(path: path11)
+        
+        diamond.physicsBody = SKPhysicsBody(polygonFrom: path11)
+        diamond.physicsBody?.isDynamic          = false
+        diamond.physicsBody?.affectedByGravity  = false
+        diamond.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 )
+        diamond.lineWidth = 6
+        diamond.fillColor =  red
+        diamond.strokeColor = red
+        diamond.zPosition = 6
+        
+        self.addChild(diamond)
+        
+        
     }
 
     
