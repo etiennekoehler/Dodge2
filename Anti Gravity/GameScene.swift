@@ -153,6 +153,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallMoveI:CGFloat = 100.0
     var xwallMove          = [CGFloat(150.0), CGFloat(150.0), CGFloat(150.0)]  // move walls x-speed
     var gravityDirection = CGVector(dx: 0,dy: 0)               // gravity: normal (0,-9.8)
+    var length = [50, 75, 100]
+    //var length = Int()
     
    // color schemes
     
@@ -914,12 +916,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let center8 = CGPoint(x: self.frame.midX, y: self.frame.midY)
         let path8   = CGMutablePath()
         
-        path8.move   (to: CGPoint(x: center8.x + 75, y: center8.y))
-        path8.addLine(to: CGPoint(x: center8.x + 50, y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - 50, y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - 75, y: center8.y))
-        path8.addLine(to: CGPoint(x: center8.x - 50, y: center8.y - 25))
-        path8.addLine(to: CGPoint(x: center8.x + 50, y: center8.y - 25))
+        path8.move   (to: CGPoint(x: center8.x + CGFloat(length[iRan]), y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]), y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y - 25))
+        path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y - 25))
 
         path8.closeSubpath()
         island = SKShapeNode(path: path8)
@@ -965,12 +967,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let center8 = CGPoint(x: self.frame.midX, y: self.frame.midY)
         let path8   = CGMutablePath()
         
-        path8.move   (to: CGPoint(x: center8.x + 75, y: center8.y))
-        path8.addLine(to: CGPoint(x: center8.x + 50, y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - 50, y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - 75, y: center8.y))
-        path8.addLine(to: CGPoint(x: center8.x - 50, y: center8.y - 25))
-        path8.addLine(to: CGPoint(x: center8.x + 50, y: center8.y - 25))
+        path8.move   (to: CGPoint(x: center8.x + CGFloat(length[iRan]), y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]), y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y - 25))
+        path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y - 25))
         
         path8.closeSubpath()
         island = SKShapeNode(path: path8)
@@ -1016,12 +1018,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let center8 = CGPoint(x: self.frame.midX, y: self.frame.midY)
         let path8   = CGMutablePath()
         
-        path8.move   (to: CGPoint(x: center8.x + 75, y: center8.y))
-        path8.addLine(to: CGPoint(x: center8.x + 50, y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - 50, y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - 75, y: center8.y))
-        path8.addLine(to: CGPoint(x: center8.x - 50, y: center8.y - 25))
-        path8.addLine(to: CGPoint(x: center8.x + 50, y: center8.y - 25))
+        path8.move   (to: CGPoint(x: center8.x + CGFloat(length[iRan]), y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]), y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y - 25))
+        path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y - 25))
         
         path8.closeSubpath()
         island = SKShapeNode(path: path8)
@@ -1071,12 +1073,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let center8 = CGPoint(x: self.frame.midX, y: self.frame.midY)
         let path8   = CGMutablePath()
         
-        path8.move   (to: CGPoint(x: center8.x + 75, y: center8.y))
-        path8.addLine(to: CGPoint(x: center8.x + 50, y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - 50, y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - 75, y: center8.y))
-        path8.addLine(to: CGPoint(x: center8.x - 50, y: center8.y - 25))
-        path8.addLine(to: CGPoint(x: center8.x + 50, y: center8.y - 25))
+        path8.move   (to: CGPoint(x: center8.x + CGFloat(length[iRan]), y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y + 25))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]), y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y - 25))
+        path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y - 25))
         
         path8.closeSubpath()
         island = SKShapeNode(path: path8)
@@ -1343,8 +1345,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moveAndRemoveStar        = SKAction.sequence([moveStar, removeStar])
             
             // SEQUENCE
-            let spawnDelay           = SKAction.sequence([/*spawnWallsRight, delayWalls, /*spawnFallBall,*/ spawnWallsLeft, delayWalls, spawnWallsChomp, delayWalls,*/ spawnIslandLeft , delayHalf, spawnStar, delayHalf, spawnIslandRight,  delayHalf, spawnStar, delayHalf,
-                spawnIslandLeft2, delayHalf, spawnStar, delayHalf, spawnIslandRight2, delayHalf, spawnStar, delayHalf ])
+            let spawnDelay           = SKAction.sequence([/*spawnWallsRight, delayWalls, /*spawnFallBall,*/ spawnWallsLeft, delayWalls, spawnWallsChomp, delayWalls,*/ spawnIslandRight , delayHalf, spawnStar, delayHalf, spawnIslandLeft,  delayHalf, spawnStar, delayHalf,
+                spawnIslandRight2, delayHalf, spawnStar, delayHalf, spawnIslandLeft2, delayHalf, spawnStar, delayHalf ])
             let spawnDelayForever    = SKAction.repeatForever(spawnDelay)
             self.run(spawnDelayForever)
             
@@ -1512,6 +1514,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 print("ballColor", ballColor)
                 scoreLbl.text = "\(score)"
                 firstBody.node?.removeFromParent()
+                
                 if starVar == -100 {
                     starVar = 100
                 }
@@ -1519,6 +1522,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     starVar = -100
                 }
                 pointPlayer.play()
+                
             }
 
             if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
