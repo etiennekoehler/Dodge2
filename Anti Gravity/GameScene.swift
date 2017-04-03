@@ -153,17 +153,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallMoveI:CGFloat = 100.0
     var xwallMove          = [CGFloat(150.0), CGFloat(150.0), CGFloat(150.0)]  // move walls x-speed
     var gravityDirection = CGVector(dx: 0,dy: 0)               // gravity: normal (0,-9.8)
-    var length = [50, 75, 100]
+    var length = [50, 75]
     //var length = Int()
     
    // color schemes
     
-    var greyWhite      = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1.0)
+    var greyWhite      = UIColor(red: 252/255, green: 252/255, blue: 247/255, alpha: 1.0)
     var scoreNodeColor = UIColor.clear
     var white          = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
     var purple         = UIColor(red: 200/255, green: 200/255, blue: 255/255, alpha: 1.0)
-    var red            = UIColor(red: 200/256, green: 40/256,  blue:  40/256, alpha: 1.0)
-    var darkGrey       = UIColor(red:  65/255, green: 65/255,  blue:  65/255, alpha: 1.0) //73
+    var red            = UIColor(red: 248/256, green: 73/256,  blue:  52/256, alpha: 1.0)//200 40 40
+    var darkGrey       = UIColor(red:  77/255, green: 94/255,  blue:  95/255, alpha: 1.0) //65 65 65
     var lightGrey      = UIColor(red: 0.7569,  green: 0.7569,  blue: 0.7569,  alpha: 1.0)    /* #c1c1c1 */
 
     var score     = Int()
@@ -210,10 +210,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //audioPlayer.numberOfLoops = 0
         trackPlayer.numberOfLoops = -1
         
-        touchPlayer.volume = 0.07
-        pointPlayer.volume = 0.3
-        deathPlayer.volume = 0.4
-        trackPlayer.volume = 0.17
+        touchPlayer.volume = 0.0    //0.07
+        pointPlayer.volume = 0.0    //0.3
+        deathPlayer.volume = 0.0    //0.4
+        trackPlayer.volume = 0.0    //?
 
         touchPlayer.prepareToPlay()
         pointPlayer.prepareToPlay()
@@ -232,7 +232,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
+    /*func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
+        rotateAnimation.duration = duration
+        
+        if let delegate: AnyObject = completionDelegate {
+            rotateAnimation.delegate = delegate
+        }
+        self.playBTN.addAnimation(rotateAnimation, forKey: nil)
+    }
+    */
 //--- Restart the game
     
     func restartScene(){
@@ -368,7 +379,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //play button
         playBTN = SKSpriteNode(imageNamed: "playBTN2")
-        playBTN.setScale(1.20)
+        playBTN.setScale(0.3)
         playBTN.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 )
         playBTN.zPosition = 5
         self.addChild(playBTN)
@@ -389,7 +400,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         //title
         gameLabel = SKSpriteNode(imageNamed: "dodgePic")
-        gameLabel.setScale(0.22)
+        gameLabel.setScale(0.42)
         gameLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-130)
         gameLabel.zPosition = 5
         self.addChild(gameLabel)
@@ -444,7 +455,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createGameLabel() {
         //title
         gameLabel2 = SKSpriteNode(imageNamed: "dodgePic")
-        gameLabel2.setScale(0.22)
+        gameLabel2.setScale(0.42)
         gameLabel2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-120)
         gameLabel2.zPosition = 5
         self.addChild(gameLabel2)
@@ -1027,8 +1038,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         path8.closeSubpath()
         island = SKShapeNode(path: path8)
-        island.strokeColor = purple
-        island.fillColor   = purple
+        island.strokeColor = darkGrey
+        island.fillColor   = darkGrey
         island.position    = CGPoint(x: self.frame.width/2 - CGFloat(islandPosRight), y:frame.height-383)
         island.physicsBody = SKPhysicsBody(polygonFrom: path8)
         island.physicsBody?.affectedByGravity = false
@@ -1082,8 +1093,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         path8.closeSubpath()
         island = SKShapeNode(path: path8)
-        island.strokeColor = purple
-        island.fillColor   = purple
+        island.strokeColor = darkGrey
+        island.fillColor   = darkGrey
         island.position    = CGPoint(x: self.frame.width/2 - CGFloat(islandPosRight), y:frame.height-383)
         island.physicsBody = SKPhysicsBody(polygonFrom: path8)
         island.physicsBody?.affectedByGravity = false
@@ -1107,7 +1118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 //--- Create Walls outside of Island  ==<   (<====>)   >==
 
-    func createWallsOutside(){
+    func createWallsOutsideRed(){
         
         outsideWalls = SKNode()
         outsideWalls.name = "outsideWalls"
@@ -1131,13 +1142,80 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         path9.closeSubpath()
         smallWallRight = SKShapeNode(path: path9)
+        smallWallRight.strokeColor = red
+        smallWallRight.fillColor   = red
+        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 220, y:frame.height-383)
+        smallWallRight.physicsBody = SKPhysicsBody(polygonFrom: path9)
+        smallWallRight.physicsBody?.affectedByGravity = false
+        smallWallRight.physicsBody?.isDynamic = false
+        smallWallRight.physicsBody?.categoryBitMask    = PhysicsCatagory.smallWallRight 
+        smallWallRight.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.islandLeft | PhysicsCatagory.islandRight
+        smallWallRight.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.islandLeft | PhysicsCatagory.islandRight
+        smallWallRight.physicsBody!.usesPreciseCollisionDetection = true
+        smallWallRight.zPosition = 3
+        
+        let center10 = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        let path10   = CGMutablePath()
+        
+        path10.move   (to: CGPoint(x: center10.x + 100,  y: center10.y))
+        path10.addLine(to: CGPoint(x: center10.x + 125,  y: center10.y + 25))
+        path10.addLine(to: CGPoint(x: center10.x - 100,  y: center10.y + 25))
+        path10.addLine(to: CGPoint(x: center10.x - 100,  y: center10.y - 25))
+        path10.addLine(to: CGPoint(x: center10.x + 125,  y: center10.y - 25))
+        
+        path10.closeSubpath()
+        smallWallLeft = SKShapeNode(path: path10)
+        smallWallLeft.strokeColor = red
+        smallWallLeft.fillColor   = red
+        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 800, y:frame.height-383)
+        smallWallLeft.physicsBody = SKPhysicsBody(polygonFrom: path10)
+        smallWallLeft.physicsBody?.affectedByGravity = false
+        smallWallLeft.physicsBody?.isDynamic = false
+        smallWallLeft.physicsBody?.categoryBitMask    = PhysicsCatagory.smallWallLeft
+        smallWallLeft.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.islandLeft | PhysicsCatagory.islandRight
+        smallWallLeft.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.islandLeft | PhysicsCatagory.islandRight
+        smallWallLeft.physicsBody!.usesPreciseCollisionDetection = true
+        smallWallLeft.zPosition = 3
+        
+        outsideWalls.addChild(smallWallRight)
+
+        outsideWalls.addChild(smallWallLeft)
+        outsideWalls.run(moveAndRemoveOutsideWall)
+        
+        self.addChild(outsideWalls)
+    }
+    
+    func createWallsOutsideGrey(){
+        
+        outsideWalls = SKNode()
+        outsideWalls.name = "outsideWalls"
+        
+        let center9 = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        let path9   = CGMutablePath()
+        
+        path9.move   (to: CGPoint(x: center9.x - 100,  y: center9.y))
+        path9.addLine(to: CGPoint(x: center9.x - 125,  y: center9.y - 25))
+        path9.addLine(to: CGPoint(x: center9.x + 100,  y: center9.y - 25))
+        path9.addLine(to: CGPoint(x: center9.x + 100,  y: center9.y + 25))
+        path9.addLine(to: CGPoint(x: center9.x - 125,  y: center9.y + 25))
+        
+        /*
+         path9.move   (to: CGPoint(x: center9.x - 100,  y: center9.y))
+         path9.addLine(to: CGPoint(x: center9.x - 125,  y: center9.y + 25))
+         path9.addLine(to: CGPoint(x: center9.x + 100,  y: center9.y + 25))
+         path9.addLine(to: CGPoint(x: center9.x + 100,  y: center9.y - 25))
+         path9.addLine(to: CGPoint(x: center9.x - 125,  y: center9.y - 25))
+         */
+        
+        path9.closeSubpath()
+        smallWallRight = SKShapeNode(path: path9)
         smallWallRight.strokeColor = darkGrey
         smallWallRight.fillColor   = darkGrey
         smallWallRight.position    = CGPoint(x: self.frame.width/2 - 220, y:frame.height-383)
         smallWallRight.physicsBody = SKPhysicsBody(polygonFrom: path9)
         smallWallRight.physicsBody?.affectedByGravity = false
         smallWallRight.physicsBody?.isDynamic = false
-        smallWallRight.physicsBody?.categoryBitMask    = PhysicsCatagory.smallWallRight 
+        smallWallRight.physicsBody?.categoryBitMask    = PhysicsCatagory.smallWallRight
         smallWallRight.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.islandLeft | PhysicsCatagory.islandRight
         smallWallRight.physicsBody?.contactTestBitMask = PhysicsCatagory.ball | PhysicsCatagory.islandLeft | PhysicsCatagory.islandRight
         smallWallRight.physicsBody!.usesPreciseCollisionDetection = true
@@ -1167,12 +1245,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallLeft.zPosition = 3
         
         outsideWalls.addChild(smallWallRight)
-
+        
         outsideWalls.addChild(smallWallLeft)
         outsideWalls.run(moveAndRemoveOutsideWall)
         
         self.addChild(outsideWalls)
     }
+
 
     
 //--- Stars
@@ -1264,25 +1343,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let spawnIslandLeft = SKAction.run({
                 () in
                 self.createWallIslandLeft()
-                self.createWallsOutside()
+                self.createWallsOutsideGrey()
             })
             
             let spawnIslandLeft2 = SKAction.run({
                 () in
                 self.createWallIslandLeft2()
-                self.createWallsOutside()
+                self.createWallsOutsideGrey()
             })
             
             let spawnIslandRight = SKAction.run({
                 () in
                 self.createWallIslandRight()
-                self.createWallsOutside()
+                self.createWallsOutsideRed()
             })
             
             let spawnIslandRight2 = SKAction.run({
                 () in
                 self.createWallIslandRight2()
-                self.createWallsOutside()
+                self.createWallsOutsideRed()
             })
             
             let spawnStar = SKAction.run({
@@ -1791,7 +1870,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ball.strokeColor = darkGrey
             scoreLbl.fontColor = darkGrey
         }
-        iRan = Int(arc4random_uniform(3))
+        iRan = Int(arc4random_uniform(2))
     }
 
 }
