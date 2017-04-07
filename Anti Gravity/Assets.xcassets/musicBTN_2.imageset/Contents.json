@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "musicBTN2.png",
+      "filename" : "theMusicButtonCross.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "musicBTN2-1.png",
+      "filename" : "theMusicButtonCross-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "musicBTN2-2.png",
+      "filename" : "theMusicButtonCross-2.jpg",
       "scale" : "3x"
     }
   ],

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "rateBTN2.png",
+      "filename" : "theRateButton.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "rateBTN2-1.png",
+      "filename" : "theRateButton-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "rateBTN2-2.png",
+      "filename" : "theRateButton-2.jpg",
       "scale" : "3x"
     }
   ],

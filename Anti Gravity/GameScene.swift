@@ -151,9 +151,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallPos2:CGFloat  = 300.0 //270.0                     // position of right wall e.g. 225
     var xwallShift:CGFloat = -150.0// -50.0                    // shift wall to see more of incoming red wall
     var xwallMoveI:CGFloat = 100.0
-    var xwallMove          = [CGFloat(150.0), CGFloat(150.0), CGFloat(150.0)]  // move walls x-speed
+    var xwallMove          = [CGFloat(50.0), CGFloat(250.0)]  // move walls x-speed
     var gravityDirection = CGVector(dx: 0,dy: 0)               // gravity: normal (0,-9.8)
     var length = [50, 75]
+    var X = Int()
     //var length = Int()
     
    // color schemes
@@ -229,6 +230,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             {
                 print("== \(names)")
             }
+        }
+        if CGFloat(length[iRan]) == 50 {
+            X = 0
+        }
+        else if CGFloat(length[iRan]) == 75   {
+            X = 1
         }
     }
     
@@ -379,22 +386,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //play button
         playBTN = SKSpriteNode(imageNamed: "playBTN2")
-        playBTN.setScale(0.3)
-        playBTN.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 )
+        playBTN.setScale(1.15)
+        playBTN.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 + 30 )
         playBTN.zPosition = 5
         self.addChild(playBTN)
         
         //rate button
         rateBTN = SKSpriteNode(imageNamed: "rateBTN1")
         rateBTN.setScale(1.0)
-        rateBTN.position = CGPoint(x: self.frame.width / 2 - 100, y:self.frame.height/2 - 150 )
+        rateBTN.position = CGPoint(x: self.frame.width / 2 - 110, y:self.frame.height/2 - 150 )
         rateBTN.zPosition = 5
         self.addChild(rateBTN)
         
         //music button
         musicBTN = SKSpriteNode(imageNamed: "musicBTN_1")
         musicBTN.setScale(1.0)
-        musicBTN.position = CGPoint(x: self.frame.width / 2 - 20, y:self.frame.height/2 - 150 )
+        musicBTN.position = CGPoint(x: self.frame.width / 2 + 110, y:self.frame.height/2 - 150 )
         musicBTN.zPosition = 5
         self.addChild(musicBTN)
 
@@ -407,10 +414,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //no Ads
         noAd = SKSpriteNode(imageNamed: "ads")
-        noAd.setScale(0.5)
-        noAd.position = CGPoint(x: self.frame.width / 2 + 100 , y:self.frame.height-550)
+        noAd.setScale(1.0)
+        noAd.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 - 150)
         noAd.zPosition = 5
-        //self.addChild(noAd)
+        self.addChild(noAd)
         
         //no Ads Button
         noAdBTN = SKSpriteNode(color: SKColor.clear, size: CGSize(width: 110, height: 100))
@@ -509,12 +516,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createPlayBTN2() {
         playBTN2 = SKSpriteNode(imageNamed: "playBTN4")
-        playBTN2.setScale(1.20)
-        playBTN2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2)
+        playBTN2.setScale(1.15)
+        playBTN2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 + 30)
         playBTN2.zPosition = 5
         self.addChild(playBTN2)
     }
     
+//--- play button
+    func createPlayBTN() {
+        playBTN = SKSpriteNode(imageNamed: "playBTN2")
+        playBTN.setScale(0.3)
+        playBTN.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 )
+        playBTN.zPosition = 5
+        self.addChild(playBTN)
+    }
     
 //--- rate button 2
     
@@ -1403,15 +1418,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let removeWallChompLeft  = SKAction.removeFromParent()
             moveAndRemoveChompLeft   = SKAction.sequence([moveWallChompLeft, removeWallChompLeft])
             
+            
             // island starting left
-            let moveIslandLeft       = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let moveIslandLeft       = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[X], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
             let removeIslandLeft     = SKAction.removeFromParent()
             moveAndRemoveIslandLeft  = SKAction.sequence([moveIslandLeft, removeIslandLeft])
             
             // island starting right
-            let moveIslandRight      = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[iRan], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let moveIslandRight      = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[X], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
             let removeIslandRight    = SKAction.removeFromParent()
             moveAndRemoveIslandRight = SKAction.sequence([moveIslandRight, removeIslandRight])
+            
+
 
             // Outside Wall (outside of island)
             let moveOutsideWall      = SKAction.moveBy(x: 0, y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
@@ -1557,7 +1575,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-
+ 
+//--- TouchesMove
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if playState == -1 {
+            
+            for touch in touches{
+                let location = touch.location(in: self)
+                
+                if playBTN.contains(location){
+                        createPlayBTN()
+                        playBTN2.removeFromParent()
+                        playState = -1
+                    
+                }
+            }
+        }
+    }
 
 //--- Collision: contact between ball, islands and walls
     
@@ -1871,6 +1905,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLbl.fontColor = darkGrey
         }
         iRan = Int(arc4random_uniform(2))
+        //iRan2 = Int(arc4random_uniform(3))
     }
 
 }
