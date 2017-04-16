@@ -151,10 +151,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallPos2:CGFloat  = 300.0 //270.0                     // position of right wall e.g. 225
     var xwallShift:CGFloat = -150.0// -50.0                    // shift wall to see more of incoming red wall
     var xwallMoveI:CGFloat = 100.0
-    var xwallMove          = [CGFloat(50.0), CGFloat(250.0)]  // move walls x-speed
+    var xwallMove          = [CGFloat(50.0), CGFloat(250.0)]   // move walls x-speed
     var gravityDirection = CGVector(dx: 0,dy: 0)               // gravity: normal (0,-9.8)
     var length = [50, 75]
-    var X = Int()
+    var Xran = Int()
     //var length = Int()
     
    // color schemes
@@ -232,10 +232,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         if CGFloat(length[iRan]) == 50 {
-            X = 0
+            Xran = 0
         }
         else if CGFloat(length[iRan]) == 75   {
-            X = 1
+            Xran = 1
         }
     }
     
@@ -1420,12 +1420,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             
             // island starting left
-            let moveIslandLeft       = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[X], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let moveIslandLeft       = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[Xran], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
             let removeIslandLeft     = SKAction.removeFromParent()
             moveAndRemoveIslandLeft  = SKAction.sequence([moveIslandLeft, removeIslandLeft])
             
             // island starting right
-            let moveIslandRight      = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[X], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let moveIslandRight      = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[Xran], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
             let removeIslandRight    = SKAction.removeFromParent()
             moveAndRemoveIslandRight = SKAction.sequence([moveIslandRight, removeIslandRight])
             
@@ -1442,8 +1442,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moveAndRemoveStar        = SKAction.sequence([moveStar, removeStar])
             
             // SEQUENCE
-            let spawnDelay           = SKAction.sequence([/*spawnWallsRight, delayWalls, /*spawnFallBall,*/ spawnWallsLeft, delayWalls, spawnWallsChomp, delayWalls,*/ spawnIslandRight , delayHalf, spawnStar, delayHalf, spawnIslandLeft,  delayHalf, spawnStar, delayHalf,
-                spawnIslandRight2, delayHalf, spawnStar, delayHalf, spawnIslandLeft2, delayHalf, spawnStar, delayHalf ])
+            let spawnDelay           = SKAction.sequence([/*spawnWallsRight, delayWalls, /*spawnFallBall,*/ spawnWallsLeft, delayWalls, spawnWallsChomp, delayWalls,*/
+                spawnIslandLeft,  delayHalf, spawnStar, delayHalf, spawnIslandRight,  delayHalf, spawnStar, delayHalf,
+                spawnIslandLeft2, delayHalf, spawnStar, delayHalf, spawnIslandRight2, delayHalf, spawnStar, delayHalf ])
+                
+//                spawnIslandRight , delayHalf, spawnStar, delayHalf, spawnIslandLeft,  delayHalf, spawnStar, delayHalf,
+//                spawnIslandRight2, delayHalf, spawnStar, delayHalf, spawnIslandLeft2, delayHalf, spawnStar, delayHalf ])
             let spawnDelayForever    = SKAction.repeatForever(spawnDelay)
             self.run(spawnDelayForever)
             
