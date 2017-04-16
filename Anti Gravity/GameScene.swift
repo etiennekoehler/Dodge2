@@ -78,6 +78,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveAndRemoveStar        = SKAction()
     var restartBTN   = SKSpriteNode()
     var resetBTN     = SKSpriteNode()
+    var restartBTN2   = SKSpriteNode()
+    var resetBTN2    = SKSpriteNode()
     var homeBTN      = SKSpriteNode()
     var homeBTNPic   = SKSpriteNode()
     var endScoreLbl  = SKLabelNode()
@@ -120,7 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // 6: ads
     //-----------------
     
-    var ball_dir        = 4.5                                  // ball direction (-1,1)
+    var ball_dir        = 5.0                                  // ball direction (-1,1)
     var ximpulse        = 0.0                                  // impulse of ball when mouse click   e.g. 100 [kg m/s]
     var ximpMore        = 0.0                                  // impulse increases with score by    e.g. 20  [kg m/s]
     var yimpulse        = 0.0                                  // impulse of ball when mouse click   e.g. 100 [kg m/s]
@@ -211,10 +213,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //audioPlayer.numberOfLoops = 0
         trackPlayer.numberOfLoops = -1
         
-        touchPlayer.volume = 0.0    //0.07
-        pointPlayer.volume = 0.0    //0.3
-        deathPlayer.volume = 0.0    //0.4
-        trackPlayer.volume = 0.0    //?
+        touchPlayer.volume = 0.07    //0.07
+        pointPlayer.volume = 0.3    //0.3
+        deathPlayer.volume = 0.4    //0.4
+        trackPlayer.volume = 0.3    //?
 
         touchPlayer.prepareToPlay()
         pointPlayer.prepareToPlay()
@@ -259,7 +261,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         removeAllChildren()
         removeAllActions()
         score = 0
-        ball_dir = 5
+        ball_dir = 5.0
         islandVar  = 0.8
         
         physicsWorld.gravity = CGVector(dx: 0,dy: 0)              // switch gravity off
@@ -397,17 +399,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rateBTN.position = CGPoint(x: self.frame.width / 2 - 110, y:self.frame.height/2 - 150 )
         rateBTN.zPosition = 5
         self.addChild(rateBTN)
-        
+        /*
         //music button
         musicBTN = SKSpriteNode(imageNamed: "musicBTN_1")
         musicBTN.setScale(1.0)
         musicBTN.position = CGPoint(x: self.frame.width / 2 + 110, y:self.frame.height/2 - 150 )
         musicBTN.zPosition = 5
-        self.addChild(musicBTN)
+        self.addChild(musicBTN)*/
+        createMusicBTN()
 
         //title
         gameLabel = SKSpriteNode(imageNamed: "dodgePic")
-        gameLabel.setScale(0.42)
+        gameLabel.setScale(1.11)
         gameLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-130)
         gameLabel.zPosition = 5
         self.addChild(gameLabel)
@@ -462,7 +465,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createGameLabel() {
         //title
         gameLabel2 = SKSpriteNode(imageNamed: "dodgePic")
-        gameLabel2.setScale(0.42)
+        gameLabel2.setScale(1.11)
         gameLabel2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-120)
         gameLabel2.zPosition = 5
         self.addChild(gameLabel2)
@@ -471,25 +474,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 //--- create restart button
     
+    func createRestartBTN2(){
+        
+        
+        self.restartBTN2 = SKSpriteNode(color: SKColor.clear, size: CGSize(width: 140, height: 140))
+        self.restartBTN2.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 600)
+        self.restartBTN2.zPosition = 4
+        self.addChild(self.restartBTN2)
+
+        self.resetBTN2 = SKSpriteNode(imageNamed: "Reset-Button2")
+        self.resetBTN2.size = CGSize(width: 140, height: 140)
+        self.resetBTN2.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 600)
+        self.resetBTN2.physicsBody = SKPhysicsBody(rectangleOf: self.resetBTN2.size)
+        self.resetBTN2.physicsBody?.affectedByGravity = true
+        self.resetBTN2.physicsBody?.isDynamic = false
+        self.resetBTN2.zPosition = 7
+        self.addChild(self.resetBTN2)
+        
+    }
+    
+    //--- create restart button
+    
     func createRestartBTN(){
         
         delay(restartDelay) {
-        self.restartBTN = SKSpriteNode(color: SKColor.clear, size: CGSize(width: 110, height: 100))
-        self.restartBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 577)
-        self.restartBTN.zPosition = 4
-        self.addChild(self.restartBTN)
-
-        self.resetBTN = SKSpriteNode(imageNamed: "Reset-Button")
-        self.resetBTN.setScale(0.5)
-        self.resetBTN.size = CGSize(width: 110, height: 100)
-        self.resetBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 577)
-        self.resetBTN.physicsBody = SKPhysicsBody(rectangleOf: self.resetBTN.size)
-        self.resetBTN.physicsBody?.affectedByGravity = true
-        self.resetBTN.physicsBody?.isDynamic = false
-        self.resetBTN.zPosition = 7
-        self.addChild(self.resetBTN)
+            self.restartBTN = SKSpriteNode(color: SKColor.clear, size: CGSize(width: 140, height: 140))
+            self.restartBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 600)
+            self.restartBTN.zPosition = 4
+            self.addChild(self.restartBTN)
+            
+            self.resetBTN = SKSpriteNode(imageNamed: "Reset-Button")
+            self.resetBTN.size = CGSize(width: 140, height: 140)
+            self.resetBTN.position = CGPoint(x: self.frame.width * 0.5, y: self.frame.height  - 600)
+            self.resetBTN.physicsBody = SKPhysicsBody(rectangleOf: self.resetBTN.size)
+            self.resetBTN.physicsBody?.affectedByGravity = true
+            self.resetBTN.physicsBody?.isDynamic = false
+            self.resetBTN.zPosition = 6
+            self.addChild(self.resetBTN)
         }
     }
+
     
 
 //--- pause Button
@@ -536,18 +560,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createRateBTN2() {
         rateBTN2 = SKSpriteNode(imageNamed: "rateBTN3")
         rateBTN2.setScale(1.0)
-        rateBTN2.position = CGPoint(x: self.frame.width / 2 - 100, y:self.frame.height/2 - 150)
+        rateBTN2.position = CGPoint(x: self.frame.width / 2 - 110, y:self.frame.height/2 - 150)
         rateBTN2.zPosition = 5
         self.addChild(rateBTN2)
     }
-
+    
+//--- music button 1
+    
+    func createMusicBTN() {
+        musicBTN = SKSpriteNode(imageNamed: "musicBTN_1")
+        musicBTN.setScale(1.0)
+        musicBTN.position = CGPoint(x: self.frame.width / 2 + 110, y:self.frame.height/2 - 150 )
+        musicBTN.zPosition = 5
+        self.addChild(musicBTN)
+    }
     
 //--- music button 2
     
     func createMusicBTN2() {
         musicBTN2 = SKSpriteNode(imageNamed: "musicBTN_2")
         musicBTN2.setScale(1.0)
-        musicBTN2.position = CGPoint(x: self.frame.width / 2 - 20, y:self.frame.height/2 - 150)
+        musicBTN2.position = CGPoint(x: self.frame.width / 2 + 110, y:self.frame.height/2 - 150)
         musicBTN2.zPosition = 5
         self.addChild(musicBTN2)
     }
@@ -906,7 +939,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallBr.position    = CGPoint(x: self.frame.width / 2 - 400, y:frame.height-383)
         wallBr.physicsBody = SKPhysicsBody(polygonFrom: path2)
         wallBr.physicsBody?.affectedByGravity = false
-        wallBr.physicsBody?.isDynamic = false
+        wallBr.physicsBody?.isDynamic = true
         wallBr.physicsBody?.categoryBitMask    = PhysicsCatagory.wallBr
         wallBr.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
         wallBr.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
@@ -982,7 +1015,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.position = CGPoint(x:self.frame.width/2, y:self.frame.width-256)
         scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
         scoreNode.physicsBody?.affectedByGravity = false
-        scoreNode.physicsBody?.isDynamic = false
+        scoreNode.physicsBody?.isDynamic = true
         scoreNode.physicsBody?.categoryBitMask = PhysicsCatagory.score
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
@@ -1033,7 +1066,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.position = CGPoint(x:self.frame.width/2, y:self.frame.width-256)
         scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
         scoreNode.physicsBody?.affectedByGravity = false
-        scoreNode.physicsBody?.isDynamic = false
+        scoreNode.physicsBody?.isDynamic = true
         scoreNode.physicsBody?.categoryBitMask = PhysicsCatagory.score
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
@@ -1088,7 +1121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreNode.position = CGPoint(x:self.frame.width/2, y:self.frame.width-256)
         scoreNode.physicsBody = SKPhysicsBody(rectangleOf: scoreNode.size)
         scoreNode.physicsBody?.affectedByGravity = false
-        scoreNode.physicsBody?.isDynamic = false
+        scoreNode.physicsBody?.isDynamic = true
         scoreNode.physicsBody?.categoryBitMask = PhysicsCatagory.score
         scoreNode.physicsBody?.collisionBitMask = 0
         scoreNode.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
@@ -1312,22 +1345,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 
                 if rateBTN.contains(location){
-                    createRateBTN2()
-                    rateBTN.removeFromParent()
+                    
                 }
                 
-                if musicBTN.contains(location){
-                    createMusicBTN2()
-                    trackPlayer.volume = 0
-                    musicBTN.removeFromParent()
+                if musicBTN.contains(location) && trackPlayer.volume == 0.3{
+                    trackPlayer.volume = 0.0
+                    print("---MusicBTN touch begin---", trackPlayer.volume)
+                }
+                
+                else {
+                    trackPlayer.volume = 0.3
+                    print("-------MusicBTN2 touch begin-------", trackPlayer.volume)
+                }
+                
+                if trackPlayer.volume == 0.0 && trackPlayer.volume == 0.3 {
+                    print("-------HEY!!!-------", trackPlayer.volume)
+                    
                 }
                 
                 if noAdBTN.contains(location){
-                    playState = 6
-                    playBTN.removeFromParent()
-                    gameLabel.removeFromParent()
-                    noAd.removeFromParent()
-                    noAdBTN.removeFromParent()
+                    
                 }
             }
         }
@@ -1420,12 +1457,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             
             // island starting left
-            let moveIslandLeft       = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * xwallMove[X], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let moveIslandLeft       = SKAction.moveBy(x: CGFloat(islandVar) * abs(CGFloat(ball_dir)) * xwallMove[X], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
             let removeIslandLeft     = SKAction.removeFromParent()
             moveAndRemoveIslandLeft  = SKAction.sequence([moveIslandLeft, removeIslandLeft])
             
             // island starting right
-            let moveIslandRight      = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * xwallMove[X], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
+            let moveIslandRight      = SKAction.moveBy(x: CGFloat(-islandVar) * abs(CGFloat(ball_dir)) * xwallMove[X], y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
             let removeIslandRight    = SKAction.removeFromParent()
             moveAndRemoveIslandRight = SKAction.sequence([moveIslandRight, removeIslandRight])
             
@@ -1502,10 +1539,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let location = touch.location(in: self)
             
                 if restartBTN.contains(location){
-                    /*sleep(restartSleep)
-                    delay(0){self.restartScene()}
-                    self.addChild(gameLabel)
-                    playState = 0*/
+                    restartBTN.removeFromParent()
+                    createRestartBTN2()
                 }
  
                 if homeBTN1.contains(location){
@@ -1543,12 +1578,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if rateBTN.contains(location){
                 }
                 
-                if musicBTN2.contains(location){
-                    trackPlayer.volume = 0
+                   
+                if musicBTN.contains(location) && trackPlayer.volume == 0.0{
+                    musicBTN.removeFromParent()
+                    createMusicBTN2()
+                    print("*** End Touch musicBTN ***", trackPlayer.volume)
+
                 }
-    
-                if musicBTN.contains(location){
-                    trackPlayer.volume = 0
+                
+                if musicBTN2.contains(location) && trackPlayer.volume == 0.3{
+                    musicBTN2.removeFromParent()
+                    createMusicBTN()
+                    print("*** End Touch musicBTN2 ***", trackPlayer.volume)
                 }
             }
         }
@@ -1558,7 +1599,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             for touch in touches{
                 let location = touch.location(in: self)
                 
-                if restartBTN.contains(location){
+                if restartBTN2.contains(location){
                     sleep(restartSleep)
                     delay(0){self.restartScene()}
                     self.addChild(gameLabel)
