@@ -152,9 +152,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var starVar         = CGFloat(-100)
     var xwallPos1:CGFloat  = 755.0 //755.0                     // position of left wall  e.g. 800
     var xwallPos2:CGFloat  = 300.0 //270.0                     // position of right wall e.g. 225
-    var xwallShift:CGFloat = -150.0// -50.0                    // shift wall to see more of incoming red wall
-    var xwallMoveI:CGFloat = 100.0
-    var xwallMove          = [CGFloat(50.0), CGFloat(250.0)]   // move walls x-speed
+    var xwallShift:CGFloat = -150.0// -50.0                    // shift wall to see more of incoming red wall//var xwallMoveI:CGFloat = 100.0
+    var xwallMove          = [CGFloat(400.0), CGFloat(400.0)]   // move walls x-speed
     var gravityDirection = CGVector(dx: 0,dy: 0)               // gravity: normal (0,-9.8)
     var length = [50, 75]
     var Xran = Int()
@@ -1715,7 +1714,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 || secondBody.categoryBitMask == PhysicsCatagory.islandLeft &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
             {
                 let distanceWall   = self.frame.width + wallPairRight.frame.width
-                print("--->>>---Left Island hits right wall: ", distanceWall, velocityWall,abs(ball_dir))
+                print("--->>>---Left Island hits right wall: ", distanceWall, velocityWall, abs(ball_dir))
                 let moveIslandLeft = SKAction.moveBy(x: -CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandLeft.run(moveIslandLeft)
             }
@@ -1726,7 +1725,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 || secondBody.categoryBitMask == PhysicsCatagory.islandLeft &&  firstBody.categoryBitMask == PhysicsCatagory.smallWallLeft
             {
                 let distanceWall   = self.frame.width + wallPairRight.frame.width
-                print("--->>>---Left Island hits left wall: ", distanceWall, velocityWall,abs(ball_dir))
+                print("--->>>---Left Island hits left wall: ", distanceWall, velocityWall, abs(ball_dir))
                 let moveIslandLeft = SKAction.moveBy(x: CGFloat(abs(islandVar*ball_dir)) * xwallMove[iRan], y: 0.0, duration: TimeInterval(distanceWall/velocityWall))
                 wallIslandLeft.run(moveIslandLeft)
             }
