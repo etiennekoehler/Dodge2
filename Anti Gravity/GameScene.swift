@@ -12,6 +12,7 @@ import UIKit
 import AVFoundation
 import SceneKit
 
+
 //--- Game Physics
 
 struct PhysicsCatagory {
@@ -253,6 +254,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.playBTN.addAnimation(rotateAnimation, forKey: nil)
     }
     */
+    
+    
 //--- Restart the game
     
     func restartScene(){
@@ -472,7 +475,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 
-//--- create restart button
+//--- create restart button (when holding finger on button)
     
     func createRestartBTN2(){
         
@@ -492,8 +495,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(self.resetBTN2)
         
     }
+
     
-    //--- create restart button
+//--- create restart button (normal)
     
     func createRestartBTN(){
         
@@ -514,7 +518,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
-    
 
 //--- pause Button
     
@@ -536,7 +539,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-//--- play button 2
+//--- play button 2 (when holding down)
     
     func createPlayBTN2() {
         playBTN2 = SKSpriteNode(imageNamed: "playBTN4")
@@ -545,8 +548,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playBTN2.zPosition = 5
         self.addChild(playBTN2)
     }
+
     
-//--- play button
+//--- play button (normal)
+    
     func createPlayBTN() {
         playBTN = SKSpriteNode(imageNamed: "playBTN2")
         playBTN.setScale(0.3)
@@ -554,6 +559,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playBTN.zPosition = 5
         self.addChild(playBTN)
     }
+    
     
 //--- rate button 2
     
@@ -564,8 +570,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rateBTN2.zPosition = 5
         self.addChild(rateBTN2)
     }
+
     
-//--- music button 1
+//--- music button 1 (when music on)
     
     func createMusicBTN() {
         musicBTN = SKSpriteNode(imageNamed: "musicBTN_1")
@@ -575,7 +582,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(musicBTN)
     }
     
-//--- music button 2
+    
+//--- music button 2 (when music off)
     
     func createMusicBTN2() {
         musicBTN2 = SKSpriteNode(imageNamed: "musicBTN_2")
@@ -1109,7 +1117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 
-    //--- Create Island moving left and right   <====> starting right
+//--- 2 Create Island moving left and right   <====> starting right
     
     func createWallIslandRight2(){
         
@@ -1233,6 +1241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(outsideWalls)
     }
     
+    
     func createWallsOutsideGrey(){
         
         outsideWalls = SKNode()
@@ -1301,7 +1310,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 
-    
 //--- Stars
     
     func createStars() {
@@ -1483,8 +1491,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 spawnIslandLeft,  delayHalf, spawnStar, delayHalf, spawnIslandRight,  delayHalf, spawnStar, delayHalf,
                 spawnIslandLeft2, delayHalf, spawnStar, delayHalf, spawnIslandRight2, delayHalf, spawnStar, delayHalf ])
                 
-//                spawnIslandRight , delayHalf, spawnStar, delayHalf, spawnIslandLeft,  delayHalf, spawnStar, delayHalf,
-//                spawnIslandRight2, delayHalf, spawnStar, delayHalf, spawnIslandLeft2, delayHalf, spawnStar, delayHalf ])
+//              spawnIslandRight , delayHalf, spawnStar, delayHalf, spawnIslandLeft,  delayHalf, spawnStar, delayHalf,
+//              spawnIslandRight2, delayHalf, spawnStar, delayHalf, spawnIslandLeft2, delayHalf, spawnStar, delayHalf ])
             let spawnDelayForever    = SKAction.repeatForever(spawnDelay)
             self.run(spawnDelayForever)
             
@@ -1621,6 +1629,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
  
+    
 //--- TouchesMove
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if playState == -1 {
@@ -1638,6 +1647,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
+    
 //--- Collision: contact between ball, islands and walls
     
     func didBegin(_ contact: SKPhysicsContact) {
