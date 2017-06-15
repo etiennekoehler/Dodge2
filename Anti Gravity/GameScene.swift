@@ -85,6 +85,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartBTN2   = SKSpriteNode()
     var resetBTN2    = SKSpriteNode()
     var backBTN   = SKSpriteNode()
+    var colorBTN1   = SKSpriteNode()
+    var colorBTN2   = SKSpriteNode()
+    var colorHex1   = SKSpriteNode()
+    var colorHex2   = SKSpriteNode()
     var homeBTN      = SKSpriteNode()
     var homeBTNPic   = SKSpriteNode()
     var endScoreLbl  = SKLabelNode()
@@ -93,6 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var endScoreLbl4 = SKLabelNode()
     var gameLabel    = SKSpriteNode()
     var gameLabel2   = SKSpriteNode()
+    var gameLabel22   = SKSpriteNode()
     var playBTN      = SKSpriteNode()
     var playBTN2     = SKSpriteNode()
     var rateBTN      = SKSpriteNode()
@@ -117,6 +122,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var error: NSError?
     var playState = -1
     var speedVar = Int()
+    var colorVar = 1
+    
+
+    var scrollView: UIScrollView!
+    //var buttons: List<UIButton>!
 
     //--- playState ---
     //-1: home
@@ -169,11 +179,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    // color schemes
     
     var greyWhite      = UIColor(red: 252/255, green: 252/255, blue: 247/255, alpha: 1.0)//252 , 252 , 247 / 234 , 248 , 191
+    var red            = UIColor(red: 248/256, green: 73/256,  blue:  52/256, alpha: 1.0)//248 , 73 , 52 / 255 , 121 , 18
+    var darkGrey       = UIColor(red:  77/255, green: 94/255,  blue:  95/255, alpha: 1.0)// 77 , 94 , 95 / 8 , 151 , 147
+    
     var scoreNodeColor = UIColor.clear
     var white          = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
     var purple         = UIColor(red: 200/255, green: 200/255, blue: 255/255, alpha: 1.0)
-    var red            = UIColor(red: 248/256, green: 73/256,  blue:  52/256, alpha: 1.0)//248 , 73 , 52 / 255 , 121 , 18
-    var darkGrey       = UIColor(red:  77/255, green: 94/255,  blue:  95/255, alpha: 1.0)// 77 , 94 , 95 / 8 , 151 , 147
     var lightGrey      = UIColor(red: 255/255,  green: 255/255,  blue: 255/255,  alpha: 1.0)/* #c1c1c1 */
     var gold1          = UIColor(red: 248/255,  green: 243/255,  blue: 43/255,  alpha: 1.0) //248,243,43/227,178,60/249,200,14
     var gold2          = UIColor(red: 227/255,  green: 178/255,  blue: 60/255,  alpha: 1.0)
@@ -185,6 +196,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var starCount = Int()
     var starPos   = Int()
     var homeOrRestart = Int()
+    var dodgePicColor = "dodgePic"
+    
     
     
     let scoreLbl = SKLabelNode()
@@ -198,6 +211,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundColor = greyWhite
         homeScene()
         homeOrRestart = 0
+        colorVar = 1
         
         self.physicsWorld.gravity = gravityDirection
         
@@ -454,14 +468,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         musicBTN.zPosition = 5
         self.addChild(musicBTN)*/
         createMusicBTN()
-
-        //title
-        gameLabel = SKSpriteNode(imageNamed: "dodgePic")
-        gameLabel.setScale(1.11)
-        gameLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-130)
-        gameLabel.zPosition = 5
-        self.addChild(gameLabel)
         
+        if colorVar == 1 {
+            //title1
+            gameLabel = SKSpriteNode(imageNamed: "dodgePic")
+            gameLabel.setScale(1.31)
+            gameLabel.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-130)
+            gameLabel.zPosition = 5
+            self.addChild(gameLabel)
+        }
+        
+        else if colorVar == 2 {
+            gameLabel22 = SKSpriteNode(imageNamed: "dodgePic2")
+            gameLabel22.setScale(1.31)
+            gameLabel22.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-130)
+            gameLabel22.zPosition = 5
+            self.addChild(gameLabel22)
+
+        }
         //no Ads
         noAd = SKSpriteNode(imageNamed: "ads")
         noAd.setScale(1.0)
@@ -517,32 +541,61 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //back button
         backBTN = SKSpriteNode(imageNamed: "backBTN")
         backBTN.setScale(1.0)
-        backBTN.position = CGPoint(x: self.frame.width / 2 - 140, y:self.frame.height/2 - 300 )
+        backBTN.position = CGPoint(x: self.frame.width / 2 - 140, y:self.frame.height/2 + 320 )
         backBTN.zPosition = 5
         self.addChild(backBTN)
         
         //bigBar
-        /*let center12 = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        let path12   = CGMutablePath()
-        
-        path12.move   (to: CGPoint(x: center12.x + 50, y: center12.y + 10))
-        path12.addLine(to: CGPoint(x: center12.x - 50,      y: center12.y + 10))
-        path12.addLine(to: CGPoint(x: center12.x - 50, y: center12.y - 10))
-        path12.addLine(to: CGPoint(x: center12.x + 50,      y: center12.y - 10))
-        path12.closeSubpath()
-        bigBar = SKShapeNode(path: path12)*/
         bigBar.fillColor =  darkGrey
-        //bigBar.physicsBody = SKPhysicsBody(polygonFrom: path12)
-        bigBar.path = UIBezierPath(roundedRect: CGRect(x: 100, y: 100, width: 500, height: 100), cornerRadius: 5).cgPath
+        bigBar.path = UIBezierPath(roundedRect: CGRect(x: 100, y: 100, width: 500, height: 400), cornerRadius: 5).cgPath
         bigBar.physicsBody?.isDynamic          = false
         bigBar.physicsBody?.affectedByGravity  = false
-        bigBar.position = CGPoint(x: self.frame.width / 2 - 350, y:self.frame.height/2 - 300)
-        zPosition = 5
+        bigBar.position = CGPoint(x: self.frame.width / 2 - 350, y:self.frame.height/2 - 550)
+        zPosition = 8
         self.addChild(bigBar)
         
-        
-    }
+        //color button 1
+        colorBTN1 = SKSpriteNode(imageNamed: "colorCombo1")
+        colorBTN1.setScale(0.5)
+        colorBTN1.position = CGPoint(x: self.frame.width / 2 - 140, y:self.frame.height/2 - 150 )
+        colorBTN1.zPosition = 5
+        self.addChild(colorBTN1)
 
+        //color button 2
+        colorBTN2 = SKSpriteNode(imageNamed: "colorCombo2")
+        colorBTN2.setScale(0.5)
+        colorBTN2.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 - 150 )
+        colorBTN2.zPosition = 5
+        self.addChild(colorBTN2)
+        
+        if colorVar == 1 {
+            colorShow1()
+        }
+        
+        else if colorVar == 2 {
+            colorShow2()
+        }
+    }
+    
+    //big colorHex1
+    func colorShow1() {
+        colorHex1 = SKSpriteNode(imageNamed: "colorCombo1")
+        colorHex1.setScale(1.3)
+        colorHex1.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 140 )
+        colorHex1.zPosition = 5
+        colorVar = 1
+        self.addChild(colorHex1)
+    }
+    
+    func colorShow2() {
+        colorHex1.removeFromParent()
+        colorHex2 = SKSpriteNode(imageNamed: "colorCombo2")
+        colorHex2.setScale(1.3)
+        colorHex2.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 140 )
+        colorHex2.zPosition = 5
+        colorVar = 2
+        self.addChild(colorHex2)
+    }
   //  class FeaturedAppController: UICollectionViewController
 //--- Create the no ads scene
     
@@ -552,15 +605,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
 //--- Game label
-    
     func createGameLabel() {
-        //title
         gameLabel2 = SKSpriteNode(imageNamed: "dodgePic")
-        gameLabel2.setScale(1.11)
+        gameLabel2.setScale(1.31)
         gameLabel2.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-120)
         gameLabel2.zPosition = 5
         self.addChild(gameLabel2)
     }
+
+//--- Game label22
+    func createGameLabel22() {
+        gameLabel22 = SKSpriteNode(imageNamed: "dodgePic2")
+        gameLabel22.setScale(1.31)
+        gameLabel22.position = CGPoint(x: self.frame.width / 2, y:self.frame.height-120)
+        gameLabel22.zPosition = 5
+        self.addChild(gameLabel22)
+    }
+
 
 
 //--- create restart button (when holding finger on button)
@@ -1687,6 +1748,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                 }
                 
+                if colorBTN1.contains(location){
+                        }
+                
+                if colorBTN2.contains(location){
+                    
+                }
+
             }
 
         }
@@ -1712,6 +1780,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     musicBTN2.removeFromParent()
                     buyBTN2.removeFromParent()
                     gameLabel.removeFromParent()
+                    gameLabel2.removeFromParent()
+                    gameLabel22.removeFromParent()
                     noAd.removeFromParent()
                     noAdBTN.removeFromParent()
                     createScene()
@@ -1788,7 +1858,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.createHomeBTN1()
                     self.createBuyBTN1()
                     self.endScore()
-                    self.createGameLabel()
+                    if colorVar == 1 {
+                        self.createGameLabel()
+                    }
+                    else if colorVar == 2 {
+                        self.createGameLabel22()
+                    }
                     playState = 3
                 }
                 
@@ -1798,6 +1873,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = -1
                     homeScene()
                     score = 0
+                }
+                
+                if colorBTN1.contains(location){
+                    if colorVar == 2 {
+                        colorHex2.removeFromParent()
+                        greyWhite      = UIColor(red: 252/255, green: 252/255, blue: 247/255, alpha: 1.0)//252 , 252 , 247 / 234 , 248 , 191
+                        red            = UIColor(red: 248/256, green: 73/256,  blue:  52/256, alpha: 1.0)//248 , 73 , 52 / 255 , 121 , 18
+                        darkGrey       = UIColor(red:  77/255, green: 94/255,  blue:  95/255, alpha: 1.0)// 77 , 94 , 95 / 8 , 151 , 147
+                        removeAllActions()
+                        removeAllChildren()
+                        buyScene()
+                        colorShow1()
+                        backgroundColor = greyWhite
+                        //dodgePicColor = "dodgePic1"
+                    }
+
+                    if colorVar == 1 {
+                    }
+                }
+                
+                if colorBTN2.contains(location){
+                    if colorVar == 1 {
+                        colorHex1.removeFromParent()
+                        greyWhite      = UIColor(red: 243/255, green: 248/255, blue: 191/255, alpha: 1.0)//252 , 252 , 247 / 234 , 248 , 191
+                        red            = UIColor(red: 255/256, green: 121/256,  blue:  18/256, alpha: 1.0)//248 , 73 , 52 / 255 , 121 , 18
+                        darkGrey       = UIColor(red:  8/255, green: 151/255,  blue:  147/255, alpha: 1.0)// 77 , 94 , 95 / 8 , 151 , 147
+                        removeAllActions()
+                        removeAllChildren()
+                        buyScene()
+                        colorShow2()
+                        backgroundColor = greyWhite
+                        
+                    }
+                    if colorVar == 2 {
+                    }
                 }
 
                 
@@ -2108,7 +2218,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.createHomeBTN1()
                     self.createBuyBTN1()
                     self.endScore()
-                    self.createGameLabel()
+                    if self.colorVar == 1 {
+                        self.createGameLabel()
+                    }
+                    else if self.colorVar == 2 {
+                        self.createGameLabel22()
+                    }
                 }
             }
             

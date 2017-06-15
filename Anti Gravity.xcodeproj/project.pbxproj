@@ -46,7 +46,38 @@
 		5B2969541E63714700E6D49A /* pointSoundOfficial2.0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pointSoundOfficial2.0.mp3; path = "Anti Gravity/pointSoundOfficial2.0.mp3"; sourceTree = "<group>"; };
 		5B2969561E63715A00E6D49A /* deathSoundOfficial.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = deathSoundOfficial.mp3; path = "Anti Gravity/deathSoundOfficial.mp3"; sourceTree = "<group>"; };
 		5B2969581E63716400E6D49A /* trackSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = trackSound.mp3; path = "Anti Gravity/trackSound.mp3"; sourceTree = "<group>"; };
-		8F73D9641DB658D600D3180F /* Outage.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Outage.ttf; sourceTree = "<group>"; };
+		8F73D9641DB658D600D3180F /* Outage.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Outage.ttf; path = ../Outage.ttf; sourceTree = "<group>"; };
+		8FABD0C01EF29BCD006F0EFB /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Bold.ttf"; path = "../../../../Library/Fonts/Quicksand/Quicksand-Bold.ttf"; sourceTree = "<group>"; };
+		8FABD0C11EF29BCD006F0EFB /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.ttf"; path = "../../../../Library/Fonts/Quicksand/Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		8FABD0C21EF29BCD006F0EFB /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Medium.ttf"; path = "../../../../Library/Fonts/Quicksand/Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		8FABD0C31EF29BCD006F0EFB /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.ttf"; path = "../../../../Library/Fonts/Quicksand/Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		8FABD0C61EF29C5D006F0EFB /* Raleway-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Black.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-Black.ttf"; sourceTree = "<group>"; };
+		8FABD0C71EF29C5D006F0EFB /* Raleway-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-BlackItalic.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-BlackItalic.ttf"; sourceTree = "<group>"; };
+		8FABD0C81EF29C5D006F0EFB /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		8FABD0C91EF29C5D006F0EFB /* Raleway-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-BoldItalic.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-BoldItalic.ttf"; sourceTree = "<group>"; };
+		8FABD0CA1EF29C5D006F0EFB /* Raleway-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-ExtraBold.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-ExtraBold.ttf"; sourceTree = "<group>"; };
+		8FABD0CB1EF29C5D006F0EFB /* Raleway-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-ExtraBoldItalic.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		8FABD0CC1EF29C5D006F0EFB /* Raleway-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-ExtraLight.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-ExtraLight.ttf"; sourceTree = "<group>"; };
+		8FABD0CD1EF29C5D006F0EFB /* Raleway-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-ExtraLightItalic.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		8FABD0CE1EF29C5D006F0EFB /* Raleway-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Italic.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-Italic.ttf"; sourceTree = "<group>"; };
+		8FABD0CF1EF29C5D006F0EFB /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Light.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-Light.ttf"; sourceTree = "<group>"; };
+		8FABD0D01EF29C5D006F0EFB /* Raleway-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-LightItalic.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-LightItalic.ttf"; sourceTree = "<group>"; };
+		8FABD0D11EF29C5D006F0EFB /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Medium.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		8FABD0D21EF29C5D006F0EFB /* Raleway-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-MediumItalic.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-MediumItalic.ttf"; sourceTree = "<group>"; };
+		8FABD0D31EF29C5D006F0EFB /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Regular.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		8FABD0D41EF29C5D006F0EFB /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-SemiBold.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		8FABD0D51EF29C5D006F0EFB /* Raleway-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-SemiBoldItalic.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		8FABD0D61EF29C5D006F0EFB /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Thin.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-Thin.ttf"; sourceTree = "<group>"; };
+		8FABD0D71EF29C5D006F0EFB /* Raleway-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-ThinItalic.ttf"; path = "../../../../Library/Fonts/Raleway/Raleway-ThinItalic.ttf"; sourceTree = "<group>"; };
+		8FABD0D81EF29C71006F0EFB /* Sanchez-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sanchez-Italic.ttf"; path = "../../../../Library/Fonts/Sanchez/Sanchez-Italic.ttf"; sourceTree = "<group>"; };
+		8FABD0D91EF29C71006F0EFB /* Sanchez-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sanchez-Regular.ttf"; path = "../../../../Library/Fonts/Sanchez/Sanchez-Regular.ttf"; sourceTree = "<group>"; };
+		8FABD0DA1EF29C80006F0EFB /* Selima .otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Selima .otf"; path = "../../../../Library/Fonts/Selima-Script/Selima .otf"; sourceTree = "<group>"; };
+		8FABD0DB1EF29C8C006F0EFB /* JuliusSansOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JuliusSansOne-Regular.ttf"; path = "../../../../Library/Fonts/Julius_Sans_One/JuliusSansOne-Regular.ttf"; sourceTree = "<group>"; };
+		8FABD0DC1EF29C99006F0EFB /* Anonymous Pro B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Anonymous Pro B.ttf"; path = "../../../../Library/Fonts/AnonymousPro-1.002.001/Anonymous Pro B.ttf"; sourceTree = "<group>"; };
+		8FABD0DD1EF29C99006F0EFB /* Anonymous Pro BI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Anonymous Pro BI.ttf"; path = "../../../../Library/Fonts/AnonymousPro-1.002.001/Anonymous Pro BI.ttf"; sourceTree = "<group>"; };
+		8FABD0DE1EF29C99006F0EFB /* Anonymous Pro I.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Anonymous Pro I.ttf"; path = "../../../../Library/Fonts/AnonymousPro-1.002.001/Anonymous Pro I.ttf"; sourceTree = "<group>"; };
+		8FABD0DF1EF29C99006F0EFB /* Anonymous Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Anonymous Pro.ttf"; path = "../../../../Library/Fonts/AnonymousPro-1.002.001/Anonymous Pro.ttf"; sourceTree = "<group>"; };
+		8FABD0E01EF29CA6006F0EFB /* LeagueSpartan-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LeagueSpartan-Bold.otf"; path = "../../../../Library/Fonts/league-spartan/LeagueSpartan-Bold.otf"; sourceTree = "<group>"; };
 		8FF0AED71D15645C0075BBE9 /* Anti Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anti Gravity.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FF0AEDA1D15645C0075BBE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FF0AEDC1D15645C0075BBE9 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -89,6 +120,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8FABD0C41EF29BE4006F0EFB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8FABD0E01EF29CA6006F0EFB /* LeagueSpartan-Bold.otf */,
+				8FABD0DC1EF29C99006F0EFB /* Anonymous Pro B.ttf */,
+				8FABD0DD1EF29C99006F0EFB /* Anonymous Pro BI.ttf */,
+				8FABD0DE1EF29C99006F0EFB /* Anonymous Pro I.ttf */,
+				8FABD0DF1EF29C99006F0EFB /* Anonymous Pro.ttf */,
+				8FABD0DB1EF29C8C006F0EFB /* JuliusSansOne-Regular.ttf */,
+				8FABD0DA1EF29C80006F0EFB /* Selima .otf */,
+				8FABD0D81EF29C71006F0EFB /* Sanchez-Italic.ttf */,
+				8FABD0D91EF29C71006F0EFB /* Sanchez-Regular.ttf */,
+				8F73D9641DB658D600D3180F /* Outage.ttf */,
+				8FABD0C01EF29BCD006F0EFB /* Quicksand-Bold.ttf */,
+				8FABD0C11EF29BCD006F0EFB /* Quicksand-Light.ttf */,
+				8FABD0C21EF29BCD006F0EFB /* Quicksand-Medium.ttf */,
+				8FABD0C31EF29BCD006F0EFB /* Quicksand-Regular.ttf */,
+				8FABD0C61EF29C5D006F0EFB /* Raleway-Black.ttf */,
+				8FABD0C71EF29C5D006F0EFB /* Raleway-BlackItalic.ttf */,
+				8FABD0C81EF29C5D006F0EFB /* Raleway-Bold.ttf */,
+				8FABD0C91EF29C5D006F0EFB /* Raleway-BoldItalic.ttf */,
+				8FABD0CA1EF29C5D006F0EFB /* Raleway-ExtraBold.ttf */,
+				8FABD0CB1EF29C5D006F0EFB /* Raleway-ExtraBoldItalic.ttf */,
+				8FABD0CC1EF29C5D006F0EFB /* Raleway-ExtraLight.ttf */,
+				8FABD0CD1EF29C5D006F0EFB /* Raleway-ExtraLightItalic.ttf */,
+				8FABD0CE1EF29C5D006F0EFB /* Raleway-Italic.ttf */,
+				8FABD0CF1EF29C5D006F0EFB /* Raleway-Light.ttf */,
+				8FABD0D01EF29C5D006F0EFB /* Raleway-LightItalic.ttf */,
+				8FABD0D11EF29C5D006F0EFB /* Raleway-Medium.ttf */,
+				8FABD0D21EF29C5D006F0EFB /* Raleway-MediumItalic.ttf */,
+				8FABD0D31EF29C5D006F0EFB /* Raleway-Regular.ttf */,
+				8FABD0D41EF29C5D006F0EFB /* Raleway-SemiBold.ttf */,
+				8FABD0D51EF29C5D006F0EFB /* Raleway-SemiBoldItalic.ttf */,
+				8FABD0D61EF29C5D006F0EFB /* Raleway-Thin.ttf */,
+				8FABD0D71EF29C5D006F0EFB /* Raleway-ThinItalic.ttf */,
+			);
+			name = Fonts;
+			path = "Anti Gravity";
+			sourceTree = "<group>";
+		};
 		8FF0AECE1D15645C0075BBE9 = {
 			isa = PBXGroup;
 			children = (
@@ -100,7 +171,7 @@
 				8FF0AEF21D15645C0075BBE9 /* Anti GravityTests */,
 				8FF0AEFD1D15645C0075BBE9 /* Anti GravityUITests */,
 				8FF0AED81D15645C0075BBE9 /* Products */,
-				8F73D9641DB658D600D3180F /* Outage.ttf */,
+				8FABD0C41EF29BE4006F0EFB /* Fonts */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,8 +193,8 @@
 				8FF0AEDE1D15645C0075BBE9 /* GameScene.swift */,
 				8FF0AEE01D15645C0075BBE9 /* GameViewController.swift */,
 				8FF0AEE21D15645C0075BBE9 /* Main.storyboard */,
-				8FF0AEE51D15645C0075BBE9 /* Assets.xcassets */,
 				8FF0AEE71D15645C0075BBE9 /* LaunchScreen.storyboard */,
+				8FF0AEE51D15645C0075BBE9 /* Assets.xcassets */,
 				8FF0AEEA1D15645C0075BBE9 /* Info.plist */,
 			);
 			path = "Anti Gravity";
