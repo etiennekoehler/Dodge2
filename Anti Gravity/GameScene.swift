@@ -112,6 +112,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var colorHex4   = SKSpriteNode()
     var colorHex5   = SKSpriteNode()
     var colorHex6   = SKSpriteNode()
+    var buyColorBTN = SKSpriteNode()
+    var selectBTN   = SKSpriteNode()
     var homeBTN      = SKSpriteNode()
     var homeBTNPic   = SKSpriteNode()
     var endScoreLbl  = SKLabelNode()
@@ -278,9 +280,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundColor = greyWhite
         homeScene()
         homeOrRestart = 0
-        colorVar = 1
-        islandPosRight  = 600
-        islandPosLeft   = 450
+        //colorVar = 1
+        randPos = Int(arc4random_uniform(250)) + 400
+        islandPosRight  = randPos
+        islandPosLeft   = randPos
+        
 
 
 
@@ -296,7 +300,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (starCountDefault.value(forKey: "starCount") != nil) {
             starCount = starCountDefault.value(forKey: "starCount") as! NSInteger!
         }
-
+        
         //--- Sounds
 
         let touchSound:URL = Bundle.main.url(forResource: "touchSoundOfficial2.0", withExtension: "mp3")!
@@ -418,10 +422,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let center = CGPoint(x: self.frame.midX, y: self.frame.midY)
         let path   = CGMutablePath()
         
-        path.move   (to: CGPoint(x: center.x + 25, y: center.y))
-        path.addLine(to: CGPoint(x: center.x,      y: center.y + 25))
-        path.addLine(to: CGPoint(x: center.x - 25, y: center.y))
-        path.addLine(to: CGPoint(x: center.x,      y: center.y - 25))
+        path.move   (to: CGPoint(x: center.x + 25, y: center.y - 100))
+        path.addLine(to: CGPoint(x: center.x,      y: center.y - 75))
+        path.addLine(to: CGPoint(x: center.x - 25, y: center.y - 100))
+        path.addLine(to: CGPoint(x: center.x,      y: center.y - 125))
 
         path.closeSubpath()
         ball = SKShapeNode(path: path)
@@ -682,7 +686,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //bigBar
         bigBar.fillColor =  darkGrey
-        bigBar.path = UIBezierPath(roundedRect: CGRect(x: 100, y: 100, width: 500, height: 400), cornerRadius: 5).cgPath
+        bigBar.path = UIBezierPath(roundedRect: CGRect(x: 100, y: 100, width: 500, height: 380), cornerRadius: 5).cgPath
         bigBar.physicsBody?.isDynamic          = false
         bigBar.physicsBody?.affectedByGravity  = false
         bigBar.position = CGPoint(x: self.frame.width / 2 - 350, y:self.frame.height/2 - 550)
@@ -731,31 +735,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         colorBTN6.position = CGPoint(x: self.frame.width / 2 + 140, y:self.frame.height/2 - 300 )
         colorBTN6.zPosition = 5
         self.addChild(colorBTN6)
-
-        print ("+++++++++++++++  ",colorVar)
+        
+        
+        //print ("+++++++++++++++  ",colorVar)
         
         if colorVar == 1 {
             colorShow1()
+            createSelectBTN()
         }
         
         else if colorVar == 2 {
             colorShow2()
+            createBuyColorBTN()
         }
         
         else if colorVar == 3 {
             colorShow3()
+            createBuyColorBTN()
         }
         
         else if colorVar == 4 {
             colorShow4()
+            createBuyColorBTN()
         }
         
         else if colorVar == 5 {
             colorShow5()
+            createBuyColorBTN()
         }
         
         else if colorVar == 6 {
             colorShow6()
+            createBuyColorBTN()
         }
     }
     
@@ -770,9 +781,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         colorHex1 = SKSpriteNode(imageNamed: "colorCombo1")
         colorHex1.setScale(1.3)
-        colorHex1.position = CGPoint(x:self.frame.width / 2 , y:self.frame.height/2 + 140 )
+        colorHex1.position = CGPoint(x:self.frame.width / 2 , y:self.frame.height/2 + 160 )
         colorHex1.zPosition = 5
-        colorVar = 1
         self.addChild(colorHex1)
     }
 
@@ -786,9 +796,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         colorHex2 = SKSpriteNode(imageNamed: "colorCombo2")
         colorHex2.setScale(1.3)
-        colorHex2.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 140 )
+        colorHex2.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 160 )
         colorHex2.zPosition = 5
-        colorVar = 2
         self.addChild(colorHex2)
     }
     
@@ -802,9 +811,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         colorHex3 = SKSpriteNode(imageNamed: "colorCombo3")
         colorHex3.setScale(1.3)
-        colorHex3.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 140 )
+        colorHex3.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 160 )
         colorHex3.zPosition = 5
-        colorVar = 3
         self.addChild(colorHex3)
     }
 
@@ -818,9 +826,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         colorHex4 = SKSpriteNode(imageNamed: "colorCombo4")
         colorHex4.setScale(1.3)
-        colorHex4.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 140 )
+        colorHex4.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 160 )
         colorHex4.zPosition = 5
-        colorVar = 4
         self.addChild(colorHex4)
     }
 
@@ -834,9 +841,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         colorHex5 = SKSpriteNode(imageNamed: "colorCombo5")
         colorHex5.setScale(1.3)
-        colorHex5.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 140 )
+        colorHex5.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 160 )
         colorHex5.zPosition = 5
-        colorVar = 5
         self.addChild(colorHex5)
     }
 
@@ -850,10 +856,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         colorHex6 = SKSpriteNode(imageNamed: "colorCombo6")
         colorHex6.setScale(1.3)
-        colorHex6.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 140 )
+        colorHex6.position = CGPoint(x: self.frame.width / 2 , y:self.frame.height/2 + 160 )
         colorHex6.zPosition = 5
-        colorVar = 6
         self.addChild(colorHex6)
+    }
+    
+//buy button for color
+    func createBuyColorBTN() {
+        buyColorBTN = SKSpriteNode(imageNamed: "buyColorBTN")
+        buyColorBTN.setScale(1.2)
+        buyColorBTN.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 )
+        buyColorBTN.zPosition = 5
+        self.addChild(buyColorBTN)
+    }
+    
+//buy button for color
+    func createSelectBTN() {
+        selectBTN = SKSpriteNode(imageNamed: "selectColorBTN")
+        selectBTN.setScale(1.0)
+        selectBTN.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 )
+        selectBTN.zPosition = 5
+        self.addChild(selectBTN)
     }
 
     
@@ -2357,11 +2380,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // state 1: Play ----------------------
         
         if playState == 1 {
-            randPos = Int(arc4random_uniform(599))
+            randPos = Int(arc4random_uniform(150)) + 450
 
-            while randPos < 450 {
-                randPos = Int(arc4random_uniform(599))
-            }
+            
             print("random: !!!!!!!!!!", randPos)
 
             
@@ -2453,6 +2474,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 if colorBTN6.contains(location){
                 }
+                if buyColorBTN.contains(location){
+                }
+                
 
             }
 
@@ -2789,6 +2813,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if playState == 5 {
             for touch in touches{
                 let location = touch.location(in: self)
+                print("+++++++++++", colorVar)
                 
                 if backBTN.contains(location) && homeOrRestart == 2{
                     removeAllChildren()
@@ -2803,6 +2828,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = -1
                     homeScene()
                     score = 0
+                }
+                
+                if buyColorBTN.contains(location){
+                    if starCount >= 50 {
+                        starCount = starCount - 1
+                        buyColorBTN.removeFromParent()
+                        createSelectBTN()
+                        }
+                    
+                    else {
+                    }
+                }
+                
+                if selectBTN.contains(location){
+                    
                 }
                 
                 if colorBTN1.contains(location){
@@ -2820,6 +2860,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         colorHex4.removeFromParent()
                         colorHex5.removeFromParent()
                         colorHex6.removeFromParent()
+                        colorVar = 1
                     }
                     if colorVar == 1 {
                     }
@@ -2840,7 +2881,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         colorHex4.removeFromParent()
                         colorHex5.removeFromParent()
                         colorHex6.removeFromParent()
-                        
+                        colorVar = 2
                     }
                     if colorVar == 2 {
                     }
@@ -2861,7 +2902,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             colorHex4.removeFromParent()
                             colorHex5.removeFromParent()
                             colorHex6.removeFromParent()
-                            
+                            colorVar = 3
                         }
                         if colorVar == 3 {
                         }
@@ -2882,7 +2923,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             colorHex3.removeFromParent()
                             colorHex5.removeFromParent()
                             colorHex6.removeFromParent()
-
+                            colorVar = 4
                                 
                         }
                         if colorVar == 4 {
@@ -2904,7 +2945,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             colorHex3.removeFromParent()
                             colorHex4.removeFromParent()
                             colorHex6.removeFromParent()
-                            
+                            colorVar = 5
                         }
                         if colorVar == 5 {
                         }
@@ -2925,7 +2966,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             colorHex3.removeFromParent()
                             colorHex4.removeFromParent()
                             colorHex5.removeFromParent()
-                            
+                            colorVar = 6
                         }
                         if colorVar == 6 {
                         }
