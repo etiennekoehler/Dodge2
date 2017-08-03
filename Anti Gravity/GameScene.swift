@@ -238,7 +238,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallShift:CGFloat = -150.0// -50.0                    // shift wall to see more of incoming red wall//var xwallMoveI:CGFloat = 100.0
     var xwallMove          = [CGFloat(400), CGFloat(400)]   // move walls x-speed 400
     var gravityDirection = CGVector(dx: 0,dy: 0)               // gravity: normal (0,-9.8)
-    var length = [40, 40] // 50 75
+    var length = [35, 35] // 50 75
     var Xran = Int()
     var randPos = Int(arc4random_uniform(599))
     var islandPosRight  = Int()
@@ -1708,10 +1708,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let center8 = CGPoint(x: self.frame.midX, y: self.frame.midY)
         let path8   = CGMutablePath()
         
-        path8.move   (to: CGPoint(x: center8.x + CGFloat(length[iRan]), y: center8.y))
+        path8.move   (to: CGPoint(x: center8.x + CGFloat(length[iRan]),      y: center8.y))
         path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y + 25))
         path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y + 25))
-        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]), y: center8.y))
+        path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]),      y: center8.y))
         path8.addLine(to: CGPoint(x: center8.x - CGFloat(length[iRan]) + 25, y: center8.y - 25))
         path8.addLine(to: CGPoint(x: center8.x + CGFloat(length[iRan]) - 25, y: center8.y - 25))
 
@@ -1925,7 +1925,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallRight = SKShapeNode(path: path9)
         smallWallRight.strokeColor = red
         smallWallRight.fillColor   = red
-        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 220, y:frame.height-383)
+        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 210, y:frame.height-383)
         smallWallRight.physicsBody = SKPhysicsBody(polygonFrom: path9)
         smallWallRight.physicsBody?.affectedByGravity = false
         smallWallRight.physicsBody?.isDynamic = false
@@ -1948,7 +1948,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallLeft = SKShapeNode(path: path10)
         smallWallLeft.strokeColor = red
         smallWallLeft.fillColor   = red
-        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 800, y:frame.height-383)
+        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 810, y:frame.height-383)
         smallWallLeft.physicsBody = SKPhysicsBody(polygonFrom: path10)
         smallWallLeft.physicsBody?.affectedByGravity = false
         smallWallLeft.physicsBody?.isDynamic = false
@@ -1993,7 +1993,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallRight = SKShapeNode(path: path9)
         smallWallRight.strokeColor = darkGrey
         smallWallRight.fillColor   = darkGrey
-        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 220, y:frame.height-383)
+        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 210, y:frame.height-383)
         smallWallRight.physicsBody = SKPhysicsBody(polygonFrom: path9)
         smallWallRight.physicsBody?.affectedByGravity = false
         smallWallRight.physicsBody?.isDynamic = false
@@ -2016,7 +2016,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallLeft = SKShapeNode(path: path10)
         smallWallLeft.strokeColor = darkGrey
         smallWallLeft.fillColor   = darkGrey
-        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 800, y:frame.height-383)
+        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 810, y:frame.height-383)
         smallWallLeft.physicsBody = SKPhysicsBody(polygonFrom: path10)
         smallWallLeft.physicsBody?.affectedByGravity = false
         smallWallLeft.physicsBody?.isDynamic = false
