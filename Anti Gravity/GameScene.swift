@@ -51,31 +51,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var wallAl  = SKShapeNode()
     var wallBl  = SKShapeNode()
     var island  = SKShapeNode()
-    var smallWallRight  = SKShapeNode()
-    var smallWallLeft   = SKShapeNode()
-    var fallBall        = SKShapeNode()
-    var ballBar         = SKShapeNode()
-    var scoreWall       = SKShapeNode()
-    var highscoreWall   = SKShapeNode()
-    var diamond         = SKShapeNode()
-    var starPic         = SKSpriteNode()
-    var boxGold         = SKSpriteNode()
-    var wallPairRight   = SKNode()
-    var wallPairLeft    = SKNode()
-    var wallChompRight  = SKNode()
-    var wallChompLeft   = SKNode()
-    var wallIslandLeft  = SKNode()
-    var wallIslandLeft2 = SKNode()
-    var wallIslandRight = SKNode()
+    var smallWallRight   = SKShapeNode()
+    var smallWallLeft    = SKShapeNode()
+    var fallBall         = SKShapeNode()
+    var ballBar          = SKShapeNode()
+    var scoreWall        = SKShapeNode()
+    var highscoreWall    = SKShapeNode()
+    var diamond          = SKShapeNode()
+    var starPic          = SKSpriteNode()
+    var boxGold          = SKSpriteNode()
+    var wallPairRight    = SKNode()
+    var wallPairLeft     = SKNode()
+    var wallChompRight   = SKNode()
+    var wallChompLeft    = SKNode()
+    var wallIslandLeft   = SKNode()
+    var wallIslandLeft2  = SKNode()
+    var wallIslandRight  = SKNode()
     var wallIslandRight2 = SKNode()
-    var outsideWalls    = SKNode()
+    var outsideWalls     = SKNode()
     var corner1  = SKNode()
     var corner2  = SKNode()
     var corner3  = SKNode()
     var corner4  = SKNode()
-    var star    = SKNode()
-    var star1   = SKSpriteNode()
-    var star2   = SKNode()
+    var star     = SKNode()
+    var star1    = SKSpriteNode()
     var moveAndRemoveRight       = SKAction()
     var moveAndRemoveLeft        = SKAction()
     var moveAndRemoveChompRight  = SKAction()
@@ -86,51 +85,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveAndRemoveStar        = SKAction()
     var restartBTN   = SKSpriteNode()
     var resetBTN     = SKSpriteNode()
-    var restartBTN2   = SKSpriteNode()
+    var restartBTN2  = SKSpriteNode()
     var resetBTN2    = SKSpriteNode()
-    var restartBTN22   = SKSpriteNode()
+    var restartBTN22 = SKSpriteNode()
     var resetBTN22   = SKSpriteNode()
-    var restartBTN3   = SKSpriteNode()
-    var resetBTN3   = SKSpriteNode()
-    var restartBTN4   = SKSpriteNode()
-    var resetBTN4   = SKSpriteNode()
-    var restartBTN5   = SKSpriteNode()
-    var resetBTN5   = SKSpriteNode()
-    var restartBTN6   = SKSpriteNode()
-    var resetBTN6   = SKSpriteNode()
-    var backBTN1   = SKSpriteNode()
-    var backBTN2   = SKSpriteNode()
-    var backBTN3   = SKSpriteNode()
-    var backBTN4   = SKSpriteNode()
-    var backBTN5  = SKSpriteNode()
-    var backBTN6   = SKSpriteNode()
-    var colorBTN1   = SKSpriteNode()
-    var colorBTN2   = SKSpriteNode()
-    var colorBTN3   = SKSpriteNode()
-    var colorBTN4   = SKSpriteNode()
-    var colorBTN5   = SKSpriteNode()
-    var colorBTN6   = SKSpriteNode()
+    var restartBTN3  = SKSpriteNode()
+    var resetBTN3    = SKSpriteNode()
+    var restartBTN4  = SKSpriteNode()
+    var resetBTN4    = SKSpriteNode()
+    var restartBTN5  = SKSpriteNode()
+    var resetBTN5    = SKSpriteNode()
+    var restartBTN6  = SKSpriteNode()
+    var resetBTN6    = SKSpriteNode()
+    var backBTN1     = SKSpriteNode()
+    var backBTN2     = SKSpriteNode()
+    var backBTN3     = SKSpriteNode()
+    var backBTN4     = SKSpriteNode()
+    var backBTN5     = SKSpriteNode()
+    var backBTN6     = SKSpriteNode()
+    var colorBTN1    = SKSpriteNode()
+    var colorBTN2    = SKSpriteNode()
+    var colorBTN3    = SKSpriteNode()
+    var colorBTN4    = SKSpriteNode()
+    var colorBTN5    = SKSpriteNode()
+    var colorBTN6    = SKSpriteNode()
     var colorBTN1Gold   = SKSpriteNode()
     var colorBTN2Gold   = SKSpriteNode()
     var colorBTN3Gold   = SKSpriteNode()
     var colorBTN4Gold   = SKSpriteNode()
     var colorBTN5Gold   = SKSpriteNode()
     var colorBTN6Gold   = SKSpriteNode()
-    var colorHex1   = SKSpriteNode()
-    var colorHex2   = SKSpriteNode()
-    var colorHex3   = SKSpriteNode()
-    var colorHex4   = SKSpriteNode()
-    var colorHex5   = SKSpriteNode()
-    var colorHex6   = SKSpriteNode()
-    var buyColorBTN = SKSpriteNode()
+    var colorHex1    = SKSpriteNode()
+    var colorHex2    = SKSpriteNode()
+    var colorHex3    = SKSpriteNode()
+    var colorHex4    = SKSpriteNode()
+    var colorHex5    = SKSpriteNode()
+    var colorHex6    = SKSpriteNode()
+    var buyColorBTN  = SKSpriteNode()
     var selectBTN1   = SKSpriteNode()
     var selectBTN2   = SKSpriteNode()
-    var homeBTN1      = SKSpriteNode()
-    var homeBTN2      = SKSpriteNode()
-    var homeBTN3      = SKSpriteNode()
-    var homeBTN4      = SKSpriteNode()
-    var homeBTN5      = SKSpriteNode()
-    var homeBTN6      = SKSpriteNode()
+    var homeBTN1     = SKSpriteNode()
+    var homeBTN2     = SKSpriteNode()
+    var homeBTN3     = SKSpriteNode()
+    var homeBTN4     = SKSpriteNode()
+    var homeBTN5     = SKSpriteNode()
+    var homeBTN6     = SKSpriteNode()
     var homeBTNPic   = SKSpriteNode()
     var endScoreLbl  = SKLabelNode()
     var endScoreLbl2 = SKLabelNode()
@@ -138,58 +137,58 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var endScoreLbl4 = SKLabelNode()
     var gameLabel    = SKSpriteNode()
     var gameLabel2   = SKSpriteNode()
-    var gameLabel22   = SKSpriteNode()
+    var gameLabel22  = SKSpriteNode()
     var gameLabel3   = SKSpriteNode()
     var gameLabel4   = SKSpriteNode()
     var gameLabel5   = SKSpriteNode()
     var gameLabel6   = SKSpriteNode()
     var playBTN      = SKSpriteNode()
     var playBTN2     = SKSpriteNode()
-    var playBTN22     = SKSpriteNode()
+    var playBTN22    = SKSpriteNode()
     var playBTN3     = SKSpriteNode()
     var playBTN4     = SKSpriteNode()
     var playBTN5     = SKSpriteNode()
     var playBTN6     = SKSpriteNode()
     var rateBTN      = SKSpriteNode()
     var rateBTN2     = SKSpriteNode()
-    var rateBTN22     = SKSpriteNode()
+    var rateBTN22    = SKSpriteNode()
     var rateBTN3     = SKSpriteNode()
     var rateBTN4     = SKSpriteNode()
     var rateBTN5     = SKSpriteNode()
     var rateBTN6     = SKSpriteNode()
     var musicBTN     = SKSpriteNode()
-    var musicBTN22     = SKSpriteNode()
-    var musicBTN3     = SKSpriteNode()
-    var musicBTN4     = SKSpriteNode()
-    var musicBTN5     = SKSpriteNode()
-    var musicBTN6     = SKSpriteNode()
+    var musicBTN22   = SKSpriteNode()
+    var musicBTN3    = SKSpriteNode()
+    var musicBTN4    = SKSpriteNode()
+    var musicBTN5    = SKSpriteNode()
+    var musicBTN6    = SKSpriteNode()
     var musicBTN2    = SKSpriteNode()
-    var musicBTNCross22     = SKSpriteNode()
+    var musicBTNCross22    = SKSpriteNode()
     var musicBTNCross3     = SKSpriteNode()
     var musicBTNCross4     = SKSpriteNode()
     var musicBTNCross5     = SKSpriteNode()
     var musicBTNCross6     = SKSpriteNode()
-    var buyBTNHome1     = SKSpriteNode()
-    var buyBTNHome2     = SKSpriteNode()
-    var buyBTNHome3     = SKSpriteNode()
-    var buyBTNHome4     = SKSpriteNode()
-    var buyBTNHome5     = SKSpriteNode()
-    var buyBTNHome6     = SKSpriteNode()
-    var buyBTNRest1     = SKSpriteNode()
-    var buyBTNRest2     = SKSpriteNode()
-    var buyBTNRest3     = SKSpriteNode()
-    var buyBTNRest4     = SKSpriteNode()
-    var buyBTNRest5     = SKSpriteNode()
-    var buyBTNRest6     = SKSpriteNode()
+    var buyBTNHome1  = SKSpriteNode()
+    var buyBTNHome2  = SKSpriteNode()
+    var buyBTNHome3  = SKSpriteNode()
+    var buyBTNHome4  = SKSpriteNode()
+    var buyBTNHome5  = SKSpriteNode()
+    var buyBTNHome6  = SKSpriteNode()
+    var buyBTNRest1  = SKSpriteNode()
+    var buyBTNRest2  = SKSpriteNode()
+    var buyBTNRest3  = SKSpriteNode()
+    var buyBTNRest4  = SKSpriteNode()
+    var buyBTNRest5  = SKSpriteNode()
+    var buyBTNRest6  = SKSpriteNode()
     var pauseBTN     = SKSpriteNode()
     var pauseBTNPic  = SKSpriteNode()
     var noAd         = SKSpriteNode()
     var noAdBTN      = SKSpriteNode()
-    var noAdBTN22      = SKSpriteNode()
+    var noAdBTN22    = SKSpriteNode()
     var noAdBTN3     = SKSpriteNode()
-    var noAdBTN4      = SKSpriteNode()
-    var noAdBTN5      = SKSpriteNode()
-    var noAdBTN6      = SKSpriteNode()
+    var noAdBTN4     = SKSpriteNode()
+    var noAdBTN5     = SKSpriteNode()
+    var noAdBTN6     = SKSpriteNode()
     //let crashSound = NSURL(fileURLWithPath: (NSBundle.mainBundle().pathForResource("thePointSound", ofType: "mp3"))!)
     var touchPlayer  = AVAudioPlayer()
     var pointPlayer  = AVAudioPlayer()
@@ -199,12 +198,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var error: NSError?
     var playState = -1
-    var colorVar = 1
+    var colorVar  = 1
     var wallSpeed = 400
-    
-
-
-    
 
     var scrollView: UIScrollView!
     //var buttons: List<UIButton>!
@@ -253,18 +248,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var xwallMove          = [CGFloat(400), CGFloat(400)]// move walls x-speed 400
     var speedVar           = Int()
     var xwallMove2         = 400
-    var gravityDirection = CGVector(dx: 0,dy: 0)               // gravity: normal (0,-9.8)
-    var length = [35, 35] // 50 75
-    var Xran = Int()
-    var randPos = Int(arc4random_uniform(599))
+    var gravityDirection   = CGVector(dx: 0,dy: 0)             // gravity: normal (0,-9.8)
+    var length          = [35, 35] // 50 75
+    var Xran            = Int()
+    var randPos         = Int(arc4random_uniform(599))
     var islandPosRight  = Int()
     var islandPosLeft   = Int()
-    var selectColor = Int()
+    var selectColor     = Int()
 
-
-    //var length = Int()
     
-   // color schemes
+// color schemes
     
     var greyWhite      = UIColor(red: 252/255, green: 252/255, blue: 247/255, alpha: 1.0)//252 , 252 , 247 / 234 , 248 , 191
     var red            = UIColor(red: 248/256, green: 73/256,  blue:  52/256, alpha: 1.0)//248 , 73 , 52 / 255 , 121 , 18
@@ -276,25 +269,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lightGrey      = UIColor(red: 255/255,  green: 255/255,  blue: 255/255,  alpha: 1.0)/* #c1c1c1 */
     var gold3          = UIColor(red: 249/255,  green: 200/255,  blue: 14/255,  alpha: 1.0)//248,243,43/227,178,60/249,200,14
     
-
-    var score     = Int()
-    var highscore = Int()
-    var starCount = Int()
+    var score        = Int()
+    var highscore    = Int()
+    var starCount    = Int()
     var unlockColor1 = 1
     var unlockColor2 = Int()
     var unlockColor3 = Int()
     var unlockColor4 = Int()
     var unlockColor5 = Int()
     var unlockColor6 = Int()
-    var starPos   = Int()
-    var soundVar   = Int()
+    var starPos      = Int()
+    var soundVar     = Int()
     var volumeVar:CGFloat = 0.0
-    var homeOrRestart = Int()
-    var dodgePicColor = "dodgePic"
-    var onBuyScene = 0
-    var superSelect = 1
-    
-    
+    var homeOrRestart     = Int()
+    var dodgePicColor     = "dodgePic"
+    var onBuyScene        = 0
+    var superSelect       = 1
     
     let scoreLbl = SKLabelNode()
     let starLbl  = SKLabelNode()
@@ -651,7 +641,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             createBuyBTNHome4()
             
             createCorners()
-            
+    
         }
 
         else if colorVar == 5 {
@@ -669,7 +659,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             createBuyBTNHome5()
             
             createCorners()
-            
         }
 
         else if colorVar == 6 {
@@ -689,8 +678,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             createCorners()
             
         }
-
-        
     }
     
 //--- Dead screen
@@ -740,8 +727,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.createHomeBTN6()
             self.createBuyBTNRest6()
         }
-
     }
+
 //--- Buy screen
     
     func buyScene(){
@@ -936,7 +923,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         
-        
     onBuyScene = 1
     }
     
@@ -1084,8 +1070,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
 //buy button for color
     func createBuyColorBTN() {
-        buyColorBTN = SKSpriteNode(imageNamed: "50Star")
-        buyColorBTN.setScale(0.7)
+        buyColorBTN = SKSpriteNode(imageNamed: "buyColorBTN")
+        buyColorBTN.setScale(1.7)
         buyColorBTN.position = CGPoint(x: self.frame.width / 2, y:self.frame.height/2 - 25)
         buyColorBTN.zPosition = 5
         self.addChild(buyColorBTN)
@@ -1249,7 +1235,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         corner4.position = CGPoint(x: self.frame.width / 2 - 212, y:self.frame.height / 2 - 379.7)
         corner4.zPosition = 5
         self.addChild(corner4)
-        
     }
     
 
@@ -1271,7 +1256,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.resetBTN2.physicsBody?.isDynamic = false
         self.resetBTN2.zPosition = 7
         self.addChild(self.resetBTN2)
-        
     }
 
 //------------ create restart buttons (normal)
@@ -1452,7 +1436,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playBTN22)
     }
 
-    //--- play button color 3
+//--- play button color 3
     
     func createPlayBTN3() {
         playBTN3 = SKSpriteNode(imageNamed: "playBTN3Square")
@@ -1462,7 +1446,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playBTN3)
     }
     
-    //--- play button color 4
+//--- play button color 4
     
     func createPlayBTN4() {
         playBTN4 = SKSpriteNode(imageNamed: "playBTN4Square")
@@ -1472,7 +1456,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playBTN4)
     }
     
-    //--- play button color 5
+//--- play button color 5
     
     func createPlayBTN5() {
         playBTN5 = SKSpriteNode(imageNamed: "playBTN5Square")
@@ -1482,7 +1466,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playBTN5)
     }
     
-    //--- play button color 6
+//--- play button color 6
     
     func createPlayBTN6() {
         playBTN6 = SKSpriteNode(imageNamed: "playBTN6Square")
@@ -1552,8 +1536,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(rateBTN6)
     }
 
-
-    
 //--- music button 1 (when music on)
     
     func createMusicBTN() {
@@ -1737,8 +1719,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    
-    
 //--- buy buttons (for home screen)
     
     func createBuyBTNHome1() {
@@ -1748,7 +1728,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNHome1.position = CGPoint(x: self.frame.width / 2, y: self.frame.height/2 - 80)
             self.buyBTNHome1.zPosition = 6
             self.addChild(self.buyBTNHome1)
-
         }
     }
     
@@ -1759,7 +1738,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNHome2.position = CGPoint(x: self.frame.width / 2, y: self.frame.height/2 - 80)
             self.buyBTNHome2.zPosition = 6
             self.addChild(self.buyBTNHome2)
-            
         }
     }
     
@@ -1770,7 +1748,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNHome3.position = CGPoint(x: self.frame.width / 2, y: self.frame.height/2 - 80)
             self.buyBTNHome3.zPosition = 6
             self.addChild(self.buyBTNHome3)
-            
         }
     }
     
@@ -1781,7 +1758,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNHome4.position = CGPoint(x: self.frame.width / 2, y: self.frame.height/2 - 80)
             self.buyBTNHome4.zPosition = 6
             self.addChild(self.buyBTNHome4)
-            
         }
     }
     
@@ -1792,7 +1768,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNHome5.position = CGPoint(x: self.frame.width / 2, y: self.frame.height/2 - 80)
             self.buyBTNHome5.zPosition = 6
             self.addChild(self.buyBTNHome5)
-            
         }
     }
     
@@ -1803,7 +1778,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNHome6.position = CGPoint(x: self.frame.width / 2, y: self.frame.height/2 - 80)
             self.buyBTNHome6.zPosition = 6
             self.addChild(self.buyBTNHome6)
-            
         }
     }
     
@@ -1816,7 +1790,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNRest1.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest1.zPosition = 6
             self.addChild(self.buyBTNRest1)
-            
         }
     }
     
@@ -1827,7 +1800,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNRest2.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest2.zPosition = 6
             self.addChild(self.buyBTNRest2)
-            
         }
     }
 
@@ -1838,7 +1810,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNRest3.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest3.zPosition = 6
             self.addChild(self.buyBTNRest3)
-            
         }
     }
 
@@ -1849,7 +1820,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNRest4.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest4.zPosition = 6
             self.addChild(self.buyBTNRest4)
-            
         }
     }
 
@@ -1860,7 +1830,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNRest5.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest5.zPosition = 6
             self.addChild(self.buyBTNRest5)
-            
         }
     }
 
@@ -1871,7 +1840,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.buyBTNRest6.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest6.zPosition = 6
             self.addChild(self.buyBTNRest6)
-            
         }
     }
 
@@ -2261,7 +2229,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallLeft.zPosition = 3
         
         outsideWalls.addChild(smallWallRight)
-
         outsideWalls.addChild(smallWallLeft)
         outsideWalls.run(moveAndRemoveOutsideWall)
         
@@ -2329,7 +2296,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallLeft.zPosition = 3
         
         outsideWalls.addChild(smallWallRight)
-        
         outsideWalls.addChild(smallWallLeft)
         outsideWalls.run(moveAndRemoveOutsideWall)
         
@@ -2340,9 +2306,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //--- Stars
     
     func createStars() {
-        star = SKNode()
-        star.name = "star1"
+        star  = SKNode()
         star1 = SKSpriteNode(imageNamed: "starGold")
+        star1.name = "star1"
         star1.setScale(1.0)
         star1.size = CGSize(width: 40, height: 40)
         star1.position = CGPoint(x: self.frame.width / 2 + CGFloat(starVar) , y:self.frame.height / 2 + 383)
@@ -2352,8 +2318,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         star1.physicsBody?.categoryBitMask = PhysicsCatagory.star1
         star1.physicsBody?.collisionBitMask = 0
         star1.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
-        star1.zPosition = 5
-        //star.addChild(star1)
+        star1.zPosition = 3
+        
+        star1.addChild(star)
         star1.run(moveAndRemoveStar)
         self.addChild(star1)
         print("STAR")
@@ -2554,9 +2521,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if buyBTNHome6.contains(location){
                     }
                 }
-
             }
-            
         }
         
         // state 0: Set ----------------------
@@ -2610,6 +2575,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 () in
                 self.createStars()
             })
+            print("createStars: star1", star1, "star: ",star)
 
             //let spawnFallBall = SKAction.run({
             //    () in
@@ -2644,7 +2610,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let removeWallChompLeft  = SKAction.removeFromParent()
             moveAndRemoveChompLeft   = SKAction.sequence([moveWallChompLeft, removeWallChompLeft])
             
-            
             // island starting left
             let moveIslandLeft       = SKAction.moveBy(x: CGFloat(islandVar) * CGFloat(ball_dir) * CGFloat(xwallMove2), y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
             let removeIslandLeft     = SKAction.removeFromParent()
@@ -2654,8 +2619,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let moveIslandRight      = SKAction.moveBy(x: CGFloat(-islandVar) * CGFloat(ball_dir) * CGFloat(xwallMove2), y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
             let removeIslandRight    = SKAction.removeFromParent()
             moveAndRemoveIslandRight = SKAction.sequence([moveIslandRight, removeIslandRight])
-            
-
 
             // Outside Wall (outside of island)
             let moveOutsideWall      = SKAction.moveBy(x: 0, y: -distanceWall, duration: TimeInterval(distanceWall/velocityWall))
@@ -2748,14 +2711,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 if restartBTN6.contains(location){
                 }
- 
                 if homeBTN1.contains(location){
-                    
                 }
-                
                 if buyBTNRest1.contains(location){
-                    
-                    }
+                }
             }
         }
         
@@ -2782,10 +2741,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 if buyColorBTN.contains(location){
                 }
-                
-
             }
-
         }
     }
    
@@ -2816,7 +2772,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         musicBTN.removeFromParent()
                         createMusicBTN2()
                         print("*** End Touch musicBTN ***", trackPlayer.volume)
-
                     }
                 
                     if musicBTN2.contains(location) && trackPlayer.volume == 0.3{
@@ -2850,7 +2805,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         musicBTN22.removeFromParent()
                         createMusicBTNCross22()
                         print("*** End Touch musicBTN ***", trackPlayer.volume)
-                        
                     }
                     
                     if musicBTNCross22.contains(location) && trackPlayer.volume == 0.3{
@@ -2878,12 +2832,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if rateBTN3.contains(location){
                     }
                     
-                    
                     if musicBTN3.contains(location) && trackPlayer.volume == 0.0{
                         musicBTN3.removeFromParent()
                         createMusicBTNCross3()
                         print("*** End Touch musicBTN ***", trackPlayer.volume)
-                        
                     }
                     
                     if musicBTNCross3.contains(location) && trackPlayer.volume == 0.3{
@@ -2910,7 +2862,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     if rateBTN4.contains(location){
                     }
-                    
                     
                     if musicBTN4.contains(location) && trackPlayer.volume == 0.0{
                         musicBTN4.removeFromParent()
@@ -2944,12 +2895,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if rateBTN5.contains(location){
                     }
                     
-                    
                     if musicBTN5.contains(location) && trackPlayer.volume == 0.0{
                         musicBTN5.removeFromParent()
                         createMusicBTNCross5()
                         print("*** End Touch musicBTN ***", trackPlayer.volume)
-                        
                     }
                     
                     if musicBTNCross5.contains(location) && trackPlayer.volume == 0.3{
@@ -2977,12 +2926,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if rateBTN6.contains(location){
                     }
                     
-                    
                     if musicBTN6.contains(location) && trackPlayer.volume == 0.0{
                         musicBTN6.removeFromParent()
                         createMusicBTNCross6()
                         print("*** End Touch musicBTN ***", trackPlayer.volume)
-                        
                     }
                     
                     if musicBTNCross6.contains(location) && trackPlayer.volume == 0.3{
@@ -2999,8 +2946,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         buyScene()
                     }
                 }
-
-                
             }
         }
         
@@ -3051,8 +2996,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = 0
                 }
 
-                
-                
                 if  homeBTN1.contains(location) || homeBTN2.contains(location) || homeBTN3.contains(location) || homeBTN4.contains(location) || homeBTN5.contains(location) || homeBTN6.contains(location) {
                     removeAllChildren()
                     removeAllActions()
@@ -3068,7 +3011,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = 5
                     buyScene()
                     onBuyScene = 2
-                    
                 }
                 
                 if buyBTNRest2.contains(location){
@@ -3078,7 +3020,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = 5
                     buyScene()
                     onBuyScene = 2
-                    
                 }
                 
                 if buyBTNRest3.contains(location){
@@ -3088,7 +3029,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = 5
                     buyScene()
                     onBuyScene = 2
-                    
                 }
                 
                 if buyBTNRest4.contains(location){
@@ -3098,7 +3038,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = 5
                     buyScene()
                     onBuyScene = 2
-                    
                 }
                 
                 if buyBTNRest5.contains(location){
@@ -3108,7 +3047,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = 5
                     buyScene()
                     onBuyScene = 2
-                    
                 }
                 
                 if buyBTNRest6.contains(location){
@@ -3118,7 +3056,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playState = 5
                     buyScene()
                     onBuyScene = 2
-                    
                 }
             }
         }
@@ -3264,8 +3201,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             createSelectBTN()
                             unlockColor2 = 1
                         }
-                        else {
-                        }
                     }
                     if selectColor == 3 {
                         if starCount >= 5 {
@@ -3273,8 +3208,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             buyColorBTN.removeFromParent()
                             createSelectBTN()
                             unlockColor3 = 1
-                        }
-                        else {
                         }
                     }
                     if selectColor == 4 {
@@ -3284,8 +3217,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             createSelectBTN()
                             unlockColor4 = 1
                         }
-                        else {
-                        }
                     }
                     if selectColor == 5 {
                         if starCount >= 5 {
@@ -3294,8 +3225,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             createSelectBTN()
                             unlockColor5 = 1
                         }
-                        else {
-                        }
                     }
                     if selectColor == 6 {
                         if starCount >= 5 {
@@ -3303,8 +3232,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             buyColorBTN.removeFromParent()
                             createSelectBTN()
                             unlockColor6 = 1
-                        }
-                        else {
                         }
                     }
                 }
@@ -3338,7 +3265,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if colorVar == 6{
                         superSelect = 6
                     }
-                    
                 }
                 
                 if selectBTN2.contains(location){
@@ -3478,16 +3404,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }
                         if colorVar == 6 {
                         }
-
-
-
                 }
-
-                
             }
-            
         }
-
     }
  
     
@@ -3530,7 +3449,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             createPlayBTN4()
                             playBTN2.removeFromParent()
                             playState = -1
-                            
                         }
                     }
 
@@ -3539,7 +3457,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             createPlayBTN5()
                             playBTN2.removeFromParent()
                             playState = -1
-                            
                         }
                     }
 
@@ -3548,14 +3465,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             createPlayBTN6()
                             playBTN2.removeFromParent()
                             playState = -1
-                            
                         }
                     }
-
-
                 }
-                
-        }
+            }
     }
     
 //--- Collision: contact between ball, islands and walls
@@ -3603,7 +3516,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 islandPosRight  = randPos
                 islandPosLeft   = randPos
                 pointPlayer.play()
-                
             }
             // score line vs ball
             if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.score {
@@ -3628,7 +3540,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // edge vs  ball
             if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge1 {
                     ball_dir = ball_dir * (-1)
-                
             }
             // edge vs  ball
             if firstBody.categoryBitMask == PhysicsCatagory.ball && secondBody.categoryBitMask == PhysicsCatagory.edge2 {
@@ -3638,12 +3549,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // edge vs  ball
             if firstBody.categoryBitMask == PhysicsCatagory.edge1 && secondBody.categoryBitMask == PhysicsCatagory.ball {
                 ball_dir = ball_dir * (-1)
-            
             }
             // edge vs  ball
             if firstBody.categoryBitMask == PhysicsCatagory.edge2 && secondBody.categoryBitMask == PhysicsCatagory.ball {
                 ball_dir = ball_dir * (-1)
-                
             }
         
             //Left1: island change direction (island starting left hits right wall)
@@ -3797,7 +3706,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //star1.physicsBody?.affectedByGravity = false
                 
                 self.physicsWorld.gravity = CGVector(dx: CGFloat(0), dy: CGFloat(-3))     // switch gravity: fall down on collision
-                
+
                 enumerateChildNodes(withName: "wallPairRight", using: {
                     (node, error) in
                     node.speed = 0
@@ -3815,7 +3724,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     node.speed = 0
                     self.removeAllActions()
                 })
-                                                                
+
                 enumerateChildNodes(withName: "wallChompLeft", using: {
                     (node, error) in
                     node.speed = 0
@@ -3833,7 +3742,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     node.speed = 0
                     self.removeAllActions()
                 })
-                
+
                 enumerateChildNodes(withName: "wallIslandLeft", using: {
                     (node, error) in
                     node.speed = 0
@@ -3846,15 +3755,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.removeAllActions()
                 })
 
-                
                 enumerateChildNodes(withName: "outsideWalls", using: {
                     (node, error) in
                     node.speed = 0
+                    print("stop outsideWalls")
                     self.removeAllActions()
                 })
-            
+
                 enumerateChildNodes(withName: "star1", using: {
                     (node, error) in
+                    print("stop star1")
                     node.speed = 0
                     self.removeAllActions()
                 })
@@ -3903,7 +3813,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ball.strokeColor = darkGrey
             scoreLbl.fontColor = darkGrey
         }
-        
         
         iRan = Int(arc4random_uniform(2))
         //iRan2 = Int(arc4random_uniform(3))
