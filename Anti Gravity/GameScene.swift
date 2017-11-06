@@ -246,7 +246,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var widthBallbar    = 420                                  // length of fall ball bar
     var islandVar       = 0.8
     var ballColor       = 1
-    var starVar         = CGFloat(-100)
+    var starVar         = Int(arc4random_uniform(200))
     var xwallPos1:CGFloat  = 755.0 //755.0                     // position of left wall  e.g. 800
     var xwallPos2:CGFloat  = 300.0 //270.0                     // position of right wall e.g. 225
     var xwallShift:CGFloat = -150.0// -50.0                    // shift wall to see more of incoming red wall//var xwallMoveI:CGFloat = 100.0
@@ -1812,7 +1812,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createBuyBTNRest1() {
         delay(restartDelay) {
             self.buyBTNRest1 = SKSpriteNode(imageNamed: "buyBTN1Square")
-            self.buyBTNRest1.setScale(1.0)
+            self.buyBTNRest1.setScale(0.8)
             self.buyBTNRest1.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest1.zPosition = 6
             self.addChild(self.buyBTNRest1)
@@ -1823,7 +1823,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createBuyBTNRest2() {
         delay(restartDelay) {
             self.buyBTNRest2 = SKSpriteNode(imageNamed: "buyBTN2Square")
-            self.buyBTNRest2.setScale(1.0)
+            self.buyBTNRest2.setScale(0.8)
             self.buyBTNRest2.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest2.zPosition = 6
             self.addChild(self.buyBTNRest2)
@@ -1834,7 +1834,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createBuyBTNRest3() {
         delay(restartDelay) {
             self.buyBTNRest3 = SKSpriteNode(imageNamed: "buyBTN3Square")
-            self.buyBTNRest3.setScale(1.0)
+            self.buyBTNRest3.setScale(0.8)
             self.buyBTNRest3.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest3.zPosition = 6
             self.addChild(self.buyBTNRest3)
@@ -1845,7 +1845,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createBuyBTNRest4() {
         delay(restartDelay) {
             self.buyBTNRest4 = SKSpriteNode(imageNamed: "buyBTN4Square")
-            self.buyBTNRest4.setScale(1.0)
+            self.buyBTNRest4.setScale(0.8)
             self.buyBTNRest4.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest4.zPosition = 6
             self.addChild(self.buyBTNRest4)
@@ -1856,7 +1856,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createBuyBTNRest5() {
         delay(restartDelay) {
             self.buyBTNRest5 = SKSpriteNode(imageNamed: "buyBTN5Square")
-            self.buyBTNRest5.setScale(1.0)
+            self.buyBTNRest5.setScale(0.8)
             self.buyBTNRest5.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest5.zPosition = 6
             self.addChild(self.buyBTNRest5)
@@ -1867,7 +1867,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createBuyBTNRest6() {
         delay(restartDelay) {
             self.buyBTNRest6 = SKSpriteNode(imageNamed: "buyBTN6Square")
-            self.buyBTNRest6.setScale(1.0)
+            self.buyBTNRest6.setScale(0.8)
             self.buyBTNRest6.position = CGPoint(x: self.frame.width / 2 + 150, y: self.frame.height - 600)
             self.buyBTNRest6.zPosition = 6
             self.addChild(self.buyBTNRest6)
@@ -3592,13 +3592,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 print("ballColor", ballColor)
                 scoreLbl.text = "\(score)"
                 firstBody.node?.removeFromParent()
-                
-                if starVar == -100 {
-                    starVar = 100
+                starVar = Int(arc4random_uniform(200))
+                if starVar % 2 == 0 {
+                    starVar = starVar * -1
                 }
                 else {
-                    starVar = -100
+                    
                 }
+                randPos = Int(arc4random_uniform(250)) + 400
+                islandPosRight  = randPos
+                islandPosLeft   = randPos
                 pointPlayer.play()
                 
             }
@@ -3610,12 +3613,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 print("ballColor", ballColor)
                 scoreLbl.text = "\(score)"
                 secondBody.node?.removeFromParent()
-                if starVar == -100 {
-                    starVar = 100
+                starVar = Int(arc4random_uniform(200))
+                if starVar % 2 == 0 {
+                    starVar = starVar * -1
                 }
                 else {
-                    starVar = -100
+                    
                 }
+                randPos = Int(arc4random_uniform(250)) + 400
+                islandPosRight  = randPos
+                islandPosLeft   = randPos
                 pointPlayer.play()
             }
             // edge vs  ball
