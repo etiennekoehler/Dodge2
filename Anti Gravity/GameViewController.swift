@@ -8,17 +8,27 @@
 
 import UIKit
 import SpriteKit
+import GoogleMobileAds
 
 class GameViewController: UIViewController {
     
-    
-    
+    var interstitial: GADInterstitial!
     
     override func viewDidLoad() {
         
-        
         super.viewDidLoad()
+        
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        let request = GADRequest()
+        interstitial.load(request)
+        
 
+        if interstitial.isReady{
+            interstitial.present(fromRootViewController: self)
+        }
+        else{
+            print("Ad not ready")
+        }
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
             let skView = self.view as! SKView
