@@ -288,7 +288,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let scoreLbl = SKLabelNode()
     let starLbl  = SKLabelNode()
- 
+
 
 //--- Start the game
 
@@ -3693,6 +3693,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             {
                 playState = 2
                 print("Collision with wall")
+                
+                // AdMob: send notification to GameViewController, which will show ad
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showAdMobAd"), object: nil)
+
                 
                 deathPlayer.play()
             

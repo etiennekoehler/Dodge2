@@ -11,6 +11,7 @@
 		5B2969551E63714700E6D49A /* pointSoundOfficial2.0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969541E63714700E6D49A /* pointSoundOfficial2.0.mp3 */; };
 		5B2969571E63715A00E6D49A /* deathSoundOfficial.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969561E63715A00E6D49A /* deathSoundOfficial.mp3 */; };
 		5B2969591E63716400E6D49A /* trackSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969581E63716400E6D49A /* trackSound.mp3 */; };
+		8365292A9B7829AA3EA5236A /* Pods_Anti_GravityUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8DF3C057CC2C6F790C6351 /* Pods_Anti_GravityUITests.framework */; };
 		8F73D9651DB658D600D3180F /* Outage.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F73D9641DB658D600D3180F /* Outage.ttf */; };
 		8F73D9661DB6594700D3180F /* Outage.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F73D9641DB658D600D3180F /* Outage.ttf */; };
 		8FF0AEDB1D15645C0075BBE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0AEDA1D15645C0075BBE9 /* AppDelegate.swift */; };
@@ -22,6 +23,8 @@
 		8FF0AEE91D15645C0075BBE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FF0AEE71D15645C0075BBE9 /* LaunchScreen.storyboard */; };
 		8FF0AEF41D15645C0075BBE9 /* Anti_GravityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0AEF31D15645C0075BBE9 /* Anti_GravityTests.swift */; };
 		8FF0AEFF1D15645C0075BBE9 /* Anti_GravityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0AEFE1D15645C0075BBE9 /* Anti_GravityUITests.swift */; };
+		A0B688C38A40F48B5178C4E8 /* Pods_Anti_GravityTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A499FF42B8E62CC0DB9C43 /* Pods_Anti_GravityTests.framework */; };
+		AAD3A6AD8AFBECAC09F26619 /* Pods_Anti_Gravity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA121D8F24A131B3D4953A53 /* Pods_Anti_Gravity.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,10 +45,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00DF3A83119F7B019D28696D /* Pods-Anti GravityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anti GravityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anti GravityUITests/Pods-Anti GravityUITests.release.xcconfig"; sourceTree = "<group>"; };
+		05F66C06896537C08F77A135 /* Pods-Anti Gravity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anti Gravity.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anti Gravity/Pods-Anti Gravity.release.xcconfig"; sourceTree = "<group>"; };
+		09A499FF42B8E62CC0DB9C43 /* Pods_Anti_GravityTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anti_GravityTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7977F89B253737D9D24F36 /* Pods-Anti GravityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anti GravityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Anti GravityUITests/Pods-Anti GravityUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B2969521E63711500E6D49A /* touchSoundOfficial2.0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = touchSoundOfficial2.0.mp3; path = "Anti Gravity/touchSoundOfficial2.0.mp3"; sourceTree = "<group>"; };
 		5B2969541E63714700E6D49A /* pointSoundOfficial2.0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pointSoundOfficial2.0.mp3; path = "Anti Gravity/pointSoundOfficial2.0.mp3"; sourceTree = "<group>"; };
 		5B2969561E63715A00E6D49A /* deathSoundOfficial.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = deathSoundOfficial.mp3; path = "Anti Gravity/deathSoundOfficial.mp3"; sourceTree = "<group>"; };
 		5B2969581E63716400E6D49A /* trackSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = trackSound.mp3; path = "Anti Gravity/trackSound.mp3"; sourceTree = "<group>"; };
+		69398B6905B796A770A7B90F /* Pods-Anti GravityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anti GravityTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Anti GravityTests/Pods-Anti GravityTests.debug.xcconfig"; sourceTree = "<group>"; };
+		865A25F559CBEE690F749B2F /* Pods-Anti GravityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anti GravityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anti GravityTests/Pods-Anti GravityTests.release.xcconfig"; sourceTree = "<group>"; };
 		8F73D9641DB658D600D3180F /* Outage.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Outage.ttf; path = ../Outage.ttf; sourceTree = "<group>"; };
 		8FABD0C01EF29BCD006F0EFB /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Bold.ttf"; path = "../../../../Library/Fonts/Quicksand/Quicksand-Bold.ttf"; sourceTree = "<group>"; };
 		8FABD0C11EF29BCD006F0EFB /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.ttf"; path = "../../../../Library/Fonts/Quicksand/Quicksand-Light.ttf"; sourceTree = "<group>"; };
@@ -93,6 +102,9 @@
 		8FF0AEFA1D15645C0075BBE9 /* Anti GravityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Anti GravityUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FF0AEFE1D15645C0075BBE9 /* Anti_GravityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anti_GravityUITests.swift; sourceTree = "<group>"; };
 		8FF0AF001D15645C0075BBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE8DF3C057CC2C6F790C6351 /* Pods_Anti_GravityUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anti_GravityUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAC4B9C012101035B8E6ECE4 /* Pods-Anti Gravity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anti Gravity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Anti Gravity/Pods-Anti Gravity.debug.xcconfig"; sourceTree = "<group>"; };
+		EA121D8F24A131B3D4953A53 /* Pods_Anti_Gravity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anti_Gravity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD3A6AD8AFBECAC09F26619 /* Pods_Anti_Gravity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0B688C38A40F48B5178C4E8 /* Pods_Anti_GravityTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,12 +128,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8365292A9B7829AA3EA5236A /* Pods_Anti_GravityUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65EA2008F81B1C2884B9A087 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BAC4B9C012101035B8E6ECE4 /* Pods-Anti Gravity.debug.xcconfig */,
+				05F66C06896537C08F77A135 /* Pods-Anti Gravity.release.xcconfig */,
+				69398B6905B796A770A7B90F /* Pods-Anti GravityTests.debug.xcconfig */,
+				865A25F559CBEE690F749B2F /* Pods-Anti GravityTests.release.xcconfig */,
+				2B7977F89B253737D9D24F36 /* Pods-Anti GravityUITests.debug.xcconfig */,
+				00DF3A83119F7B019D28696D /* Pods-Anti GravityUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8FABD0C41EF29BE4006F0EFB /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +200,8 @@
 				8FF0AEFD1D15645C0075BBE9 /* Anti GravityUITests */,
 				8FF0AED81D15645C0075BBE9 /* Products */,
 				8FABD0C41EF29BE4006F0EFB /* Fonts */,
+				65EA2008F81B1C2884B9A087 /* Pods */,
+				B49AC2AE73D12127130B6E3F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +248,16 @@
 			path = "Anti GravityUITests";
 			sourceTree = "<group>";
 		};
+		B49AC2AE73D12127130B6E3F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA121D8F24A131B3D4953A53 /* Pods_Anti_Gravity.framework */,
+				09A499FF42B8E62CC0DB9C43 /* Pods_Anti_GravityTests.framework */,
+				AE8DF3C057CC2C6F790C6351 /* Pods_Anti_GravityUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -225,9 +265,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FF0AF031D15645C0075BBE9 /* Build configuration list for PBXNativeTarget "Anti Gravity" */;
 			buildPhases = (
+				14FE6D96D449F366DF0E1CC8 /* [CP] Check Pods Manifest.lock */,
 				8FF0AED31D15645C0075BBE9 /* Sources */,
 				8FF0AED41D15645C0075BBE9 /* Frameworks */,
 				8FF0AED51D15645C0075BBE9 /* Resources */,
+				935E27C371B41C82E6974F0B /* [CP] Embed Pods Frameworks */,
+				A979DAA6C90F41C1BC3CD029 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,9 +285,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FF0AF061D15645C0075BBE9 /* Build configuration list for PBXNativeTarget "Anti GravityTests" */;
 			buildPhases = (
+				C884F16717AF2CD29F1C1135 /* [CP] Check Pods Manifest.lock */,
 				8FF0AEEB1D15645C0075BBE9 /* Sources */,
 				8FF0AEEC1D15645C0075BBE9 /* Frameworks */,
 				8FF0AEED1D15645C0075BBE9 /* Resources */,
+				3EA400816654CC958D79F4AB /* [CP] Embed Pods Frameworks */,
+				084DDD02959C73C8BE8BB4C7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,9 +306,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FF0AF091D15645C0075BBE9 /* Build configuration list for PBXNativeTarget "Anti GravityUITests" */;
 			buildPhases = (
+				4A830B98A2E287EA50B9DBEB /* [CP] Check Pods Manifest.lock */,
 				8FF0AEF61D15645C0075BBE9 /* Sources */,
 				8FF0AEF71D15645C0075BBE9 /* Frameworks */,
 				8FF0AEF81D15645C0075BBE9 /* Resources */,
+				03A1BFE23F42F24F0C4E2111 /* [CP] Embed Pods Frameworks */,
+				A68B91792E38DCE52BF4FFAF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,6 +335,7 @@
 				TargetAttributes = {
 					8FF0AED61D15645C0075BBE9 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = L3RMDJH374;
 						LastSwiftMigration = 0800;
 					};
 					8FF0AEEE1D15645C0075BBE9 = {
@@ -355,6 +405,153 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03A1BFE23F42F24F0C4E2111 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti GravityUITests/Pods-Anti GravityUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		084DDD02959C73C8BE8BB4C7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti GravityTests/Pods-Anti GravityTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		14FE6D96D449F366DF0E1CC8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Anti Gravity-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3EA400816654CC958D79F4AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti GravityTests/Pods-Anti GravityTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A830B98A2E287EA50B9DBEB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Anti GravityUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		935E27C371B41C82E6974F0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti Gravity/Pods-Anti Gravity-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A68B91792E38DCE52BF4FFAF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti GravityUITests/Pods-Anti GravityUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A979DAA6C90F41C1BC3CD029 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti Gravity/Pods-Anti Gravity-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C884F16717AF2CD29F1C1135 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Anti GravityTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8FF0AED31D15645C0075BBE9 /* Sources */ = {
@@ -518,15 +715,16 @@
 		};
 		8FF0AF041D15645C0075BBE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAC4B9C012101035B8E6ECE4 /* Pods-Anti Gravity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = L3RMDJH374;
 				INFOPLIST_FILE = "Anti Gravity/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dodgeEtienneApp;
+				PRODUCT_BUNDLE_IDENTIFIER = dodgeEtienneAppMartin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -536,15 +734,16 @@
 		};
 		8FF0AF051D15645C0075BBE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05F66C06896537C08F77A135 /* Pods-Anti Gravity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = L3RMDJH374;
 				INFOPLIST_FILE = "Anti Gravity/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dodgeEtienneApp;
+				PRODUCT_BUNDLE_IDENTIFIER = dodgeEtienneAppMartin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -554,6 +753,7 @@
 		};
 		8FF0AF071D15645C0075BBE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69398B6905B796A770A7B90F /* Pods-Anti GravityTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -568,6 +768,7 @@
 		};
 		8FF0AF081D15645C0075BBE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 865A25F559CBEE690F749B2F /* Pods-Anti GravityTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "Anti GravityTests/Info.plist";
@@ -581,6 +782,7 @@
 		};
 		8FF0AF0A1D15645C0075BBE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B7977F89B253737D9D24F36 /* Pods-Anti GravityUITests.debug.xcconfig */;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = "Anti GravityUITests/Info.plist";
@@ -595,6 +797,7 @@
 		};
 		8FF0AF0B1D15645C0075BBE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00DF3A83119F7B019D28696D /* Pods-Anti GravityUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Anti GravityUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
