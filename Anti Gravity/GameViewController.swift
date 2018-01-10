@@ -10,7 +10,9 @@ import UIKit
 import SpriteKit
 import GoogleMobileAds
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GADInterstitialDelegate {
+    
+    var interstitial: GADInterstitial!
     
     var interstitial: GADInterstitial!
     
@@ -79,4 +81,54 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden : Bool {
         return true
     }
+    
+    
+    // AdMob: listen to notification from GameScene
+    
+    override func viewWillLayoutSubviews() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.startAdMobAd), name: NSNotification.Name(rawValue: "showAdMobAd"), object: nil)
+    }
+    
+    // Show interstitial ad
+    
+    func startAdMobAd() {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+            print("Interstitial showing ------------")
+        } else {
+            print("Interstitial wasn't ready -------------")
+        }
+    }
+    
+    // Create and load interstitial ad
+    
+    private func createAndLoadInterstitial() -> GADInterstitial? {
+        //interstitial = GADInterstitial(adUnitID: "ca-app-pub-8501671653071605/2568258533")   // sample ad unit ID ???
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")   // interstitial sample ad unit ID
+        guard let interstitial = interstitial else {
+            return nil
+        }
+        let request = GADRequest()
+        request.testDevices = [ kGADSimulatorID ]
+        interstitial.load(request)
+        interstitial.delegate = self
+        return interstitial
+    }
+    
+    // GADInterstitialDelegate methods
+    
+    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+        print("Interstitial loaded successfully ----------------")
+        //ad.present(fromRootViewController: self)
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        print("Interstitial was dismissed ----------------")
+        interstitial = createAndLoadInterstitial()
+    }
+    
+    func interstitialDidFail(toPresentScreen ad: GADInterstitial) {
+        print("Fail to receive interstitial ---------------")
+    }
+    
 }
