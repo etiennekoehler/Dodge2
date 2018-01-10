@@ -20,15 +20,22 @@ class GameViewController: UIViewController {
         
         interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
         let request = GADRequest()
-        interstitial.load(request)
         
 
-        if interstitial.isReady{
+        request.testDevices = [kGADSimulatorID, "002cfa7b054e7c77dffd89e05c43a426"]
+        interstitial.load(request)
+
+        sleep(30)
+        /*if interstitial.isReady{*/
             interstitial.present(fromRootViewController: self)
-        }
+            print("Ad is ready")
+       /* }
         else{
             print("Ad not ready")
-        }
+        }*/
+        sleep(3)
+        
+        
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
             let skView = self.view as! SKView
@@ -45,6 +52,8 @@ class GameViewController: UIViewController {
             skView.presentScene(scene)
         }
     }
+    
+    
     
     
     override var shouldAutorotate : Bool {
