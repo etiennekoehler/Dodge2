@@ -11,8 +11,6 @@ import SpriteKit
 import UIKit
 import AVFoundation
 import SceneKit
-import GoogleMobileAds
-
 
 
 //--- Game Physics
@@ -290,9 +288,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let scoreLbl = SKLabelNode()
     let starLbl  = SKLabelNode()
-    
-    var interstitial: GADInterstitial!
- 
+
 
 //--- Start the game
 
@@ -306,22 +302,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         islandPosRight  = randPos
         islandPosLeft   = randPos
         
- /*
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        let request = GADRequest()
-        
-        /* request.testDevices = [kGADSimulatorID, "ca-app-pub-3940256099942544/4411468910"] */
-        interstitial.load(request)
-        
-        sleep(10)
-        if interstitial.isReady{
-           /* interstitial.present(fromRootViewController: */
-            print("Ad is ready")
-        }
-        else{
-            print("Ad not ready")
-        }
-        */
+
+
+
         
         self.physicsWorld.gravity = gravityDirection
         
@@ -770,7 +753,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backBTN3.setScale(0.8)
         backBTN3.position = CGPoint(x: self.frame.width / 2 - 140, y:self.frame.height/2 + 320 )
         backBTN3.zPosition = 5
-
         
         //back button 4
         backBTN4 = SKSpriteNode(imageNamed: "backBTN4")
@@ -3719,17 +3701,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 playState = 2
                 print("Collision with wall")
                 
-              
                 deathPlayer.play()
             
                 //star1.physicsBody?.affectedByGravity = false
                 
                 self.physicsWorld.gravity = CGVector(dx: CGFloat(0), dy: CGFloat(-3))     // switch gravity: fall down on collision
 
+                
                 enumerateChildNodes(withName: "wallPairRight", using: {
                     (node, error) in
                     node.speed = 0
                     self.removeAllActions()
+                    
                 })
             
                 enumerateChildNodes(withName: "wallPairLeft", using: {
@@ -3789,8 +3772,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 })
 
                 delay(1){
+                    
+                    // AdMob: send notification to GameViewController, which will show ad
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showAdMobAd"), object: nil)
+                    
                     self.createDeadScene()
                 }
+                
             }
             
             //edge changes direction of ball

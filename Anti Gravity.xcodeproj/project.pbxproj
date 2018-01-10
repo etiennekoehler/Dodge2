@@ -14,7 +14,6 @@
 		5B2969551E63714700E6D49A /* pointSoundOfficial2.0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969541E63714700E6D49A /* pointSoundOfficial2.0.mp3 */; };
 		5B2969571E63715A00E6D49A /* deathSoundOfficial.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969561E63715A00E6D49A /* deathSoundOfficial.mp3 */; };
 		5B2969591E63716400E6D49A /* trackSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B2969581E63716400E6D49A /* trackSound.mp3 */; };
-		8365292A9B7829AA3EA5236A /* Pods_Anti_GravityUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8DF3C057CC2C6F790C6351 /* Pods_Anti_GravityUITests.framework */; };
 		8F73D9651DB658D600D3180F /* Outage.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F73D9641DB658D600D3180F /* Outage.ttf */; };
 		8F73D9661DB6594700D3180F /* Outage.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F73D9641DB658D600D3180F /* Outage.ttf */; };
 		8FF0AEDB1D15645C0075BBE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0AEDA1D15645C0075BBE9 /* AppDelegate.swift */; };
@@ -26,8 +25,6 @@
 		8FF0AEE91D15645C0075BBE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FF0AEE71D15645C0075BBE9 /* LaunchScreen.storyboard */; };
 		8FF0AEF41D15645C0075BBE9 /* Anti_GravityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0AEF31D15645C0075BBE9 /* Anti_GravityTests.swift */; };
 		8FF0AEFF1D15645C0075BBE9 /* Anti_GravityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0AEFE1D15645C0075BBE9 /* Anti_GravityUITests.swift */; };
-		A0B688C38A40F48B5178C4E8 /* Pods_Anti_GravityTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A499FF42B8E62CC0DB9C43 /* Pods_Anti_GravityTests.framework */; };
-		AAD3A6AD8AFBECAC09F26619 /* Pods_Anti_Gravity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA121D8F24A131B3D4953A53 /* Pods_Anti_Gravity.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -720,7 +717,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2628673044B81EA56E20E69 /* Pods-Anti Gravity.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = L3RMDJH374;
@@ -739,7 +735,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3A7696A8E2788B9D314EADFF /* Pods-Anti Gravity.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = L3RMDJH374;

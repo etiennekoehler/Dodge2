@@ -14,29 +14,13 @@ class GameViewController: UIViewController, GADInterstitialDelegate {
     
     var interstitial: GADInterstitial!
     
-    var interstitial: GADInterstitial!
-    
     override func viewDidLoad() {
+        
         
         super.viewDidLoad()
         
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-        let request = GADRequest()
-        
-
-        request.testDevices = [kGADSimulatorID, "002cfa7b054e7c77dffd89e05c43a426"]
-        interstitial.load(request)
-
-        sleep(30)
-        /*if interstitial.isReady{*/
-            interstitial.present(fromRootViewController: self)
-            print("Ad is ready")
-       /* }
-        else{
-            print("Ad not ready")
-        }*/
-        sleep(3)
-        
+        // Create and load intertitial ad
+        interstitial = createAndLoadInterstitial()
         
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
@@ -54,8 +38,6 @@ class GameViewController: UIViewController, GADInterstitialDelegate {
             skView.presentScene(scene)
         }
     }
-    
-    
     
     
     override var shouldAutorotate : Bool {
@@ -103,7 +85,7 @@ class GameViewController: UIViewController, GADInterstitialDelegate {
     // Create and load interstitial ad
     
     private func createAndLoadInterstitial() -> GADInterstitial? {
-        //interstitial = GADInterstitial(adUnitID: "ca-app-pub-8501671653071605/2568258533")   // sample ad unit ID ???
+      //interstitial = GADInterstitial(adUnitID: "ca-app-pub-8501671653071605/2568258533")   // sample ad unit ID ???
         interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")   // interstitial sample ad unit ID
         guard let interstitial = interstitial else {
             return nil
