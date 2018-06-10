@@ -372,7 +372,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         touchPlayer.volume = Float(volumeVar)    //0.07
         pointPlayer.volume = 0.0    //0.3
-        deathPlayer.volume = 0.0    //0.4
+        deathPlayer.volume = 0.4    //0.4
         trackPlayer.volume = 0.0    //0.3
 
         touchPlayer.prepareToPlay()
