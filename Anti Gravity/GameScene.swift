@@ -5,6 +5,10 @@
 //  Created by Etienne Köhler on 18/06/16.
 //  Copyright (c) 2016 Moseby Inc. All rights reserved.
 //
+//  Documentation:
+//    - frame.width=1024, frame.height=768
+//    - aspect ratio of iphone 5-8 (&plus) = 1.77
+//    - aspect ratio of iphone X= 2.17
 
 
 import SpriteKit
@@ -288,7 +292,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let scoreLbl = SKLabelNode()
     let starLbl  = SKLabelNode()
-
+    // Screen size detection
+    let screenSize: CGRect = UIScreen.main.bounds
 
 //--- Start the game
 
@@ -302,50 +307,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         islandPosRight  = randPos
         islandPosLeft   = randPos
         
-
-
-
-        
         self.physicsWorld.gravity = gravityDirection
         
         let HighscoreDefault = UserDefaults.standard
         if (HighscoreDefault.value(forKey: "highscore") != nil) {
-            highscore = HighscoreDefault.value(forKey: "highscore") as! NSInteger!
+            highscore = (HighscoreDefault.value(forKey: "highscore") as! NSInteger?)!
         }
         
         let starCountDefault = UserDefaults.standard
         if (starCountDefault.value(forKey: "starCount") != nil) {
-            starCount = starCountDefault.value(forKey: "starCount") as! NSInteger!
+            starCount = (starCountDefault.value(forKey: "starCount") as! NSInteger?)!
         }
         
         let unlockColor2Default = UserDefaults.standard
         if (unlockColor2Default.value(forKey: "unlockColor2") != nil) {
-            unlockColor2 = unlockColor2Default.value(forKey: "unlockColor2") as! NSInteger!
+            unlockColor2 = (unlockColor2Default.value(forKey: "unlockColor2") as! NSInteger?)!
         }
         
         let unlockColor3Default = UserDefaults.standard
         if (unlockColor3Default.value(forKey: "unlockColor3") != nil) {
-            unlockColor3 = unlockColor3Default.value(forKey: "unlockColor3") as! NSInteger!
+            unlockColor3 = (unlockColor3Default.value(forKey: "unlockColor3") as! NSInteger?)!
         }
         
         let unlockColor4Default = UserDefaults.standard
         if (unlockColor4Default.value(forKey: "unlockColor4") != nil) {
-            unlockColor4 = unlockColor4Default.value(forKey: "unlockColor4") as! NSInteger!
+            unlockColor4 = (unlockColor4Default.value(forKey: "unlockColor4") as! NSInteger?)!
         }
         
         let unlockColor5Default = UserDefaults.standard
         if (unlockColor5Default.value(forKey: "unlockColor5") != nil) {
-            unlockColor5 = unlockColor5Default.value(forKey: "unlockColor5") as! NSInteger!
+            unlockColor5 = (unlockColor5Default.value(forKey: "unlockColor5") as! NSInteger?)!
         }
         
         let unlockColor6Default = UserDefaults.standard
         if (unlockColor6Default.value(forKey: "unlockColor6") != nil) {
-            unlockColor6 = unlockColor6Default.value(forKey: "unlockColor6") as! NSInteger!
+            unlockColor6 = (unlockColor6Default.value(forKey: "unlockColor6") as! NSInteger?)!
         }
         
         let soundVarDefault = UserDefaults.standard
         if (soundVarDefault.value(forKey: "soundVar") != nil) {
-            soundVar = soundVarDefault.value(forKey: "soundVar") as! NSInteger!
+            soundVar = (soundVarDefault.value(forKey: "soundVar") as! NSInteger?)!
         }
         
         //--- Sounds
@@ -1096,7 +1097,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
 //----------- no ads
-    
+
+//--- no ads  color 1
+
     func createNoAds() {
         noAdBTN = SKSpriteNode(imageNamed: "noAds1Square")
         noAdBTN.setScale(1.0)
@@ -1157,6 +1160,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
 //------------- Game labels
+
+//--- Game label1
     func createGameLabel() {
         gameLabel = SKSpriteNode(imageNamed: "dodgePic")
         gameLabel.setScale(1.31)
@@ -1238,7 +1243,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
 
-
 //--- create restart button (when holding finger on button)
     
     func createRestartBTN2(){
@@ -1258,7 +1262,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(self.resetBTN2)
     }
 
-//------------ create restart buttons (normal)
+//--- create restart buttons (normal)
     
     func createRestartBTN(){
         
@@ -1617,7 +1621,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(musicBTNCross22)
     }
     
-    //--- music button 2 (when music off) color 3
+//--- music button 2 (when music off) color 3
     
     func createMusicBTNCross3() {
         musicBTNCross3 = SKSpriteNode(imageNamed: "musicBTNCross3Square")
@@ -1627,7 +1631,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(musicBTNCross3)
     }
 
-    //--- music button 2 (when music off) color 4
+//--- music button 2 (when music off) color 4
     
     func createMusicBTNCross4() {
         musicBTNCross4 = SKSpriteNode(imageNamed: "musicBTNCross4Square")
@@ -1637,7 +1641,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(musicBTNCross4)
     }
 
-    //--- music button 2 (when music off) color 5
+//--- music button 2 (when music off) color 5
     
     func createMusicBTNCross5() {
         musicBTNCross5 = SKSpriteNode(imageNamed: "musicBTNCross5Square")
@@ -1647,7 +1651,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(musicBTNCross5)
     }
 
-    //--- music button 2 (when music off) color 6
+//--- music button 2 (when music off) color 6
     
     func createMusicBTNCross6() {
         musicBTNCross6 = SKSpriteNode(imageNamed: "musicBTNCross6Square")
@@ -1681,7 +1685,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(homeBTN2)
     }
 
-    //--- home button 3
+//--- home button 3
     
     func createHomeBTN3() {
         homeBTN3 = SKSpriteNode(imageNamed: "backBTN3")
@@ -1690,7 +1694,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         homeBTN3.zPosition = 5
         self.addChild(homeBTN3)
     }
-    //--- home button 4
+
+//--- home button 4
     
     func createHomeBTN4() {
         homeBTN4 = SKSpriteNode(imageNamed: "backBTN4")
@@ -1699,7 +1704,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         homeBTN4.zPosition = 5
         self.addChild(homeBTN4)
     }
-    //--- home button 5
+    
+//--- home button 5
     
     func createHomeBTN5() {
         homeBTN5 = SKSpriteNode(imageNamed: "backBTN5")
@@ -1708,7 +1714,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         homeBTN5.zPosition = 5
         self.addChild(homeBTN5)
     }
-    //--- home button 6
+    
+//--- home button 6
     
     func createHomeBTN6() {
         homeBTN6 = SKSpriteNode(imageNamed: "backBTN6")
@@ -1843,7 +1850,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
-    
 
 //--- end score
     
@@ -1869,9 +1875,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         
         // writing of score and highscore
+        
         self.endScoreLbl = SKLabelNode(fontNamed: "Outage-Regular")
         self.endScoreLbl.text       = "Score"
-        self.endScoreLbl.fontSize   = 45
+        self.endScoreLbl.fontSize   = 40 //45
         self.endScoreLbl.fontColor  = self.greyWhite
         self.endScoreLbl.horizontalAlignmentMode = .center
         self.endScoreLbl.position   = CGPoint(x: self.frame.width / 2, y:self.frame.height-271)
@@ -1889,7 +1896,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
         self.endScoreLbl3 = SKLabelNode(fontNamed: "Outage-Regular")
         self.endScoreLbl3.text      = "Highscore"
-        self.endScoreLbl3.fontSize  = 45
+        self.endScoreLbl3.fontSize  = 40  //45
         self.endScoreLbl3.fontColor = self.greyWhite
         self.endScoreLbl3.horizontalAlignmentMode = .center
         self.endScoreLbl3.position  = CGPoint(x: self.frame.width / 2, y:self.frame.height-422.5)
@@ -1920,7 +1927,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreWall = SKShapeNode(path: path6)
         scoreWall.strokeColor = red
         scoreWall.fillColor   = red
-        scoreWall.position    = CGPoint(x: self.frame.width - 1000, y:self.frame.height-638)
+//      scoreWall.position    = CGPoint(x: self.frame.width - 1000, y:self.frame.height-638)
+        scoreWall.position    = CGPoint(x: self.frame.width - 1020, y:self.frame.height-638)
         scoreWall.physicsBody = SKPhysicsBody(polygonFrom: path6)
         scoreWall.zPosition = 3
         scoreWall.physicsBody?.isDynamic            = false
@@ -1943,7 +1951,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         highscoreWall = SKShapeNode(path: path7)
         highscoreWall.strokeColor = darkGrey
         highscoreWall.fillColor   = darkGrey
-        highscoreWall.position    = CGPoint(x: self.frame.width - 1080, y:self.frame.height-790)
+//      highscoreWall.position    = CGPoint(x: self.frame.width - 1080, y:self.frame.height-790)
+//      print(".........", self.frame.width, self.frame.height, screenSize.width, screenSize.height)
+//      let aspectratio  = screenSize.height / screenSize.width
+
+        highscoreWall.position    = CGPoint(x: self.frame.width - 1060, y: self.frame.height-790)
+        
         highscoreWall.physicsBody = SKPhysicsBody(polygonFrom: path7)
         highscoreWall.zPosition = 3
         highscoreWall.physicsBody?.isDynamic         = false
@@ -2195,7 +2208,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallRight = SKShapeNode(path: path9)
         smallWallRight.strokeColor = red
         smallWallRight.fillColor   = red
-        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 210, y:frame.height-383)
+//      smallWallRight.position    = CGPoint(x: self.frame.width/2 - 210, y:frame.height-383)
+        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 230, y:frame.height-383)
+
         smallWallRight.physicsBody = SKPhysicsBody(polygonFrom: path9)
         smallWallRight.physicsBody?.affectedByGravity = false
         smallWallRight.physicsBody?.isDynamic = false
@@ -2218,7 +2233,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallLeft = SKShapeNode(path: path10)
         smallWallLeft.strokeColor = red
         smallWallLeft.fillColor   = red
-        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 810, y:frame.height-383)
+//      smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 810, y:frame.height-383)
+        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 790, y:frame.height-383)
+
         smallWallLeft.physicsBody = SKPhysicsBody(polygonFrom: path10)
         smallWallLeft.physicsBody?.affectedByGravity = false
         smallWallLeft.physicsBody?.isDynamic = false
@@ -2262,7 +2279,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallRight = SKShapeNode(path: path9)
         smallWallRight.strokeColor = darkGrey
         smallWallRight.fillColor   = darkGrey
-        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 210, y:frame.height-383)
+//      smallWallRight.position    = CGPoint(x: self.frame.width/2 - 210, y:frame.height-383)
+        smallWallRight.position    = CGPoint(x: self.frame.width/2 - 230, y:frame.height-383)
+
         smallWallRight.physicsBody = SKPhysicsBody(polygonFrom: path9)
         smallWallRight.physicsBody?.affectedByGravity = false
         smallWallRight.physicsBody?.isDynamic = false
@@ -2285,7 +2304,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smallWallLeft = SKShapeNode(path: path10)
         smallWallLeft.strokeColor = darkGrey
         smallWallLeft.fillColor   = darkGrey
-        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 810, y:frame.height-383)
+//      smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 810, y:frame.height-383)
+        smallWallLeft.position    = CGPoint(x: self.frame.width/2 - 790, y:frame.height-383)
+
         smallWallLeft.physicsBody = SKPhysicsBody(polygonFrom: path10)
         smallWallLeft.physicsBody?.affectedByGravity = false
         smallWallLeft.physicsBody?.isDynamic = false

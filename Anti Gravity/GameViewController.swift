@@ -34,7 +34,7 @@ class GameViewController: UIViewController, GADInterstitialDelegate {
             
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .aspectFill
-            
+
             skView.presentScene(scene)
         }
     }
