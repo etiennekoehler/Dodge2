@@ -581,7 +581,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             createMusicBTN()
             
-            createNoAds()
+//          createNoAds()
             
             createGameLabel()
             
@@ -599,7 +599,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             createMusicBTN22()
             
-            createNoAds22()
+//          createNoAds22()
             
             createGameLabel22()
             
@@ -617,7 +617,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             createMusicBTN3()
             
-            createNoAds3()
+//          createNoAds3()
             
             createGameLabel3()
             
@@ -635,7 +635,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             createMusicBTN4()
             
-            createNoAds4()
+//          createNoAds4()
             
             createGameLabel4()
             
@@ -653,7 +653,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             createMusicBTN5()
             
-            createNoAds5()
+//          createNoAds5()
             
             createGameLabel5()
             
@@ -670,7 +670,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             createMusicBTN6()
             
-            createNoAds6()
+//          createNoAds6()
             
             createGameLabel6()
             
@@ -3216,40 +3216,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     /*starLbl.removeFromParent()
                     addChild(starLbl)*/
                     if selectColor == 2 {
-                        if starCount >= 5 {
-                            starCount = starCount - 1
+                        if starCount >= 10 {
+                            starCount = starCount - 10
                             buyColorBTN.removeFromParent()
                             createSelectBTN()
                             unlockColor2 = 1
                         }
                     }
                     if selectColor == 3 {
-                        if starCount >= 5 {
-                            starCount = starCount - 1
+                        if starCount >= 10 {
+                            starCount = starCount - 10
                             buyColorBTN.removeFromParent()
                             createSelectBTN()
                             unlockColor3 = 1
                         }
                     }
                     if selectColor == 4 {
-                        if starCount >= 5 {
-                            starCount = starCount - 1
+                        if starCount >= 10 {
+                            starCount = starCount - 10
                             buyColorBTN.removeFromParent()
                             createSelectBTN()
                             unlockColor4 = 1
                         }
                     }
                     if selectColor == 5 {
-                        if starCount >= 5 {
-                            starCount = starCount - 1
+                        if starCount >= 10 {
+                            starCount = starCount - 10
                             buyColorBTN.removeFromParent()
                             createSelectBTN()
                             unlockColor5 = 1
                         }
                     }
                     if selectColor == 6 {
-                        if starCount >= 5 {
-                            starCount = starCount - 1
+                        if starCount >= 10 {
+                            starCount = starCount - 10
                             buyColorBTN.removeFromParent()
                             createSelectBTN()
                             unlockColor6 = 1
