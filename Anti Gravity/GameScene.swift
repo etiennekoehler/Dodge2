@@ -470,8 +470,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //edge on the bottom to stop diamond to cross bottom of screen
         edge3 = SKSpriteNode(imageNamed: "bar")
         edge3.setScale(0.5)
-        edge3.size = CGSize(width: 1, height: 1000)
-        edge3.position = CGPoint(x: self.frame.width * 0.71 + 2, y: edge3.frame.height * 0.4)
+        edge3.size = CGSize(width: 1000, height: 1)
+        edge3.position = CGPoint(x: self.frame.width * 0.5, y: -self.frame.height * 0.1)
         edge3.physicsBody = SKPhysicsBody(rectangleOf: edge3.size)
         edge3.physicsBody?.affectedByGravity    = true
         edge3.physicsBody?.isDynamic            = false
@@ -515,10 +515,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.categoryBitMask    = PhysicsCatagory.ball
         ball.physicsBody?.collisionBitMask   = PhysicsCatagory.ball | PhysicsCatagory.wallAr | PhysicsCatagory.wallBr
           | PhysicsCatagory.wallAl | PhysicsCatagory.wallBl | PhysicsCatagory.edge1 | PhysicsCatagory.edge2
-          | PhysicsCatagory.smallWallLeft | PhysicsCatagory.smallWallRight
+          | PhysicsCatagory.edge3  | PhysicsCatagory.smallWallLeft | PhysicsCatagory.smallWallRight
         ball.physicsBody?.contactTestBitMask = PhysicsCatagory.wallAr | PhysicsCatagory.wallBr | PhysicsCatagory.wallAl
           | PhysicsCatagory.wallBl | PhysicsCatagory.score | PhysicsCatagory.edge1 | PhysicsCatagory.edge2
-          | PhysicsCatagory.smallWallLeft | PhysicsCatagory.smallWallRight
+          | PhysicsCatagory.edge3  | PhysicsCatagory.smallWallLeft | PhysicsCatagory.smallWallRight
         ball.physicsBody!.usesPreciseCollisionDetection = true
         ball.physicsBody?.velocity = CGVector(dx: ximpulse / 2.0 , dy: 0)            // ball: initial velocity [m/s]
         ball.zPosition = 3
@@ -3733,6 +3733,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 && secondBody.categoryBitMask == PhysicsCatagory.smallWallRight
                 ||  firstBody.categoryBitMask == PhysicsCatagory.smallWallRight
                 && secondBody.categoryBitMask == PhysicsCatagory.ball
+
+                ||  firstBody.categoryBitMask == PhysicsCatagory.ball
+                && secondBody.categoryBitMask == PhysicsCatagory.edge3
+                ||  firstBody.categoryBitMask == PhysicsCatagory.edge3
+                && secondBody.categoryBitMask == PhysicsCatagory.ball
+
             {
                 playState = 2
                 print("Collision with wall")
