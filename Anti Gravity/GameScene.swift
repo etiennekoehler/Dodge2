@@ -442,8 +442,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //edge on the left
         edge1 = SKSpriteNode(imageNamed: "bar")
         edge1.setScale(0.5)
-        edge1.size = CGSize(width: 1, height: 1000)
-        edge1.position = CGPoint(x: self.frame.width * 0.29 - 2, y: edge1.frame.height * 0.4)
+        edge1.size = CGSize(width: 200, height: 1000)
+        edge1.position = CGPoint(x: self.frame.width * 0.29 - 102, y: edge1.frame.height * 0.4)
         edge1.physicsBody = SKPhysicsBody(rectangleOf: edge1.size)
         edge1.physicsBody?.affectedByGravity    = true
         edge1.physicsBody?.isDynamic            = false
@@ -456,8 +456,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //edge on the right
         edge2 = SKSpriteNode(imageNamed: "bar")
         edge2.setScale(0.5)
-        edge2.size = CGSize(width: 1, height: 1000)
-        edge2.position = CGPoint(x: self.frame.width * 0.71 + 2, y: edge2.frame.height * 0.4)
+        edge2.size = CGSize(width: 200, height: 1000)
+        edge2.position = CGPoint(x: self.frame.width * 0.71 + 102, y: edge2.frame.height * 0.4)
         edge2.physicsBody = SKPhysicsBody(rectangleOf: edge2.size)
         edge2.physicsBody?.affectedByGravity    = true
         edge2.physicsBody?.isDynamic            = false
