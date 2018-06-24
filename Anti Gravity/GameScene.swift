@@ -23,6 +23,7 @@ struct PhysicsCatagory {
     static let ball             : UInt32 = 0x1 << 1  // 2
     static let edge1            : UInt32 = 0x1 << 2  // 4
     static let edge2            : UInt32 = 0x1 << 2
+    static let edge3            : UInt32 = 0x1 << 13 // 8192
     static let wallAr           : UInt32 = 0x1 << 3  // 8
     static let wallBr           : UInt32 = 0x1 << 3
     static let wallAl           : UInt32 = 0x1 << 3
@@ -48,6 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var ball2   = SKShapeNode()
     var edge1   = SKSpriteNode()
     var edge2   = SKSpriteNode()
+    var edge3   = SKSpriteNode()
     var bigBar  = SKShapeNode()
     var circle  = SKSpriteNode()
     var wallAr  = SKShapeNode()
@@ -448,7 +450,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         edge1.physicsBody?.categoryBitMask    = PhysicsCatagory.edge2
         edge1.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
         edge1.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
-
         edge1.zPosition = 3
         self.addChild(edge1)
         
@@ -465,6 +466,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         edge2.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
         edge2.zPosition = 3
         self.addChild(edge2)
+        
+        //edge on the bottom to stop diamond to cross bottom of screen
+        edge3 = SKSpriteNode(imageNamed: "bar")
+        edge3.setScale(0.5)
+        edge3.size = CGSize(width: 1, height: 1000)
+        edge3.position = CGPoint(x: self.frame.width * 0.71 + 2, y: edge3.frame.height * 0.4)
+        edge3.physicsBody = SKPhysicsBody(rectangleOf: edge3.size)
+        edge3.physicsBody?.affectedByGravity    = true
+        edge3.physicsBody?.isDynamic            = false
+        edge3.physicsBody?.categoryBitMask    = PhysicsCatagory.edge3
+        edge3.physicsBody?.collisionBitMask   = PhysicsCatagory.ball
+        edge3.physicsBody?.contactTestBitMask = PhysicsCatagory.ball
+        edge3.zPosition = 3
+        self.addChild(edge3)
         
         //shape to define ball
         

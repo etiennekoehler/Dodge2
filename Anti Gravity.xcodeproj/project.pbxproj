@@ -25,7 +25,6 @@
 		8FF0AEE91D15645C0075BBE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FF0AEE71D15645C0075BBE9 /* LaunchScreen.storyboard */; };
 		8FF0AEF41D15645C0075BBE9 /* Anti_GravityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0AEF31D15645C0075BBE9 /* Anti_GravityTests.swift */; };
 		8FF0AEFF1D15645C0075BBE9 /* Anti_GravityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0AEFE1D15645C0075BBE9 /* Anti_GravityUITests.swift */; };
-		8FF940A920D2C66700611A5C /* Artboard 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FF940A820D2C66600611A5C /* Artboard 1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,7 +100,6 @@
 		8FF0AEFE1D15645C0075BBE9 /* Anti_GravityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anti_GravityUITests.swift; sourceTree = "<group>"; };
 		8FF0AF001D15645C0075BBE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FF940A720D2C57A00611A5C /* splashscreenDodge2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splashscreenDodge2.png; path = "/Users/etienne/Documents/programming/Anti Gravity/Anti Gravity/splashscreenDodge2.png"; sourceTree = "<absolute>"; };
-		8FF940A820D2C66600611A5C /* Artboard 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Artboard 1.png"; path = "1x/Artboard 1.png"; sourceTree = SOURCE_ROOT; };
 		970F24437FB7F428F7E823C2 /* Pods-Anti GravityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anti GravityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Anti GravityUITests/Pods-Anti GravityUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9C13C9F445E3ABF14B95F3E4 /* Pods-Anti GravityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anti GravityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anti GravityUITests/Pods-Anti GravityUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A34558D1519BF0009BDF2A34 /* Pods-Anti GravityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anti GravityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Anti GravityTests/Pods-Anti GravityTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 				8FF0AEE01D15645C0075BBE9 /* GameViewController.swift */,
 				8FF0AEE21D15645C0075BBE9 /* Main.storyboard */,
 				8FF0AEE71D15645C0075BBE9 /* LaunchScreen.storyboard */,
-				8FF940A820D2C66600611A5C /* Artboard 1.png */,
 				8FF940A720D2C57A00611A5C /* splashscreenDodge2.png */,
 				8FF0AEE51D15645C0075BBE9 /* Assets.xcassets */,
 				8FF0AEEA1D15645C0075BBE9 /* Info.plist */,
@@ -274,8 +271,6 @@
 				8FF0AED31D15645C0075BBE9 /* Sources */,
 				8FF0AED41D15645C0075BBE9 /* Frameworks */,
 				8FF0AED51D15645C0075BBE9 /* Resources */,
-				BA311D3745A1839EE84ACA7D /* [CP] Embed Pods Frameworks */,
-				F8AE60CB03A571AD50D3A2EE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -294,8 +289,6 @@
 				8FF0AEEB1D15645C0075BBE9 /* Sources */,
 				8FF0AEEC1D15645C0075BBE9 /* Frameworks */,
 				8FF0AEED1D15645C0075BBE9 /* Resources */,
-				CFCF52ABD9A325339BEA2135 /* [CP] Embed Pods Frameworks */,
-				8852840CFFAB41DBCA621CE5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -315,8 +308,6 @@
 				8FF0AEF61D15645C0075BBE9 /* Sources */,
 				8FF0AEF71D15645C0075BBE9 /* Frameworks */,
 				8FF0AEF81D15645C0075BBE9 /* Resources */,
-				20F78FADCF936AA0BC15FF67 /* [CP] Embed Pods Frameworks */,
-				9982FBEC0B25BC43106067D8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -389,7 +380,6 @@
 				5B2969591E63716400E6D49A /* trackSound.mp3 in Resources */,
 				5B2969531E63711500E6D49A /* touchSoundOfficial2.0.mp3 in Resources */,
 				8FF0AEE61D15645C0075BBE9 /* Assets.xcassets in Resources */,
-				8FF940A920D2C66700611A5C /* Artboard 1.png in Resources */,
 				8FF0AEE41D15645C0075BBE9 /* Main.storyboard in Resources */,
 				8F73D9651DB658D600D3180F /* Outage.ttf in Resources */,
 			);
@@ -431,21 +421,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		20F78FADCF936AA0BC15FF67 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti GravityUITests/Pods-Anti GravityUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4B376115BFAAB9A21C353F1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -480,81 +455,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8852840CFFAB41DBCA621CE5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti GravityTests/Pods-Anti GravityTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9982FBEC0B25BC43106067D8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti GravityUITests/Pods-Anti GravityUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BA311D3745A1839EE84ACA7D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti Gravity/Pods-Anti Gravity-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CFCF52ABD9A325339BEA2135 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti GravityTests/Pods-Anti GravityTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F8AE60CB03A571AD50D3A2EE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Anti Gravity/Pods-Anti Gravity-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
