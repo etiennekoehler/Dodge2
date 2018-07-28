@@ -22,6 +22,10 @@ class GameViewController: UIViewController, GADInterstitialDelegate {
         // Create and load intertitial ad
         interstitial = createAndLoadInterstitial()
         
+        // AdMob: listen to notification from GameScene (
+        NotificationCenter.default.addObserver(self, selector: #selector(self.startAdMobAd), name: NSNotification.Name(rawValue: "showAdMobAd"), object: nil)
+        print("Interstitial: notification addObserver -------")
+
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
             let skView = self.view as! SKView
@@ -64,13 +68,7 @@ class GameViewController: UIViewController, GADInterstitialDelegate {
         return true
     }
     
-    
-    // AdMob: listen to notification from GameScene
-    
-    override func viewWillLayoutSubviews() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.startAdMobAd), name: NSNotification.Name(rawValue: "showAdMobAd"), object: nil)
-    }
-    
+
     // Show interstitial ad
     
     func startAdMobAd() {
@@ -85,18 +83,18 @@ class GameViewController: UIViewController, GADInterstitialDelegate {
     // Create and load interstitial ad
     
     private func createAndLoadInterstitial() -> GADInterstitial? {
-      //interstitial = GADInterstitial(adUnitID: "ca-app-pub-8501671653071605/2568258533")   // sample ad unit ID ???
+      //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")   // test ad ID
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3763052847602002/5940182500")   // real ad ID
         
-        
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")   //
-        //interstitial sample adunit ID
-
-        //interstitial = GADInterstitial(adUnitID: "ca-app-pub-3763052847602002/5940182500")   // real ID
         guard let interstitial = interstitial else {
             return nil
         }
         let request = GADRequest()
-        request.testDevices = [ kGADSimulatorID ]
+
+        // optional testDevices for testing
+      //request.testDevices = [ kGADSimulatorID ]     // test device for simulator (not needed for test ad ID)
+    //request.testDevices = [ "c775e1e00cc686c6dbc6ed68141f6411" ]  // test device for Martin's iPhone6
+
         interstitial.load(request)
         interstitial.delegate = self
         return interstitial

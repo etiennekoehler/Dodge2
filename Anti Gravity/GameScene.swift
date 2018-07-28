@@ -3815,8 +3815,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                 delay(1){
                     
-                    // AdMob: send notification to GameViewController, which will show ad
+                    // AdMob: send notification to GameViewController, which will show interstitial ad
                     
+                    print("interstitial: game dead: showAdMobAd ---------")
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showAdMobAd"), object: nil)
                     
                     self.createDeadScene()
