@@ -286,7 +286,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var unlockColor6 = Int()
     var starPos      = Int()
     var soundVar     = Int()
-    var volumeVar:CGFloat = 0.0
     var homeOrRestart     = Int()
     var dodgePicColor     = "dodgePic"
     var onBuyScene        = 0
@@ -373,10 +372,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //audioPlayer.numberOfLoops = 0
         trackPlayer.numberOfLoops = -1
         
-        touchPlayer.volume = Float(volumeVar)    //0.07
+        touchPlayer.volume = 0.2    //0.07
         pointPlayer.volume = 0.0    //0.3
         deathPlayer.volume = 0.4    //0.4
-        trackPlayer.volume = 0.0    //0.3
+        trackPlayer.volume = 0.3    //0.3
 
         touchPlayer.prepareToPlay()
         pointPlayer.prepareToPlay()
@@ -2379,30 +2378,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let location = touch.location(in: self)
                 
                 if colorVar == 1 {
-                    if playBTN.contains(location) && volumeVar == 0.3{
-                        volumeVar = 0.0
-                        trackPlayer.play()
-                        print("******************************", trackPlayer.volume)
-                    }
-                
-                    if playBTN.contains(location) && volumeVar == 0.0{
-                        volumeVar = 0.0
-                        trackPlayer.play()
-                        print("******************************", trackPlayer.volume)
-
-                    }
                 
                     if rateBTN.contains(location){
                     }
                 
-                    if musicBTN.contains(location) && trackPlayer.volume == 0.3{
-                        trackPlayer.volume = 0.0
-                        print("---MusicBTN touch begin---", trackPlayer.volume)
-                    }
-                
-                    else {
-                        trackPlayer.volume = 0.3
-                        print("-------MusicBTN2 touch begin-------", trackPlayer.volume)
+                    if musicBTN.contains(location){
+                        if trackPlayer.volume == 0.3{
+                            trackPlayer.volume = 0.0
+                            print("---MusicBTN touch: music off ---", trackPlayer.volume)
+                        }
+                        else {
+                            trackPlayer.volume = 0.3
+                            print("---MusicBTN touch: music on---", trackPlayer.volume)
+                        }
                     }
             
                     if noAdBTN.contains(location){
@@ -2425,14 +2413,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if rateBTN22.contains(location){
                     }
                     
-                    if musicBTN22.contains(location) && trackPlayer.volume == 0.3{
-                        trackPlayer.volume = 0.0
-                        print("---MusicBTN touch begin---", trackPlayer.volume)
-                    }
-                        
-                    else {
-                        trackPlayer.volume = 0.3
-                        print("-------MusicBTN2 touch begin-------", trackPlayer.volume)
+                    if musicBTN22.contains(location){
+                        if trackPlayer.volume == 0.3{
+                            trackPlayer.volume = 0.0
+                            print("---MusicBTN touch: music off ---", trackPlayer.volume)
+                        }
+                        else {
+                            trackPlayer.volume = 0.3
+                            print("---MusicBTN touch: music on---", trackPlayer.volume)
+                        }
                     }
                     
                     if noAdBTN22.contains(location){
@@ -2454,14 +2443,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if rateBTN3.contains(location){
                     }
                     
-                    if musicBTN3.contains(location) && trackPlayer.volume == 0.3{
-                        trackPlayer.volume = 0.0
-                        print("---MusicBTN touch begin---", trackPlayer.volume)
-                    }
-                        
-                    else {
-                        trackPlayer.volume = 0.3
-                        print("-------MusicBTN2 touch begin-------", trackPlayer.volume)
+                    if musicBTN3.contains(location){
+                        if trackPlayer.volume == 0.3{
+                            trackPlayer.volume = 0.0
+                            print("---MusicBTN touch: music off ---", trackPlayer.volume)
+                        }
+                        else {
+                            trackPlayer.volume = 0.3
+                            print("---MusicBTN touch: music on---", trackPlayer.volume)
+                        }
                     }
                     
                     if noAdBTN3.contains(location){
@@ -2483,14 +2473,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if rateBTN4.contains(location){
                     }
                     
-                    if musicBTN4.contains(location) && trackPlayer.volume == 0.3{
-                        trackPlayer.volume = 0.0
-                        print("---MusicBTN touch begin---", trackPlayer.volume)
-                    }
-                        
-                    else {
-                        trackPlayer.volume = 0.3
-                        print("-------MusicBTN2 touch begin-------", trackPlayer.volume)
+                    if musicBTN4.contains(location){
+                        if trackPlayer.volume == 0.3{
+                            trackPlayer.volume = 0.0
+                            print("---MusicBTN touch: music off ---", trackPlayer.volume)
+                        }
+                        else {
+                            trackPlayer.volume = 0.3
+                            print("---MusicBTN touch: music on---", trackPlayer.volume)
+                        }
                     }
                     
                     if noAdBTN4.contains(location){
@@ -2512,16 +2503,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if rateBTN5.contains(location){
                     }
                     
-                    if musicBTN5.contains(location) && trackPlayer.volume == 0.3{
-                        trackPlayer.volume = 0.0
-                        print("---MusicBTN touch begin---", trackPlayer.volume)
+                    if musicBTN5.contains(location){
+                        if trackPlayer.volume == 0.3{
+                            trackPlayer.volume = 0.0
+                            print("---MusicBTN touch: music off ---", trackPlayer.volume)
+                        }
+                        else {
+                            trackPlayer.volume = 0.3
+                            print("---MusicBTN touch: music on---", trackPlayer.volume)
+                        }
                     }
-                        
-                    else {
-                        trackPlayer.volume = 0.3
-                        print("-------MusicBTN2 touch begin-------", trackPlayer.volume)
-                    }
-                    
+                   
                     if noAdBTN5.contains(location){
                     }
                     
@@ -2541,11 +2533,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if rateBTN6.contains(location){
                     }
                     
-                    if musicBTN6.contains(location) && trackPlayer.volume == 0.3{
-                        trackPlayer.volume = 0.0
-                        print("---MusicBTN touch begin---", trackPlayer.volume)
+                    if musicBTN.contains(location){
+                        if trackPlayer.volume == 0.3{
+                            trackPlayer.volume = 0.0
+                            print("---MusicBTN touch: music off ---", trackPlayer.volume)
+                        }
+                        else {
+                            trackPlayer.volume = 0.3
+                            print("---MusicBTN touch: music on---", trackPlayer.volume)
+                        }
                     }
-                        
+
                     else {
                         trackPlayer.volume = 0.3
                         print("-------MusicBTN2 touch begin-------", trackPlayer.volume)
@@ -2803,7 +2801,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if rateBTN.contains(location){
                     }
                 
-                   
                     if musicBTN.contains(location) && trackPlayer.volume == 0.0{
                         musicBTN.removeFromParent()
                         createMusicBTN2()
@@ -2835,7 +2832,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     if rateBTN22.contains(location){
                     }
-                    
                     
                     if musicBTN22.contains(location) && trackPlayer.volume == 0.0{
                         musicBTN22.removeFromParent()
